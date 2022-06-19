@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/car-workshop-frontend/static/css/main.35fd9e0e.css",
-    "main.js": "/car-workshop-frontend/static/js/main.b49f7af9.js",
+    "main.css": "/car-workshop-frontend/static/css/main.3ec74e58.css",
+    "main.js": "/car-workshop-frontend/static/js/main.25da5cc7.js",
     "static/js/787.4e7f514a.chunk.js": "/car-workshop-frontend/static/js/787.4e7f514a.chunk.js",
     "static/media/ferrari.jpg": "/car-workshop-frontend/static/media/ferrari.e342a93938601beae637.jpg",
     "index.html": "/car-workshop-frontend/index.html",
-    "main.35fd9e0e.css.map": "/car-workshop-frontend/static/css/main.35fd9e0e.css.map",
-    "main.b49f7af9.js.map": "/car-workshop-frontend/static/js/main.b49f7af9.js.map",
+    "main.3ec74e58.css.map": "/car-workshop-frontend/static/css/main.3ec74e58.css.map",
+    "main.25da5cc7.js.map": "/car-workshop-frontend/static/js/main.25da5cc7.js.map",
     "787.4e7f514a.chunk.js.map": "/car-workshop-frontend/static/js/787.4e7f514a.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.35fd9e0e.css",
-    "static/js/main.b49f7af9.js"
+    "static/css/main.3ec74e58.css",
+    "static/js/main.25da5cc7.js"
   ]
 }
