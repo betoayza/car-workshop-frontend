@@ -1,16 +1,16 @@
 {
   "files": {
     "main.css": "/car-workshop-frontend/static/css/main.3ec74e58.css",
-    "main.js": "/car-workshop-frontend/static/js/main.52982d00.js",
+    "main.js": "/car-workshop-frontend/static/js/main.5d5f77a5.js",
     "static/js/787.4e7f514a.chunk.js": "/car-workshop-frontend/static/js/787.4e7f514a.chunk.js",
     "static/media/ferrari.jpg": "/car-workshop-frontend/static/media/ferrari.e342a93938601beae637.jpg",
     "index.html": "/car-workshop-frontend/index.html",
     "main.3ec74e58.css.map": "/car-workshop-frontend/static/css/main.3ec74e58.css.map",
-    "main.52982d00.js.map": "/car-workshop-frontend/static/js/main.52982d00.js.map",
+    "main.5d5f77a5.js.map": "/car-workshop-frontend/static/js/main.5d5f77a5.js.map",
     "787.4e7f514a.chunk.js.map": "/car-workshop-frontend/static/js/787.4e7f514a.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.3ec74e58.css",
-    "static/js/main.52982d00.js"
+    "static/js/main.5d5f77a5.js"
   ]
 }
