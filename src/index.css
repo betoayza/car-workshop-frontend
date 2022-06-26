@@ -1,0 +1,34 @@
+body {  
+  background: rgb(120,195,34);
+  background: radial-gradient(circle, rgba(120,195,34,1) 0%, rgba(18,18,18,1) 62%);
+}
+
+div {
+  /* border: solid 2px; */
+  margin: 0 auto;
+  width: 100%;
+}
+
+form {
+  width: 100%;
+}
+
+h1, p {
+  color: darkgoldenrod;
+  font-family: monospace;
+  font-weight: bold;
+}
+
+h1 {  
+  text-shadow: black 0.1em 0.1em 0.5em;
+}
+
+h2 {
+  color: black;
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: bold;
+}
+
+img {
+  border-radius: 1rem;
+}
