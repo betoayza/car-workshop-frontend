@@ -1,6 +1,6 @@
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
-import * as Components from "./components/indexComponents.js";
+import * as Components from "./components/indexComponents.jsx";
 
 const App = () => {
   return (
