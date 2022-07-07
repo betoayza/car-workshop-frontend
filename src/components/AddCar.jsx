@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import {API} from '../api/api';
+import { API } from "../api/api";
 
 const initialForm = {
   code: Date.now(),
@@ -12,7 +12,6 @@ const initialForm = {
   status: "Active",
 };
 
-
 const AddCar = () => {
   const [form, setForm] = useState(initialForm);
 
@@ -23,30 +22,34 @@ const AddCar = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     const options = {
-       url: `${API}/cars/add`,
-       method: 'get',
-       headers: {
-        'Content-Type': 'application/json',
-        
-       },
-       data: { form },       
-    }
+      url: `/api/cars/add`,  
+      method: 'post',    
+      headers: {
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Headers": "*",
+        Accept: "application/json",
+        timeout: 3000,        
+      },
+      data: form,
+    };
+    
     await axios
       .request(options)
       .then((res) => {
-        console.log(res);
         if (res.data) {
+          console.log(res.data);
           alert("Add successful!");
         } else {
           alert("Add failed :(");
         }
       })
       .catch((error) => error);
-      handleReset();
+    handleReset();
   };
 
   const handleReset = (e) => {
-    setForm({...initialForm, code: Date.now()});
+    setForm({ ...initialForm, code: Date.now() });
   };
 
   return (

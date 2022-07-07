@@ -7,13 +7,13 @@ const App = () => {
     <div id="app-div">
       <h1>SuperCar Workshop:</h1>
       <div>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-          <div class="container-fluid">
-            <a class="navbar-brand" href="/">
+        <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+          <div className="container-fluid">
+            <a className="navbar-brand" href="/">
               Menu
             </a>
             <button
-              class="navbar-toggler"
+              className="navbar-toggler"
               type="button"
               data-bs-toggle="collapse"
               data-bs-target="#navbarNavDropdown"
@@ -21,19 +21,19 @@ const App = () => {
               aria-expanded="false"
               aria-label="Toggle navigation"
             >
-              <span class="navbar-toggler-icon"></span>
+              <span className="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse" id="navbarNavDropdown">
-              <ul class="navbar-nav">
-                <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="/car-workshop-frontend/#/">
+            <div className="collapse navbar-collapse" id="navbarNavDropdown">
+              <ul className="navbar-nav">
+                <li className="nav-item">
+                  <a className="nav-link active" aria-current="page" href="/">
                     Home
                   </a>
                 </li>
 
-                <li class="nav-item dropdown">
+                <li className="nav-item dropdown">
                   <a
-                    class="nav-link dropdown-toggle"
+                    className="nav-link dropdown-toggle"
                     href="#"
                     id="navbarDropdownMenuLink"
                     role="button"
@@ -43,17 +43,17 @@ const App = () => {
                     Cars
                   </a>
                   <ul
-                    class="dropdown-menu"
+                    className="dropdown-menu"
                     aria-labelledby="navbarDropdownMenuLink"
                   >
                     <li>
-                      <a class="dropdown-item" href="/car-workshop-frontend/#/cars/add">
+                      <a className="dropdown-item" href="/cars/add">
                         Add
                       </a>
                     </li>
                     <li>
                       <a
-                        class="dropdown-item"
+                        className="dropdown-item"
                         href="/cars/delete"
                       >
                         Delete
@@ -61,15 +61,15 @@ const App = () => {
                     </li>
                     <li>
                       <a
-                        class="dropdown-item"
-                        href="/car-workshop-frontend/#/cars/search"
+                        className="dropdown-item"
+                        href="/cars/search"
                       >
                         Search
                       </a>
                     </li>
                     <li>
                       <a
-                        class="dropdown-item"
+                        className="dropdown-item"
                         href="/car-workshop-frontend/#/cars/modify"
                       >
                         Modify
@@ -78,9 +78,9 @@ const App = () => {
                   </ul>
                 </li>
 
-                <li class="nav-item dropdown">
+                <li className="nav-item dropdown">
                   <a
-                    class="nav-link dropdown-toggle"
+                    className="nav-link dropdown-toggle"
                     href="#"
                     id="navbarDropdownMenuLink"
                     role="button"
@@ -90,12 +90,12 @@ const App = () => {
                     Clients
                   </a>
                   <ul
-                    class="dropdown-menu"
+                    className="dropdown-menu"
                     aria-labelledby="navbarDropdownMenuLink"
                   >
                     <li>
                       <a
-                        class="dropdown-item"
+                        className="dropdown-item"
                         href="/car-workshop-frontend/#/clients/add"
                       >
                         Add
@@ -103,15 +103,15 @@ const App = () => {
                     </li>
                     <li>
                       <a
-                        class="dropdown-item"
-                        href="/car-workshop-frontend/#/clients/delete"
+                        className="dropdown-item"
+                        href="/clients/delete"
                       >
                         Delete
                       </a>
                     </li>
                     <li>
                       <a
-                        class="dropdown-item"
+                        className="dropdown-item"
                         href="/car-workshop-frontend/#/clients/search"
                       >
                         Search
@@ -119,7 +119,7 @@ const App = () => {
                     </li>
                     <li>
                       <a
-                        class="dropdown-item"
+                        className="dropdown-item"
                         href="/car-workshop-frontend/#/clients/modify"
                       >
                         Modify
@@ -128,9 +128,9 @@ const App = () => {
                   </ul>
                 </li>
 
-                <li class="nav-item dropdown">
+                <li className="nav-item dropdown">
                   <a
-                    class="nav-link dropdown-toggle"
+                    className="nav-link dropdown-toggle"
                     href="#"
                     id="navbarDropdownMenuLink"
                     role="button"
@@ -140,12 +140,12 @@ const App = () => {
                     Services
                   </a>
                   <ul
-                    class="dropdown-menu"
+                    className="dropdown-menu"
                     aria-labelledby="navbarDropdownMenuLink"
                   >
                     <li>
                       <a
-                        class="dropdown-item"
+                        className="dropdown-item"
                         href="/car-workshop-frontend/#/services/add"
                       >
                         Add
@@ -153,7 +153,7 @@ const App = () => {
                     </li>
                     <li>
                       <a
-                        class="dropdown-item"
+                        className="dropdown-item"
                         href="/car-workshop-frontend/#/services/delete"
                       >
                         Delete
@@ -161,7 +161,7 @@ const App = () => {
                     </li>
                     <li>
                       <a
-                        class="dropdown-item"
+                        className="dropdown-item"
                         href="/car-workshop-frontend/#/services/search"
                       >
                         Search
@@ -169,7 +169,7 @@ const App = () => {
                     </li>
                     <li>
                       <a
-                        class="dropdown-item"
+                        className="dropdown-item"
                         href="/car-workshop-frontend/#/services/modify"
                       >
                         Modify
