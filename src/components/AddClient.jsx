@@ -16,16 +16,28 @@ const AddClient = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    let uri = "/clients/add";
+
+    const options = {
+      url: "/api/clients/add",
+      method: "post",
+      headers: {
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Headers": "*",
+        Accept: "application/json",
+        timeout: 3000,
+      },
+      data: form,
+    };
+
     await axios
-      .post(uri, form)
+      .request(options)
       .then((res) => {
         console.log(res);
         if (res.data) {
-          alert("Add successful!");
-          console.log("El alta es: ", res.data);
+          alert("Add successful!");          
         } else {
-          alert("Add failed: user already exist :(");
+          alert("Error: user already exist :(");
         }
       })
       .catch((error) => error);

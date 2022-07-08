@@ -96,7 +96,7 @@ const App = () => {
                     <li>
                       <a
                         className="dropdown-item"
-                        href="/car-workshop-frontend/#/clients/add"
+                        href="/clients/add"
                       >
                         Add
                       </a>
