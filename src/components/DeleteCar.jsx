@@ -40,7 +40,7 @@ const DeleteCar = () => {
   };
 
   return (
-    <>
+    <div>
       <h2> Delete a Car </h2>
       <form onSubmit={handleSubmit}>
         <div className="form-group w-25">
@@ -65,7 +65,7 @@ const DeleteCar = () => {
           </button>
         </div>
       </form>
-    </>
+    </div>
   );
 };
 

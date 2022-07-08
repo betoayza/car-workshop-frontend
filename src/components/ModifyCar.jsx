@@ -8,12 +8,12 @@ const initialForm = {
   model: "",
   year: "",
   owner: "",
-  status: ""
+  status: "",
 };
 
 const ModifyCar = () => {
   const [form, setForm] = useState(initialForm);
-  const [car, setCar] = useState(false);
+  const [car, setCar] = useState(null);
   const [code, setCode] = useState("");
 
   const handleChange = (e) => {
@@ -22,15 +22,28 @@ const ModifyCar = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const uri = `/cars/search/${code}`;
+
+    const options = {
+      url: `/api/cars/search`,
+
+      headers: {
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Headers": "*",
+        Accept: "application/json",
+        timeout: 3000,
+      },
+      params: { code },
+    };
+
     await axios
-      .get(uri)
+      .request(options)
       .then((res) => {
-        console.log(res);
+        console.log(res.data);
         if (res.data) {
+          setCar(res.data);
+          setForm(res.data);
           alert("Car finded!");
-          setCar(true); 
-          setForm(res.data);         
         } else {
           alert("Car not finded :(");
         }
@@ -44,16 +57,30 @@ const ModifyCar = () => {
   };
 
   //---------
-  //Handle Form
+  //Handle Update Form
   const handleChange2 = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
   const handleSubmit2 = async (e) => {
     e.preventDefault();
-    const uri = "/cars/modify/edit";
-    await axios.put(uri, { form })
+
+    const options = {
+      url: "/api/cars/modify",
+      method: 'put',
+      headers: {
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Headers": "*",
+        Accept: "application/json",
+        timeout: 3000,
+      },
+      data: form,
+    };
+
+    await axios.request(options)
       .then((res) => {
+        console.log(res.data);
         if (res.data) {
           console.log("New data: ", res.data);
           alert("Car updated!");
@@ -64,7 +91,7 @@ const ModifyCar = () => {
       .catch((error) => {
         console.error(error);
       });
-      handleReset2();
+    handleReset2();
   };
 
   const handleReset2 = (e) => {
@@ -100,12 +127,12 @@ const ModifyCar = () => {
 
       {car && (
         <div>
-          <h1>Edit Car:</h1>
+          <h1>Modify Car:</h1>
           <div className="form-group w-25">
             <form onSubmit={handleSubmit2}>
               <div className="input-group mb-3">
                 {/* code isnt updatable */}
-                <label>Code: {form.code}</label>             
+                <label>Code: {form.code}</label>
               </div>
               <div className="input-group mb-3">
                 <input
