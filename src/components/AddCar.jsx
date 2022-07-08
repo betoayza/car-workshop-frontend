@@ -21,6 +21,7 @@ const AddCar = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    
     const options = {
       url: `/api/cars/add`,  
       method: 'post',    

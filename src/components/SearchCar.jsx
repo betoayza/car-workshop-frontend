@@ -10,10 +10,22 @@ const SearchCar = () => {
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    let uri = `/cars/search/${code}`;
+    e.preventDefault();    
+
+    const options = {     
+       
+      headers: {
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Headers": "*",
+        Accept: "application/json",
+        timeout: 3000,        
+      },
+      params: {code},
+    };
+
     await axios
-      .get(uri)
+      .get("/api/cars/search", options)
       .then((res) => {
         console.log(res.data);
         if (res.data) {
