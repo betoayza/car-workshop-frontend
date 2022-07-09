@@ -251,7 +251,7 @@ const App = () => {
           <Route
             exact
             path="/clients/modify"
-            element={<Components.SearchClient />}
+            element={<Components.ModifyClient />}
           />
 
           <Route

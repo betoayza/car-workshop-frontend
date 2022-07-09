@@ -91,7 +91,6 @@ const ModifyClient = () => {
       .catch((error) => {
         console.error(error);
       });
-    handleReset2();
   };
 
   const handleReset2 = (e) => {
@@ -101,8 +100,8 @@ const ModifyClient = () => {
 
   return (
     <>
-      <h2>Modify client:</h2>
-      <h2>Find car: </h2>
+      <h2>Search client:</h2>
+
       <div className="form-group w-25">
         <form onSubmit={handleSubmit}>
           <div className="input-group mb-3">
@@ -135,18 +134,9 @@ const ModifyClient = () => {
               <div className="input-group mb-3">
                 {/* code isnt updatable */}
                 <label>Code: {form.code}</label>
+                <label>DNI: {form.id}</label>
               </div>
-              <div className="input-group mb-2">
-                <input
-                  type="number"
-                  className="form-control"
-                  name="id"
-                  placeholder="Identify Number..."
-                  value={form.id}
-                  onChange={handleChange}
-                  required
-                />
-              </div>
+
               <div className="input-group mb-2">
                 <input
                   type="text"
@@ -154,7 +144,7 @@ const ModifyClient = () => {
                   name="name"
                   placeholder="Name..."
                   value={form.name}
-                  onChange={handleChange}
+                  onChange={handleChange2}
                   required
                 />
               </div>
@@ -165,7 +155,7 @@ const ModifyClient = () => {
                   name="surname"
                   placeholder="Surname..."
                   value={form.surname}
-                  onChange={handleChange}
+                  onChange={handleChange2}
                   required
                 />
               </div>
@@ -176,7 +166,7 @@ const ModifyClient = () => {
                   name="email"
                   placeholder="Email..."
                   value={form.email}
-                  onChange={handleChange}
+                  onChange={handleChange2}
                   required
                 />
               </div>
@@ -187,7 +177,7 @@ const ModifyClient = () => {
                   name="phone"
                   placeholder="Phone..."
                   value={form.phone}
-                  onChange={handleChange}
+                  onChange={handleChange2}
                   required
                 />
               </div>
@@ -209,7 +199,7 @@ const ModifyClient = () => {
               <button
                 className="btn btn-danger"
                 type="reset"
-                onClick={handleReset}
+                onClick={handleReset2}
               >
                 Reset
               </button>
