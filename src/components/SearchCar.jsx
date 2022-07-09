@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import CarsTable from "./CarsTable";
 
 const SearchCar = () => {
   const [code, setCode] = useState("");
@@ -77,42 +78,7 @@ const SearchCar = () => {
         </form>
       </div>
 
-      {car && (
-        <div id="table-div">
-          <h2>Car:</h2>
-          <table className="table">
-            <thead>
-              <tr className="table-success" id="tr-table-header">
-                <th scope="col">Code</th>
-                <th scope="col">Patent</th>
-                <th scope="col">Brand</th>
-                <th scope="col">Model</th>
-                <th scope="col">Year</th>
-                <th scope="col">Owner</th>
-              </tr>
-            </thead>
-            <tbody>
-              {Object.keys(car).length === 0 ? (
-                <tr colSpan="6">
-                  <td>No data</td>
-                </tr>
-              ) : (
-                <>
-                  <tr>
-                    <td>{car.code}</td>
-                    <td>{car.patent}</td>
-                    <td>{car.brand}</td>
-                    <td>{car.model}</td>
-                    <td>{car.year}</td>
-                    <td>{car.owner}</td>
-                  </tr>
-                 
-                </>
-              )}
-            </tbody>
-          </table>
-        </div>
-      )}
+      {car && <CarsTable cars={car} />}
     </>
   );
 };

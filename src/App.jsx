@@ -112,7 +112,7 @@ const App = () => {
                     <li>
                       <a
                         className="dropdown-item"
-                        href="/car-workshop-frontend/#/clients/search"
+                        href="/clients/search"
                       >
                         Search
                       </a>
@@ -120,7 +120,7 @@ const App = () => {
                     <li>
                       <a
                         className="dropdown-item"
-                        href="/car-workshop-frontend/#/clients/modify"
+                        href="/clients/modify"
                       >
                         Modify
                       </a>
@@ -146,7 +146,7 @@ const App = () => {
                     <li>
                       <a
                         className="dropdown-item"
-                        href="/car-workshop-frontend/#/services/add"
+                        href="/services/add"
                       >
                         Add
                       </a>
@@ -154,7 +154,7 @@ const App = () => {
                     <li>
                       <a
                         className="dropdown-item"
-                        href="/car-workshop-frontend/#/services/delete"
+                        href="/services/delete"
                       >
                         Delete
                       </a>
@@ -162,7 +162,7 @@ const App = () => {
                     <li>
                       <a
                         className="dropdown-item"
-                        href="/car-workshop-frontend/#/services/search"
+                        href="/services/search"
                       >
                         Search
                       </a>
@@ -170,7 +170,7 @@ const App = () => {
                     <li>
                       <a
                         className="dropdown-item"
-                        href="/car-workshop-frontend/#/services/modify"
+                        href="/services/modify"
                       >
                         Modify
                       </a>

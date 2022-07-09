@@ -81,8 +81,7 @@ const ModifyCar = () => {
     await axios.request(options)
       .then((res) => {
         console.log(res.data);
-        if (res.data) {
-          console.log("New data: ", res.data);
+        if (res.data) {         
           alert("Car updated!");
         } else {
           alert("Error in update :(");
@@ -96,6 +95,7 @@ const ModifyCar = () => {
 
   const handleReset2 = (e) => {
     setForm(initialForm);
+    setCar(null);
   };
 
   return (

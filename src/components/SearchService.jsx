@@ -11,9 +11,22 @@ const SearchService = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const uri = `/services/search/${code}`;
+    
+    const options = {     
+      url: '/services/search',
+       
+      headers: {
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Headers": "*",
+        Accept: "application/json",
+        timeout: 3000,        
+      },
+      params: {code},
+    };
+
     await axios
-      .get(uri)
+      .request(options)
       .then((res) => {
         console.log(res);
         if (res.data) {

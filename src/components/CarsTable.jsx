@@ -2,6 +2,9 @@ import React from "react";
 import CarTableRow from "./CarTableRow";
 
 const CarsTable = ({ cars }) => {
+  if (!Array.isArray(cars)) {
+    cars = [cars];
+  }
   return (
     <>
       <h2>Cars:</h2>
