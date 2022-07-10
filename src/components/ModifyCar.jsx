@@ -90,7 +90,7 @@ const ModifyCar = () => {
       .catch((error) => {
         console.error(error);
       });
-    handleReset2();
+      handleReset2();    
   };
 
   const handleReset2 = (e) => {

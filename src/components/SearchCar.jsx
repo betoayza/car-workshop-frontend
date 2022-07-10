@@ -34,12 +34,12 @@ const SearchCar = () => {
           alert("Car finded!");
         } else alert("No matches :(");
       })
-      .catch((error) => error);
-    handleReset();
+      .catch((error) => error);   
   };
 
   const handleReset = (e) => {
     setCode("");
+    setCar(null);
   };
 
   return (
