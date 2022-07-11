@@ -43,7 +43,7 @@ const ModifyClient = () => {
         if (res.data) {
           setClient(res.data);
           setForm(res.data);
-          alert("Client finded!");
+          alert("Client found!");
         } else {
           alert("Not found :(");
         }

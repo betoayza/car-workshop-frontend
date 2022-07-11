@@ -8,8 +8,7 @@ const initialForm = {
   brand: "",
   model: "",
   year: "",
-  name: "",
-  lastName: "",
+  clientCode: "",
   status: "Active",
 };
 
@@ -120,27 +119,16 @@ const AddCar = () => {
 
           <div className="input-group mb-2">
             <input
-              type="text"
+              type="number"
               className="form-control"
-              name="name"
-              placeholder="Name..."
-              value={form.name}
+              name="clientCode"
+              placeholder="Client code..."
+              value={form.clientCode}
               onChange={handleChange}
               required
             />
           </div>
 
-          <div className="input-group mb-2">
-            <input
-              type="text"
-              className="form-control"
-              name="lastName"
-              placeholder="Last name..."
-              value={form.lastName}
-              onChange={handleChange}
-              required
-            />
-          </div>
 
           <div className="input-group mb-2">
             <input

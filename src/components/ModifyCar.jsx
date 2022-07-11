@@ -7,8 +7,7 @@ const initialForm = {
   brand: "",
   model: "",
   year: "",
-  name: "",
-  lastName: "",
+  clientCode: "",
   status: "",
 };
 
@@ -133,8 +132,15 @@ const ModifyCar = () => {
           <div className="form-group w-25">
             <form onSubmit={handleSubmit2}>
               <div className="input-group mb-3">
-                {/* code isnt updatable */}
-                <label>Code: {form.code}</label>
+                {/* code isnt updatable */}                
+                <input
+                  type="text"
+                  className="form-control"
+                  name="code"        
+                  value={form.code}  
+                  disabled  
+                  readOnly      
+                />
               </div>
 
               <div className="input-group mb-3">
@@ -188,27 +194,14 @@ const ModifyCar = () => {
 
               <div className="input-group mb-3">
                 <input
-                  type="text"
+                  type="number"
                   className="form-control"
-                  name="name"
-                  placeholder="Name..."
-                  value={form.name}
-                  onChange={handleChange2}
-                  required
+                  name="clientCode"                  
+                  value={form.clientCode}
+                  disabled
+                  readOnly
                 />
-              </div>
-
-              <div className="input-group mb-3">
-                <input
-                  type="text"
-                  className="form-control"
-                  name="lastName"
-                  placeholder="Last name..."
-                  value={form.lastName}
-                  onChange={handleChange2}
-                  required
-                />
-              </div>
+              </div>             
 
               <button className="btn btn-primary" type="submit">
                 Update
