@@ -8,7 +8,8 @@ const initialForm = {
   brand: "",
   model: "",
   year: "",
-  owner: "",
+  name: "",
+  lastName: "",
   status: "Active",
 };
 
@@ -121,9 +122,21 @@ const AddCar = () => {
             <input
               type="text"
               className="form-control"
-              name="owner"
-              placeholder="Owner..."
-              value={form.owner}
+              name="name"
+              placeholder="Name..."
+              value={form.name}
+              onChange={handleChange}
+              required
+            />
+          </div>
+
+          <div className="input-group mb-2">
+            <input
+              type="text"
+              className="form-control"
+              name="lastName"
+              placeholder="Last name..."
+              value={form.lastName}
               onChange={handleChange}
               required
             />

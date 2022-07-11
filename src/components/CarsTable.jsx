@@ -16,7 +16,9 @@ const CarsTable = ({ cars }) => {
             <th scope="col">Brand</th>
             <th scope="col">Model</th>
             <th scope="col">Year</th>
-            <th scope="col">Owner</th>
+            <th scope="col">Name</th>
+            <th scope="col">Last Name</th>
+            <th scope="col">Status</th>
           </tr>
         </thead>
         <tbody>

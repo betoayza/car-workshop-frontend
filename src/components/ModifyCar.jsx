@@ -7,7 +7,8 @@ const initialForm = {
   brand: "",
   model: "",
   year: "",
-  owner: "",
+  name: "",
+  lastName: "",
   status: "",
 };
 
@@ -67,7 +68,7 @@ const ModifyCar = () => {
 
     const options = {
       url: "/api/cars/modify",
-      method: 'put',
+      method: "put",
       headers: {
         "Content-Type": "application/json",
         "Access-Control-Allow-Origin": "*",
@@ -78,10 +79,11 @@ const ModifyCar = () => {
       data: form,
     };
 
-    await axios.request(options)
+    await axios
+      .request(options)
       .then((res) => {
         console.log(res.data);
-        if (res.data) {         
+        if (res.data) {
           alert("Car updated!");
         } else {
           alert("Error in update :(");
@@ -90,7 +92,7 @@ const ModifyCar = () => {
       .catch((error) => {
         console.error(error);
       });
-      handleReset2();    
+    handleReset2();
   };
 
   const handleReset2 = (e) => {
@@ -134,6 +136,7 @@ const ModifyCar = () => {
                 {/* code isnt updatable */}
                 <label>Code: {form.code}</label>
               </div>
+
               <div className="input-group mb-3">
                 <input
                   type="text"
@@ -146,6 +149,7 @@ const ModifyCar = () => {
                   required
                 />
               </div>
+
               <div className="input-group mb-3">
                 <input
                   type="text"
@@ -157,6 +161,7 @@ const ModifyCar = () => {
                   required
                 />
               </div>
+
               <div className="input-group mb-3">
                 <input
                   type="text"
@@ -168,6 +173,7 @@ const ModifyCar = () => {
                   required
                 />
               </div>
+
               <div className="input-group mb-3">
                 <input
                   type="number"
@@ -179,13 +185,26 @@ const ModifyCar = () => {
                   required
                 />
               </div>
+
               <div className="input-group mb-3">
                 <input
                   type="text"
                   className="form-control"
-                  name="owner"
-                  placeholder="Owner..."
-                  value={form.owner}
+                  name="name"
+                  placeholder="Name..."
+                  value={form.name}
+                  onChange={handleChange2}
+                  required
+                />
+              </div>
+
+              <div className="input-group mb-3">
+                <input
+                  type="text"
+                  className="form-control"
+                  name="lastName"
+                  placeholder="Last name..."
+                  value={form.lastName}
                   onChange={handleChange2}
                   required
                 />
