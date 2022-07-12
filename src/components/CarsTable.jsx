@@ -1,10 +1,14 @@
 import React from "react";
 import CarTableRow from "./CarTableRow";
 
-const CarsTable = ({ cars }) => {
+const CarsTable = ({ cars, setCars }) => {
   if (!Array.isArray(cars)) {
     cars = [cars];
   }
+
+  const handleCloseTable = () => {
+    setCars(null);
+  };
   return (
     <>
       <h2>Cars:</h2>
@@ -16,8 +20,7 @@ const CarsTable = ({ cars }) => {
             <th scope="col">Brand</th>
             <th scope="col">Model</th>
             <th scope="col">Year</th>
-            <th scope="col">Name</th>
-            <th scope="col">Last Name</th>
+            <th scope="col">Client code</th>
             <th scope="col">Status</th>
           </tr>
         </thead>
@@ -28,6 +31,16 @@ const CarsTable = ({ cars }) => {
             })}
         </tbody>
       </table>
+
+      <div className="col-12">
+        <button
+          className="btn btn-danger"
+          type="reset"
+          onClick={handleCloseTable}
+        >
+          Close
+        </button>
+      </div>
     </>
   );
 };

@@ -75,6 +75,14 @@ const App = () => {
                         Modify
                       </a>
                     </li>
+                    <li>
+                      <a
+                        className="dropdown-item"
+                        href="/cars/all"
+                      >
+                        All
+                      </a>
+                    </li>
                   </ul>
                 </li>
 
@@ -208,6 +216,12 @@ const App = () => {
             exact
             path="/cars/search/getcar"
             element={<Components.SearchCar />}
+          />
+
+          <Route
+            exact
+            path="/cars/all"
+            element={<Components.AllCars />}
           />
 
           <Route

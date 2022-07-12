@@ -8,8 +8,7 @@ const CarTableRow = ({ car }) => {
       <td>{car.brand}</td>
       <td>{car.model}</td>
       <td>{car.year}</td>
-      <td>{car.name}</td>
-      <td>{car.lastName}</td>
+      <td>{car.clientCode}</td>     
       <td>{car.status}</td>
     </tr>
   );

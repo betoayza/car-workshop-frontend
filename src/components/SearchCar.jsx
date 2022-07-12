@@ -11,18 +11,17 @@ const SearchCar = () => {
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault();    
+    e.preventDefault();
 
-    const options = {     
-       
+    const options = {
       headers: {
         "Content-Type": "application/json",
         "Access-Control-Allow-Origin": "*",
         "Access-Control-Allow-Headers": "*",
         Accept: "application/json",
-        timeout: 3000,        
+        timeout: 3000,
       },
-      params: {code},
+      params: { code },
     };
 
     await axios
@@ -34,7 +33,7 @@ const SearchCar = () => {
           alert("Car finded!");
         } else alert("No matches :(");
       })
-      .catch((error) => error);   
+      .catch((error) => error);
   };
 
   const handleReset = (e) => {

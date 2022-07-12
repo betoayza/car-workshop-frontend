@@ -18,6 +18,8 @@ import ModifyCar from "./ModifyCar.jsx";
 import SearchCarForms from "./SearchCarForms.jsx";
 import CarList1 from "./CarList1.jsx";
 import SearchCar from "./SearchCar";
+import { AllCars } from "./AllCars.jsx";
+
 
 import Error404 from "./Error404.jsx";
 
@@ -34,6 +36,7 @@ export {
   AddCar,
   DeleteCar,
   ModifyCar,
+  AllCars,
   SearchCarForms,
   SearchCar,
   CarList1,
