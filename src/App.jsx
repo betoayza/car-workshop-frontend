@@ -52,34 +52,22 @@ const App = () => {
                       </a>
                     </li>
                     <li>
-                      <a
-                        className="dropdown-item"
-                        href="/cars/delete"
-                      >
+                      <a className="dropdown-item" href="/cars/delete">
                         Delete
                       </a>
                     </li>
                     <li>
-                      <a
-                        className="dropdown-item"
-                        href="/cars/search"
-                      >
+                      <a className="dropdown-item" href="/cars/search">
                         Search
                       </a>
                     </li>
                     <li>
-                      <a
-                        className="dropdown-item"
-                        href="/cars/modify"
-                      >
+                      <a className="dropdown-item" href="/cars/modify">
                         Modify
                       </a>
                     </li>
                     <li>
-                      <a
-                        className="dropdown-item"
-                        href="/cars/all"
-                      >
+                      <a className="dropdown-item" href="/cars/all">
                         All
                       </a>
                     </li>
@@ -102,35 +90,28 @@ const App = () => {
                     aria-labelledby="navbarDropdownMenuLink"
                   >
                     <li>
-                      <a
-                        className="dropdown-item"
-                        href="/clients/add"
-                      >
+                      <a className="dropdown-item" href="/clients/add">
                         Add
                       </a>
                     </li>
                     <li>
-                      <a
-                        className="dropdown-item"
-                        href="/clients/delete"
-                      >
+                      <a className="dropdown-item" href="/clients/delete">
                         Delete
                       </a>
                     </li>
                     <li>
-                      <a
-                        className="dropdown-item"
-                        href="/clients/search"
-                      >
+                      <a className="dropdown-item" href="/clients/search">
                         Search
                       </a>
                     </li>
                     <li>
-                      <a
-                        className="dropdown-item"
-                        href="/clients/modify"
-                      >
+                      <a className="dropdown-item" href="/clients/modify">
                         Modify
+                      </a>
+                    </li>
+                    <li>
+                      <a className="dropdown-item" href="/clients/all">
+                        All
                       </a>
                     </li>
                   </ul>
@@ -152,35 +133,28 @@ const App = () => {
                     aria-labelledby="navbarDropdownMenuLink"
                   >
                     <li>
-                      <a
-                        className="dropdown-item"
-                        href="/services/add"
-                      >
+                      <a className="dropdown-item" href="/services/add">
                         Add
                       </a>
                     </li>
                     <li>
-                      <a
-                        className="dropdown-item"
-                        href="/services/delete"
-                      >
+                      <a className="dropdown-item" href="/services/delete">
                         Delete
                       </a>
                     </li>
                     <li>
-                      <a
-                        className="dropdown-item"
-                        href="/services/search"
-                      >
+                      <a className="dropdown-item" href="/services/search">
                         Search
                       </a>
                     </li>
                     <li>
-                      <a
-                        className="dropdown-item"
-                        href="/services/modify"
-                      >
+                      <a className="dropdown-item" href="/services/modify">
                         Modify
+                      </a>
+                    </li>
+                    <li>
+                      <a className="dropdown-item" href="/services/all">
+                        All
                       </a>
                     </li>
                   </ul>
@@ -192,91 +166,90 @@ const App = () => {
       </div>
 
       <div id="components-div"></div>
-      
-        <Routes>
-          <Route exact path="/" element={<Components.Home />} />
 
-          {/* <Route exact path="/login" element={<Components.Login />} /> */}
+      <Routes>
+        <Route exact path="/" element={<Components.Home />} />
 
-          {/* <Route exact path="/signup" element={<Components.SignUp />} /> */}
+        {/* <Route exact path="/login" element={<Components.Login />} /> */}
 
-          <Route exact path="/cars/add/" element={<Components.AddCar />} />
+        {/* <Route exact path="/signup" element={<Components.SignUp />} /> */}
 
-          <Route exact path="/cars/delete" element={<Components.DeleteCar />} />
+        <Route exact path="/cars/add/" element={<Components.AddCar />} />
 
-          <Route exact path="/cars/modify" element={<Components.ModifyCar />} />
+        <Route exact path="/cars/delete" element={<Components.DeleteCar />} />
 
-          <Route
-            exact
-            path="/cars/search"
-            element={<Components.SearchCarForms />}
-          />
+        <Route exact path="/cars/modify" element={<Components.ModifyCar />} />
 
-          <Route
-            exact
-            path="/cars/search/getcar"
-            element={<Components.SearchCar />}
-          />
+        <Route
+          exact
+          path="/cars/search"
+          element={<Components.SearchCarForms />}
+        />
 
-          <Route
-            exact
-            path="/cars/all"
-            element={<Components.AllCars />}
-          />
+        <Route
+          exact
+          path="/cars/search/getcar"
+          element={<Components.SearchCar />}
+        />
 
-          <Route
-            exact
-            path="/cars/searchCar/lists/carlist1"
-            element={<Components.CarList1 />}
-          />
+        <Route exact path="/cars/all" element={<Components.AllCars />} />
 
-          <Route
-            exact
-            path="/services/add"
-            element={<Components.AddService />}
-          />
+        <Route
+          exact
+          path="/cars/searchCar/lists/carlist1"
+          element={<Components.CarList1 />}
+        />
 
-          <Route
-            exact
-            path="/services/delete"
-            element={<Components.DeleteService />}
-          />
+        <Route exact path="/services/add" element={<Components.AddService />} />
 
-          <Route
-            exact
-            path="/services/modify"
-            element={<Components.ModifyService />}
-          />
+        <Route
+          exact
+          path="/services/delete"
+          element={<Components.DeleteService />}
+        />
 
-          <Route
-            exact
-            path="/services/search"
-            element={<Components.SearchService />}
-          />
+        <Route
+          exact
+          path="/services/modify"
+          element={<Components.ModifyService />}
+        />
 
-          <Route exact path="/clients/add" element={<Components.AddClient />} />
+        <Route
+          exact
+          path="/services/search"
+          element={<Components.SearchService />}
+        />
 
-          <Route
-            exact
-            path="/clients/delete"
-            element={<Components.DeleteClient />}
-          />
+        <Route
+          exact
+          path="/services/all"
+          element={<Components.AllServices />}
+        />
 
-          <Route
-            exact
-            path="/clients/modify"
-            element={<Components.ModifyClient />}
-          />
+        <Route exact path="/clients/add" element={<Components.AddClient />} />
 
-          <Route
-            exact
-            path="/clients/search"
-            element={<Components.SearchClient />}
-          />
+        <Route
+          exact
+          path="/clients/delete"
+          element={<Components.DeleteClient />}
+        />
 
-          <Route exact path="*" element={<Components.Error404 />} />
-        </Routes>
-     
+        <Route
+          exact
+          path="/clients/modify"
+          element={<Components.ModifyClient />}
+        />
+
+        <Route
+          exact
+          path="/clients/search"
+          element={<Components.SearchClient />}
+        />
+
+        <Route exact path="/clients/all" element={<Components.AllClients />} />
+
+        <Route exact path="*" element={<Components.Error404 />} />
+      </Routes>
     </div>
   );
 };

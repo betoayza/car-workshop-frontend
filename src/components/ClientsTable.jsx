@@ -1,10 +1,14 @@
 import React from "react";
 import { ClientTableRow } from "./ClientTableRow";
 
-export const ClientsTable = ({ clients }) => {
+export const ClientsTable = ({ clients, setClients }) => {
   if (!Array.isArray(clients)) {
     clients = [clients];
   }
+
+  const handleCloseTable = () => {
+    setClients(null);
+  };
 
   return (
     <div>
@@ -28,6 +32,16 @@ export const ClientsTable = ({ clients }) => {
             })}
         </tbody>
       </table>
+
+      <div className="col-12">
+        <button
+          className="btn btn-danger"
+          type="reset"
+          onClick={handleCloseTable}
+        >
+          Close
+        </button>
+      </div>
     </div>
   );
 };

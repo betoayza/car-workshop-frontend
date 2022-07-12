@@ -32,10 +32,6 @@ export const AllCars = () => {
     getAllCars();
   }, []);
 
-  const handleReset = () => {
-    setCars(null);
-  };
-
   return (
     <div>
       {cars && <CarsTable cars={cars} setCars={setCars} /> }   
