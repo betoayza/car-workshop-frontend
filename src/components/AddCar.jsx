@@ -14,6 +14,7 @@ const initialForm = {
 
 const AddCar = () => {
   const [form, setForm] = useState(initialForm);
+  const [patentError, setPatentError] = useState(false);
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -21,20 +22,20 @@ const AddCar = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    
+
     const options = {
-      url: `/api/cars/add`,  
-      method: 'post',    
+      url: `/api/cars/add`,
+      method: "post",
       headers: {
         "Content-Type": "application/json",
         "Access-Control-Allow-Origin": "*",
         "Access-Control-Allow-Headers": "*",
         Accept: "application/json",
-        timeout: 3000,        
+        timeout: 3000,
       },
       data: form,
     };
-    
+
     await axios
       .request(options)
       .then((res) => {
@@ -52,6 +53,22 @@ const AddCar = () => {
   const handleReset = (e) => {
     setForm({ ...initialForm, code: Date.now() });
   };
+
+  //[A-Z]{3}\s[0-9]{3}
+
+  const handleBlur = (e) => {    
+    let regExp = new RegExp("[A-Z]{3} [0-9]{3}");
+    const match = regExp.test(form.patent);
+    if (match) {
+      setPatentError(false);
+    } else 
+      setPatentError(true);
+  };
+
+  // const errorColor = `
+  //         .error-p {
+  //           "color": "red";
+  //         }`;
 
   return (
     <div>
@@ -77,9 +94,16 @@ const AddCar = () => {
               placeholder="Patent..."
               value={form.patent}
               onChange={handleChange}
+              onBlur={handleBlur}
               required
             />
           </div>
+
+          {patentError && (
+            <p className="error-p" style={{color: "#ff6347"}}>
+              Not valid patent: e.g. "ABC 123"
+            </p>
+          )}
 
           <div className="input-group mb-2">
             <input
@@ -128,7 +152,6 @@ const AddCar = () => {
               required
             />
           </div>
-
 
           <div className="input-group mb-2">
             <input
