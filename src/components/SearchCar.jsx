@@ -77,7 +77,7 @@ const SearchCar = () => {
         </form>
       </div>
 
-      {car && <CarsTable cars={car} />}
+      {car && <CarsTable cars={car} setCars={setCar}/>}
     </>
   );
 };

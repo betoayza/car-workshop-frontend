@@ -201,7 +201,7 @@ const ModifyClient = () => {
                 type="reset"
                 onClick={handleReset2}
               >
-                Reset
+                Close
               </button>
             </form>
           </div>

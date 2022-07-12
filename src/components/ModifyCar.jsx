@@ -132,14 +132,14 @@ const ModifyCar = () => {
           <div className="form-group w-25">
             <form onSubmit={handleSubmit2}>
               <div className="input-group mb-3">
-                {/* code isnt updatable */}                
+                {/* code isnt updatable */}
                 <input
                   type="text"
                   className="form-control"
-                  name="code"        
-                  value={form.code}  
-                  disabled  
-                  readOnly      
+                  name="code"
+                  value={form.code}
+                  disabled
+                  readOnly
                 />
               </div>
 
@@ -196,12 +196,12 @@ const ModifyCar = () => {
                 <input
                   type="number"
                   className="form-control"
-                  name="clientCode"                  
+                  name="clientCode"
                   value={form.clientCode}
                   disabled
                   readOnly
                 />
-              </div>             
+              </div>
 
               <button className="btn btn-primary" type="submit">
                 Update
@@ -212,7 +212,7 @@ const ModifyCar = () => {
                 type="reset"
                 onClick={handleReset2}
               >
-                Reset
+                Close
               </button>
             </form>
           </div>

@@ -33,7 +33,7 @@ const SearchClient = () => {
           alert("No matches :(");
         }
       })
-      .catch((error) => error);    
+      .catch((error) => error);
   };
 
   const handleChange = (e) => {
@@ -82,7 +82,7 @@ const SearchClient = () => {
           </div>
         </form>
       </div>
-      {client && <ClientsTable clients={client} />}
+      {client && <ClientsTable clients={client} setClients={setClient} />}
     </div>
   );
 };
