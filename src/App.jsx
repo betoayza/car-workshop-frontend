@@ -6,9 +6,7 @@ import Login from "./components/Login";
 const App = () => {
   return (
     <div id="app-div">
-      <h1>SuperCar Workshop:</h1>
-      <Login />
-      
+      <h1>SuperCar Workshop:</h1>      
       <div>
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
           <div className="container-fluid">

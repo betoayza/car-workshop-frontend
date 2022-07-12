@@ -1,4 +1,4 @@
-import AdminMenu from "./AdminMenu.jsx";
+import Home from "./Home.jsx";
 //import SignUp from "./SignUp";
 // import Login from "./Login";
 
