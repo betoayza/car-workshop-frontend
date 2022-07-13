@@ -13,7 +13,7 @@ const ServicesTable = ({ services }) => {
           <tr>
             <th scope="col">Code</th>
             <th scope="col">Date</th>
-            <th scope="col">Amount</th>
+            <th scope="col">Amount (USD)</th>
             <th scope="col">Car Code</th>
             <th scope="col">Work</th>
             <th scope="col">Car Kms</th>    
