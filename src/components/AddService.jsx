@@ -1,138 +1,148 @@
 import axios from "axios";
-import React from "react";
-import { useForm } from "react-hook-form";
-import moment from 'moment';
+import React, { useState } from "react";
+import moment from "moment";
+
+const initialForm = {
+  code: Date.now(),
+  date: moment(new Date()).format("DD/MM/YYYY"),
+  amount: "",
+  carCode: "",
+  work: "",
+  carKms: "",
+  status: "Active",
+};
 
 const AddService = () => {
-  const {
-    register,
-    formState: { errors },
-    handleSubmit,
-  } = useForm({
-    defaultValues: {
-      code: Date.now(),
-      date: moment(new Date()).format("DD/MM/YYYY"),
-      amount: "",
-      carCode: "",
-      work: "",
-      carKms: "",      
-      status: "Active",
-    },
-  });
-  const onError = (errors, e) => console.log(errors, e);
+  const [form, setForm] = useState(initialForm);
 
-  const onSubmit = async (data, e) => {
-    //e.preventDefault();
-    const uri = "/services/add";
-    console.log(data);
-    await axios.post(uri, data)
-      .then(res=>{
-        console.log(res);
-        if(res.data){
-          alert("Add Succesful!");
-        }else{
-          alert("Car not founded :(");
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const options = {
+      url: '/api/services/add',
+      method: "post",
+      headers: {
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Headers": "*",
+        Accept: "application/json",
+        timeout: 3000,
+      },
+      data: form,
+    };
+
+    await axios
+      .request(options)
+      .then((res) => {
+        if (res.data) {
+          console.log(res.data);
+          alert("Add successful!");
+        } else {
+          alert("Add failed :(");
         }
       })
-      .catch(error=>error)
-    e.target.reset();
+      .catch((error) => error);
+    handleReset();
+  };
+
+  const handleChange = (e) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
+  };
+
+  const handleReset = (e) => {
+    setForm({ ...initialForm, code: Date.now() });
   };
 
   return (
-    <>
-      <h2>Add service:</h2>
+    <div>
+      <h2> Add Service: </h2>
       <div className="form-group w-25">
-        <form onSubmit={handleSubmit(onSubmit, onError)}>
-          <input
-            {...register("code", { required: { value: true } })}
-            type="hidden"
-            className="form-control"            
-          />
+        <form onSubmit={handleSubmit}>
+          <div className="input-group mb-2">
+            <input
+              type="hidden"
+              className="form-control"
+              name="code"            
+              value={form.code}
+            />
+          </div>
 
-          <input
-            {...register("date", {
-              required: { value: true, message: "Especify a date" },
-            })}
-            type="hidden"
-            className="form-control mb-2"            
-          />
+          <div className="input-group mb-2">
+            <input
+              type="hidden"
+              className="form-control"
+              name="date"             
+            />
+          </div>
 
-          {errors.date && (
-            <span className="text-danger text-small d-block mb-2">
-              <p>{errors.date.message}</p>
-            </span>
-          )}
+          <div className="input-group mb-2">
+            <input
+              type="number"
+              className="form-control"
+              name="amount"
+              placeholder="Amount..."
+              value={form.amount}
+              onChange={handleChange}
+              required             
+            />
+          </div>
 
-          <input
-            {...register("amount", {
-              required: { value: true, message: "Especify amount" },
-            })}
-            type="number"
-            className="form-control mb-2"          
-            placeholder="Amount..."
-          />
+          <div className="input-group mb-2">
+            <input
+              type="number"
+              className="form-control"
+              name="carCode"
+              placeholder="Car code..."
+              value={form.carCode}
+              onChange={handleChange}
+              required
+            />
+          </div>
 
-          {errors.amount && (
-            <span className="text-danger text-small d-block mb-2">
-              <p>{errors.amount.message}</p>
-            </span>
-          )}
+          <div className="input-group mb-2">
+            <input
+              type="text"
+              className="form-control"
+              name="work"
+              placeholder="Work..."
+              value={form.work}
+              onChange={handleChange}
+              required
+            />
+          </div>
 
-          <input
-            {...register("carCode", {
-              required: { value: true, message: "Especify car code" },
-            })}
-            type="number"
-            className="form-control mb-2"          
-            placeholder="Car code..."
-          />
+          <div className="input-group mb-2">
+            <input
+              type="text"
+              className="form-control"
+              name="carKms"
+              placeholder="Car Kms..."
+              value={form.carKms}
+              onChange={handleChange}
+              required
+            />
+          </div>
 
-          {errors.carCode && (
-            <span className="text-danger text-small d-block mb-2">
-              <p>{errors.carCode.message}</p>
-            </span>
-          )}
+          <div className="input-group mb-2">
+            <input
+              type="hidden"
+              className="form-control"
+              name="status"
+              value={form.status}
+              required
+            />
+          </div>
 
-          <input
-            {...register("work", {
-              required: { value: true, message: "Especify work done" },
-            })}
-            type="text"
-            className="form-control mb-2"          
-            placeholder="Work..."
-          />
+          <button className="btn btn-primary" type="submit">
+            Enviar
+          </button>
 
-          {errors.work && (
-            <span className="text-danger text-small d-block mb-2">
-              <p>{errors.work.message}</p>
-            </span>
-          )}
-
-          <input
-            {...register("carKms", {
-              required: { value: true, message: "Especify car kms" },
-            })}
-            type="number"
-            className="form-control mb-2"          
-            placeholder="Car Kms..."
-          />
-
-          {errors.carKms && (
-            <span className="text-danger text-small d-block mb-2">
-              <p>{errors.carKms.message}</p>
-            </span>
-          )}          
-
-          <input
-            {...register("status", { required: { value: true } })}
-            type="hidden"
-            className="form-control"            
-          />
-
-          <input type="submit" className="btn btn-primary" value="Add" />
+          <button className="btn btn-danger" type="reset" onClick={handleReset}>
+            Reset
+          </button>
         </form>
       </div>
-    </>
+    </div>
   );
 };
 

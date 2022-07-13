@@ -76,8 +76,7 @@ const AddCar = () => {
             <input
               type="hidden"
               className="form-control"
-              name="code"
-              id="code"
+              name="code"          
               value={form.code}
             />
           </div>
@@ -86,8 +85,7 @@ const AddCar = () => {
             <input
               type="text"
               className="form-control"
-              name="patent"
-              id="patent"
+              name="patent"            
               placeholder="Patent..."
               value={form.patent}
               onChange={handleChange}
