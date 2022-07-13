@@ -54,21 +54,19 @@ const AddCar = () => {
     setForm({ ...initialForm, code: Date.now() });
   };
 
-  //[A-Z]{3}\s[0-9]{3}
-
-  const handleBlur = (e) => {    
-    let regExp = new RegExp("[A-Z]{3} [0-9]{3}");
-    const match = regExp.test(form.patent);
+  //Patent validation
+  const handleBlur = (e) => {
+    //let expression=e.target.value;
+    console.log(form.patent);
+    let regExp = new RegExp("^[A-Z]{3} [0-9]{3}$");
+    let match = regExp.test(form.patent);
     if (match) {
       setPatentError(false);
-    } else 
+    } else{
       setPatentError(true);
+      setForm({ ...form, patent: "" });
+    } 
   };
-
-  // const errorColor = `
-  //         .error-p {
-  //           "color": "red";
-  //         }`;
 
   return (
     <div>
@@ -100,7 +98,7 @@ const AddCar = () => {
           </div>
 
           {patentError && (
-            <p className="error-p" style={{color: "#ff6347"}}>
+            <p className="error-p" style={{ color: "#ff6347" }}>
               Not valid patent: e.g. "ABC 123"
             </p>
           )}
