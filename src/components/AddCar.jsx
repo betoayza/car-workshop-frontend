@@ -55,8 +55,7 @@ const AddCar = () => {
   };
 
   //Patent validation
-  const handleBlur = (e) => {
-    //let expression=e.target.value;
+  const handleBlur = (e) => {   
     console.log(form.patent);
     let regExp = new RegExp("^[A-Z]{3} [0-9]{3}$");
     let match = regExp.test(form.patent);

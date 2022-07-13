@@ -15,6 +15,7 @@ const ModifyCar = () => {
   const [form, setForm] = useState(initialForm);
   const [car, setCar] = useState(null);
   const [code, setCode] = useState("");
+  const [patentError, setPatentError] = useState(false);
 
   const handleChange = (e) => {
     setCode(e.target.value);
@@ -99,6 +100,18 @@ const ModifyCar = () => {
     setCar(null);
   };
 
+  const handleBlur=()=>{
+    console.log(form.patent);
+    let regExp = new RegExp("^[A-Z]{3} [0-9]{3}$");
+    let match = regExp.test(form.patent);
+    if (match) {
+      setPatentError(false);
+    } else{
+      setPatentError(true);
+      setForm({ ...form, patent: "" });
+    } 
+  }
+
   return (
     <>
       <h2>Find car: </h2>
@@ -152,9 +165,16 @@ const ModifyCar = () => {
                   placeholder="Patent..."
                   value={form.patent}
                   onChange={handleChange2}
+                  onBlur={handleBlur}
                   required
                 />
               </div>
+
+              {patentError && (
+            <p className="error-p" style={{ color: "#ff6347" }}>
+              Not valid patent: e.g. "ABC 123"
+            </p>
+          )}
 
               <div className="input-group mb-3">
                 <input
