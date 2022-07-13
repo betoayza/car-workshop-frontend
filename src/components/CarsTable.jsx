@@ -9,6 +9,7 @@ const CarsTable = ({ cars, setCars }) => {
   const handleCloseTable = () => {
     setCars(null);
   };
+  
   return (
     <>
       <h2>Cars:</h2>

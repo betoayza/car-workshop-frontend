@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useState } from "react";
+import ServicesTable from "./ServicesTable";
 
 const SearchService = () => {
   const [code, setCode] = useState("");
@@ -11,18 +12,18 @@ const SearchService = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
-    const options = {     
-      url: '/services/search',
-       
+
+    const options = {
+      url: "/api/services/search",
+
       headers: {
         "Content-Type": "application/json",
         "Access-Control-Allow-Origin": "*",
         "Access-Control-Allow-Headers": "*",
         Accept: "application/json",
-        timeout: 3000,        
+        timeout: 3000,
       },
-      params: {code},
+      params: { code },
     };
 
     await axios
@@ -30,10 +31,10 @@ const SearchService = () => {
       .then((res) => {
         console.log(res);
         if (res.data) {
-          alert("Service finded!");
+          alert("Service found!");
           setService(res.data);
         } else {
-          alert("Service not finded :(");
+          alert("Not found :(");
         }
       })
       .catch((error) => error);
@@ -71,46 +72,7 @@ const SearchService = () => {
         </form>
       </div>
 
-      {service && (
-        <div id="table-div">
-          <h3>Service:</h3>
-          <table className="table">
-            <thead>
-              <tr className="table-success" id="tr-table-header">
-                <th scope="col">Code</th>
-                <th scope="col">Date</th>
-                <th scope="col">Amount</th>
-                <th scope="col">Car Code</th>
-                <th scope="col">Work</th>
-                <th scope="col">Car Kms</th>
-                <th scope="col">Status</th>
-              </tr>
-            </thead>
-            <tbody>
-              {Object.keys(service).length === 0 ? (
-                <tr colSpan="7">
-                  <td>No data</td>
-                </tr>
-              ) : (
-                <>
-                  <tr>
-                    <td>{service.code}</td>
-                    <td>{service.date}</td>
-                    <td>{service.amount}</td>
-                    <td>{service.carCode}</td>
-                    <td>{service.work}</td>
-                    <td>{service.carKms}</td>
-                    <td>{service.status}</td>
-                  </tr>
-                 
-                </>
-              )}
-            </tbody>
-          </table>
-        </div>
-      )
-      
-      }
+      {service && <ServicesTable services={service} setServices={setService} />}
     </>
   );
 };

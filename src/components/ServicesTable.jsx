@@ -1,12 +1,17 @@
 import React from "react";
 import ServiceTableRow from "./ServiceTableRow";
 
-const ServicesTable = ({ services }) => {
+const ServicesTable = ({ services, setServices }) => {
   if (!Array.isArray(services)) {
     services = [services];
   }
+
+  const handleCloseTable = () => {
+    setServices(null);
+  };
+
   return (
-    <>
+    <div>
       <h2>Services:</h2>
       <table id="services-table" className="table table-success">
         <thead>
@@ -27,7 +32,17 @@ const ServicesTable = ({ services }) => {
             })}
         </tbody>
       </table>
-    </>
+
+      <div className="col-12">
+        <button
+          className="btn btn-danger"
+          type="reset"
+          onClick={handleCloseTable}
+        >
+          Close
+        </button>
+      </div>
+    </div>
   );
 };
 
