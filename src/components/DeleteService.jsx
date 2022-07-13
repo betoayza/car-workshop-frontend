@@ -6,19 +6,29 @@ const DeleteService = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const uri = `/services/delete/${code}`;
+
+    const options = {
+      headers: {
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Headers": "*",
+        Accept: "application/json",
+        timeout: 3000,
+      },
+      data: { code },
+    };
+
     await axios
-      .delete(uri)
+      .delete("/api/services/delete", options)
       .then((res) => {
-        console.log(res);
+        console.log(res.data);
         if (res.data) {
           alert("Delete Successful!");
         } else {
-          alert("Service not found!");
+          alert("Not founded :(");
         }
       })
       .catch((error) => error);
-    handleReset();
   };
 
   const handleChange = (e) => {
@@ -30,8 +40,7 @@ const DeleteService = () => {
   };
 
   return (
-    <>      
-
+    <>
       <h2>Delete service:</h2>
       <form onSubmit={handleSubmit}>
         <div className="form-group w-25">

@@ -7,11 +7,11 @@ const DeleteCar = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    const options = {        
+    const options = {
       headers: {
         "Content-Type": "application/json",
         "Access-Control-Allow-Origin": "*",
-        "Access-Control-Allow-Headers": "*",        
+        "Access-Control-Allow-Headers": "*",
         Accept: "application/json",
         timeout: 3000,
       },
@@ -25,7 +25,7 @@ const DeleteCar = () => {
         if (res.data) {
           alert("Delete Successful!");
         } else {
-          alert("Car not founded!");
+          alert("Not founded :(");
         }
       })
       .catch((error) => error);
