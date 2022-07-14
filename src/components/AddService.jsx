@@ -71,7 +71,8 @@ const AddService = () => {
             <input
               type="hidden"
               className="form-control"
-              name="date"             
+              name="date"
+              value={form.date}             
             />
           </div>
 

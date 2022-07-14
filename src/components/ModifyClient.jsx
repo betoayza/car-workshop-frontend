@@ -131,50 +131,81 @@ const ModifyClient = () => {
           <h3>Modify Client:</h3>
           <div className="form-group w-25">
             <form onSubmit={handleSubmit2}>
-              <div className="input-group mb-3">
-                {/* code isnt updatable */}
-                <label>Code: {form.code}</label>
-                <label>DNI: {form.id}</label>
+              <label htmlFor="code">Code:</label>           
+              <div className="input-group mb-3">  
+                <input
+                  type="text"
+                  className="form-control"
+                  name="code"
+                  id="code"
+                  value={form.code}
+                  disabled
+                  readOnly
+                />
               </div>
 
-              <div className="input-group mb-2">
+              <label htmlFor="id">ID:</label>
+              <div className="input-group mb-3">
+                <input
+                  type="text"
+                  className="form-control"
+                  name="id"
+                  id="id"
+                  value={form.id}
+                  onChange={handleChange2}
+                  required
+                />
+              </div>
+
+              <label htmlFor="name">Name:</label>
+              <div className="input-group mb-3">
                 <input
                   type="text"
                   className="form-control"
                   name="name"
+                  id="name"
                   placeholder="Name..."
                   value={form.name}
                   onChange={handleChange2}
                   required
                 />
               </div>
-              <div className="input-group mb-2">
+
+              <label htmlFor="surname">Surname:</label>
+              <div className="input-group mb-3">
                 <input
                   type="text"
                   className="form-control"
                   name="surname"
+                  id="surname"
                   placeholder="Surname..."
                   value={form.surname}
                   onChange={handleChange2}
                   required
                 />
               </div>
-              <div className="input-group mb-2">
+
+              <label htmlFor="email">Email:</label>
+              <div className="input-group mb-3">
                 <input
                   type="email"
                   className="form-control"
                   name="email"
+                  id="email"
                   placeholder="Email..."
                   value={form.email}
                   onChange={handleChange2}
                   required
                 />
               </div>
-              <div className="input-group mb-2">
+
+              <label htmlFor="phone">Phone:</label>
+              <div className="input-group mb-3">
                 <input
                   type="tel"
                   className="form-control"
                   name="phone"
+                  id="phone"
                   placeholder="Phone..."
                   value={form.phone}
                   onChange={handleChange2}
@@ -182,7 +213,7 @@ const ModifyClient = () => {
                 />
               </div>
 
-              <div className="input-group mb-2">
+              <div className="input-group mb-3">
                 <input
                   type="hidden"
                   className="form-control"

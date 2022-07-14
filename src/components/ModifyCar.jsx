@@ -100,17 +100,17 @@ const ModifyCar = () => {
     setCar(null);
   };
 
-  const handleBlur=()=>{
+  const handleBlur = () => {
     console.log(form.patent);
     let regExp = new RegExp("^[A-Z]{3} [0-9]{3}$");
     let match = regExp.test(form.patent);
     if (match) {
       setPatentError(false);
-    } else{
+    } else {
       setPatentError(true);
       setForm({ ...form, patent: "" });
-    } 
-  }
+    }
+  };
 
   return (
     <>
@@ -144,8 +144,9 @@ const ModifyCar = () => {
           <h1>Modify Car:</h1>
           <div className="form-group w-25">
             <form onSubmit={handleSubmit2}>
-              <div className="input-group mb-3">
-                {/* code isnt updatable */}
+
+            <label htmlFor="code">Code:</label>
+              <div className="input-group mb-3">               
                 <input
                   type="text"
                   className="form-control"
@@ -156,6 +157,7 @@ const ModifyCar = () => {
                 />
               </div>
 
+              <label htmlFor="patent">Patent:</label>
               <div className="input-group mb-3">
                 <input
                   type="text"
@@ -171,16 +173,18 @@ const ModifyCar = () => {
               </div>
 
               {patentError && (
-            <p className="error-p" style={{ color: "#ff6347" }}>
-              Not valid patent: e.g. "ABC 123"
-            </p>
-          )}
+                <p className="error-p" style={{ color: "#ff6347" }}>
+                  Not valid patent: e.g. "ABC 123"
+                </p>
+              )}
 
+              <label htmlFor="brand">Brand:</label>
               <div className="input-group mb-3">
                 <input
                   type="text"
                   className="form-control"
                   name="brand"
+                  id="brand"
                   placeholder="Brand..."
                   value={form.brand}
                   onChange={handleChange2}
@@ -188,11 +192,13 @@ const ModifyCar = () => {
                 />
               </div>
 
+              <label htmlFor="model">Model:</label>
               <div className="input-group mb-3">
                 <input
                   type="text"
                   className="form-control"
                   name="model"
+                  id="model"
                   placeholder="Model..."
                   value={form.model}
                   onChange={handleChange2}
@@ -200,11 +206,13 @@ const ModifyCar = () => {
                 />
               </div>
 
+              <label htmlFor="year">Year:</label>
               <div className="input-group mb-3">
                 <input
                   type="number"
                   className="form-control"
                   name="year"
+                  id="year"
                   placeholder="Year..."
                   value={form.year}
                   onChange={handleChange2}
@@ -212,11 +220,13 @@ const ModifyCar = () => {
                 />
               </div>
 
+              <label htmlFor="clientCode">Client code:</label>
               <div className="input-group mb-3">
                 <input
                   type="number"
                   className="form-control"
                   name="clientCode"
+                  id="clientCode"
                   value={form.clientCode}
                   disabled
                   readOnly

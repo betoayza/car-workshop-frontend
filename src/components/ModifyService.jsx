@@ -1,5 +1,5 @@
-import React, {useState} from "react";
-import axios from 'axios';
+import React, { useState } from "react";
+import axios from "axios";
 
 const initialForm = {
   code: "",
@@ -8,12 +8,12 @@ const initialForm = {
   carCode: "",
   work: "",
   carKms: "",
-  status: ""
+  status: "",
 };
 
 const ModifyService = () => {
   const [code, setCode] = useState("");
-  const [service, setService] = useState(false);
+  const [service, setService] = useState(null);
   const [form, setForm] = useState(initialForm);
 
   const handleChange = (e) => {
@@ -22,17 +22,30 @@ const ModifyService = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const uri = `/services/search/${code}`;
+
+    const options = {
+      url: "/api/services/search",
+
+      headers: {
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Headers": "*",
+        Accept: "application/json",
+        timeout: 3000,
+      },
+      params: { code },
+    };
+
     await axios
-      .get(uri)
+      .request(options)
       .then((res) => {
-        console.log(res);
+        console.log(res.data);
         if (res.data) {
-          alert("Service finded!");
-          setService(true);
+          setService(res.data);
           setForm(res.data);
+          alert("Client found!");
         } else {
-          alert("Service not finded :(");
+          alert("Not found :(");
         }
       })
       .catch((error) => error);
@@ -51,26 +64,37 @@ const ModifyService = () => {
 
   const handleSubmit2 = async (e) => {
     e.preventDefault();
-    const uri = "/services/modify";
+    const options = {
+      url: "/api/services/modify",
+      method: "put",
+      headers: {
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Headers": "*",
+        Accept: "application/json",
+        timeout: 3000,
+      },
+      data: form,
+    };
+
     await axios
-      .put(uri, form)
+      .request(options)
       .then((res) => {
-        console.log(res);
+        console.log(res.data);
         if (res.data) {
-          console.log("Service updated: ", res.data);
-          alert("Service updated!");          
-        } else {          
-          alert("Service not updated :(");
+          alert("Services updated!");
+        } else {
+          alert("Update error :(");
         }
       })
       .catch((error) => {
         console.error(error);
       });
-    handleReset2();
   };
 
   const handleReset2 = (e) => {
     setForm(initialForm);
+    setClient(null);
   };
 
   return (
@@ -105,51 +129,75 @@ const ModifyService = () => {
           <h1>Edit Service:</h1>
           <div className="form-group w-25">
             <form onSubmit={handleSubmit2}>
-
-              <label className="col-sm-2 col-form-label">Code: {form.code}</label>
-              <br />
-              <label className="col-sm-2 col-form-label">Date: {form.date}</label>
-
-
-             
+            <label htmlFor="amount">Code:</label>
+            <div className="input-group mb-2">             
+                <input
+                  type="text"
+                  className="form-control"
+                  name="code"
+                  id="code"
+                  value={form.code}
+                  disabled
+                  readOnly
+                />
+              </div>  
+              <label htmlFor="amount">Date:</label>            
+              <div className="input-group mb-3">             
+                <input
+                  type="text"
+                  className="form-control"
+                  name="date"
+                  id="date"
+                  value={form.date}
+                  disabled
+                  readOnly
+                />
+              </div>
+              <label htmlFor="amount">Amount:</label>
               <div className="input-group mb-3">
                 <input
                   type="number"
                   className="form-control"
                   name="amount"
+                  id="amount"
                   placeholder="Amount..."
                   value={form.amount}
                   onChange={handleChange2}
                   required
                 />
               </div>
+              <label htmlFor="carCode">Car code:</label>
               <div className="input-group mb-3">
                 <input
                   type="number"
                   className="form-control"
                   name="carCode"
-                  placeholder="Car code..."
+                  id="carCode"                  
                   value={form.carCode}
-                  onChange={handleChange2}
-                  required
+                  disabled
+                  readOnly
                 />
               </div>
+              <label htmlFor="work">Work:</label>
               <div className="input-group mb-3">
                 <input
                   type="text"
                   className="form-control"
                   name="work"
+                  id="work"
                   placeholder="Work..."
                   value={form.work}
                   onChange={handleChange2}
                   required
                 />
               </div>
+              <label htmlFor="carKms">Car Kms:</label>
               <div className="input-group mb-3">
                 <input
                   type="number"
                   className="form-control"
                   name="carKms"
+                  id="carKms"
                   placeholder="Car Kms..."
                   value={form.carKms}
                   onChange={handleChange2}
