@@ -4,11 +4,11 @@ import CarsList1 from "./CarsList1";
 
 const SearchCarForms = () => {
   return (
-    <>
-      <hr />
+    <>     
       <SearchCar />
       <br />
       <hr />
+      <br />
       <CarsList1 />
     </>
   );

@@ -13,7 +13,7 @@ const CarsTable = ({ cars, setCars }) => {
   return (
     <>
       <h2>Cars:</h2>
-      <table id="cars-table" className="table table-success">
+      <table id="cars-table" className="table table-dark table-striped table-hover border-info">
         <thead>
           <tr>
             <th scope="col">Code</th>

@@ -1,6 +1,7 @@
 body {  
   background: rgb(120,195,34);
   background: radial-gradient(circle, rgba(120,195,34,1) 0%, rgba(18,18,18,1) 62%);
+  background-size: 100%;  
 }
 
 div {
@@ -13,7 +14,7 @@ form {
   width: 100%;
 }
 
-h1, p {
+h1 {
   color: darkgoldenrod;
   font-family: monospace;
   font-weight: bold;
@@ -21,12 +22,14 @@ h1, p {
 
 h1 {  
   text-shadow: black 0.1em 0.1em 0.5em;
+  -webkit-text-stroke: 1px black;
 }
 
 h2 {
-  color: black;
+  color: firebrick;
   font-family: 'Courier New', Courier, monospace;
   font-weight: bold;
+  -webkit-text-stroke: 1px black;
 }
 
 img {
@@ -35,4 +38,8 @@ img {
 
 label {
   color: darkgoldenrod;
+}
+
+p {
+  color: darkorange;
 }

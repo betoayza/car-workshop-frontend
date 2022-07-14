@@ -12,8 +12,8 @@ export const ClientsTable = ({ clients, setClients }) => {
 
   return (
     <div>
-      <h1>Clients found:</h1>
-      <table id="users-table" className="table table-success">
+      <h2>Clients:</h2>
+      <table id="users-table" className="table table-dark table-striped table-hover border-danger">
         <thead>
           <tr>
             <th scope="col">Codigo</th>

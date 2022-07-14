@@ -37,6 +37,8 @@ const CarsList1 = () => {
           Find!
         </button>
       </div>
+      <br />
+      <br />
 
       {cars && <CarsTable cars={cars} setCars={setCars} />}
     </>

@@ -13,7 +13,7 @@ const ServicesTable = ({ services, setServices }) => {
   return (
     <div>
       <h2>Services:</h2>
-      <table id="services-table" className="table table-success">
+      <table id="services-table" className="table table-dark table-striped table-hover border-success">
         <thead>
           <tr>
             <th scope="col">Code</th>
