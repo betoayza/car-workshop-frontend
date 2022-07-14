@@ -94,7 +94,7 @@ const ModifyService = () => {
 
   const handleReset2 = (e) => {
     setForm(initialForm);
-    setClient(null);
+    setService(null);
   };
 
   return (
@@ -129,8 +129,8 @@ const ModifyService = () => {
           <h1>Edit Service:</h1>
           <div className="form-group w-25">
             <form onSubmit={handleSubmit2}>
-            <label htmlFor="amount">Code:</label>
-            <div className="input-group mb-2">             
+              <label htmlFor="amount">Code:</label>
+              <div className="input-group mb-2">
                 <input
                   type="text"
                   className="form-control"
@@ -140,9 +140,9 @@ const ModifyService = () => {
                   disabled
                   readOnly
                 />
-              </div>  
-              <label htmlFor="amount">Date:</label>            
-              <div className="input-group mb-3">             
+              </div>
+              <label htmlFor="amount">Date:</label>
+              <div className="input-group mb-3">
                 <input
                   type="text"
                   className="form-control"
@@ -172,7 +172,7 @@ const ModifyService = () => {
                   type="number"
                   className="form-control"
                   name="carCode"
-                  id="carCode"                  
+                  id="carCode"
                   value={form.carCode}
                   disabled
                   readOnly
@@ -214,7 +214,7 @@ const ModifyService = () => {
                 type="reset"
                 onClick={handleReset2}
               >
-                Reset
+                Close
               </button>
             </form>
           </div>
