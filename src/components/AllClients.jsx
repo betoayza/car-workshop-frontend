@@ -24,7 +24,7 @@ export const AllClients = () => {
           if (res.data) {
             setClients(res.data);
             alert("Clients found!");
-          } else alert("No matches :(");
+          } else alert("No clients yet :(");
         })
         .catch((error) => error);
     };

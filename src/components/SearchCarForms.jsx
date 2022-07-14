@@ -1,15 +1,15 @@
 import React from "react";
 import SearchCar from "./SearchCar";
-import CarList1 from "./CarList1";
+import CarsList1 from "./CarsList1";
 
 const SearchCarForms = () => {
   return (
-    <>           
+    <>
       <hr />
       <SearchCar />
       <br />
       <hr />
-      <CarList1 />
+      <CarsList1 />
     </>
   );
 };

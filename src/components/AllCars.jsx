@@ -25,7 +25,7 @@ export const AllCars = () => {
           if (res.data) {
             setCars(res.data);
             alert("Cars finded!");
-          } else alert("No matches :(");
+          } else alert("No cars yet :(");
         })
         .catch((error) => error);
     };

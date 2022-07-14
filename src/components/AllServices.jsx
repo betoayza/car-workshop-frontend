@@ -25,7 +25,7 @@ export const AllServices = () => {
           if (res.data) {
             setServices(res.data);
             alert("Services found!");
-          } else alert("No matches :(");
+          } else alert("No services yet :(");
         })
         .catch((error) => error);
     };

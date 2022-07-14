@@ -6,7 +6,7 @@ import Login from "./components/Login";
 const App = () => {
   return (
     <div id="app-div">
-      <h1>SuperCar Workshop:</h1>      
+      <h1>SuperCar Workshop:</h1>
       <div>
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
           <div className="container-fluid">
@@ -197,8 +197,8 @@ const App = () => {
 
         <Route
           exact
-          path="/cars/searchCar/lists/carlist1"
-          element={<Components.CarList1 />}
+          path="/cars/searchCar/lists/CarsList1"
+          element={<Components.CarsList1 />}
         />
 
         <Route exact path="/services/add" element={<Components.AddService />} />
