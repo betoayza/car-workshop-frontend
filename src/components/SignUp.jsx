@@ -20,20 +20,20 @@ const SignUp = () => {
   const [form, setForm] = useState(initialForm);
 
   const handleSubmit = async (e) => {
-    e.preventDefault();    
-    
+    e.preventDefault();
+
     const options = {
-      url: "/api/signup",    
-      method: 'post', 
+      url: "/api/signup",
+      method: "post",
       headers: {
-       'Content-Type': 'application/json', 
-       'Access-Control-Allow-Origin': '*',   
-       'Access-Control-Allow-Headers': '*',
-       Accept: 'application/json',    
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Headers": "*",
+        Accept: "application/json",
       },
-      data: form,   
-      timeout: 3000,         
-   }
+      data: form,
+      timeout: 3000,
+    };
     console.log(form);
 
     await axios
@@ -46,12 +46,13 @@ const SignUp = () => {
           if (res.data.type === "Admin") {
             alert("Administrador creado!");
           } else {
-            if (res.data.type === "Estandar") {           
+            if (res.data.type === "Estandar") {
               alert("Usuario registrado!");
-              console.log("Los datos son: ", res.data);            
+              console.log("Los datos son: ", res.data);
             }
           }
-      }})
+        }
+      })
       .catch((error) => {
         console.error(error);
       });
@@ -197,24 +198,17 @@ const SignUp = () => {
             />
           </div>
 
-          <div className="row">
-            <div className="col-12">
-              <button
-                type="submit"
-                className="btn btn-primary"
-                onClick={handleSubmit}
-              >
-                Enviar
-              </button>
-              <button
-                type="reset"
-                className="btn btn-danger"
-                onClick={handleReset}
-              >
-                Reset
-              </button>
-            </div>
-          </div>
+          <button
+            type="submit"
+            className="btn btn-primary"
+            onClick={handleSubmit}
+          >
+            Enviar
+          </button>
+
+          <button type="reset" className="btn btn-danger" onClick={handleReset}>
+            Reset
+          </button>
         </form>
       </div>
     </>

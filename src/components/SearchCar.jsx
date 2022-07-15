@@ -59,25 +59,17 @@ const SearchCar = () => {
             />
           </div>
 
-          <div className="col-12">
-            <button className="btn btn-primary" type="submit">
-              Find!
-            </button>
-          </div>
+          <button className="btn btn-primary" type="submit">
+            Find!
+          </button>
 
-          <div className="col-12">
-            <button
-              className="btn btn-danger"
-              type="reset"
-              onClick={handleReset}
-            >
-              Reset
-            </button>
-          </div>
+          <button className="btn btn-danger" type="reset" onClick={handleReset}>
+            Reset
+          </button>
         </form>
       </div>
 
-      {car && <CarsTable cars={car} setCars={setCar}/>}
+      {car && <CarsTable cars={car} setCars={setCar} />}
     </>
   );
 };

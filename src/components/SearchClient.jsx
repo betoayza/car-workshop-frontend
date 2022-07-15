@@ -62,24 +62,17 @@ const SearchClient = () => {
             />
           </div>
 
-          <div className="row">
-            <div className="col-12">
-              <button
-                type="submit"
-                className="btn btn-primary"
-                onClick={handleSubmit}
-              >
-                Enviar
-              </button>
-              <button
-                type="reset"
-                className="btn btn-danger"
-                onClick={handleReset}
-              >
-                Reset
-              </button>
-            </div>
-          </div>
+          <button
+            type="submit"
+            className="btn btn-primary"
+            onClick={handleSubmit}
+          >
+            Enviar
+          </button>
+          
+          <button type="reset" className="btn btn-danger" onClick={handleReset}>
+            Reset
+          </button>
         </form>
       </div>
       {client && <ClientsTable clients={client} setClients={setClient} />}

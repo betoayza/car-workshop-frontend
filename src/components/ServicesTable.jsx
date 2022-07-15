@@ -13,7 +13,10 @@ const ServicesTable = ({ services, setServices }) => {
   return (
     <div>
       <h2>Services:</h2>
-      <table id="services-table" className="table table-dark table-striped table-hover border-success">
+      <table
+        id="services-table"
+        className="table table-dark table-striped table-hover border-success"
+      >
         <thead>
           <tr>
             <th scope="col">Code</th>
@@ -21,8 +24,8 @@ const ServicesTable = ({ services, setServices }) => {
             <th scope="col">Amount (USD)</th>
             <th scope="col">Car Code</th>
             <th scope="col">Work</th>
-            <th scope="col">Car Kms</th>    
-            <th scope="col">Status</th>                  
+            <th scope="col">Car Kms</th>
+            <th scope="col">Status</th>
           </tr>
         </thead>
         <tbody>
@@ -33,15 +36,13 @@ const ServicesTable = ({ services, setServices }) => {
         </tbody>
       </table>
 
-      <div className="col-12">
-        <button
-          className="btn btn-danger"
-          type="reset"
-          onClick={handleCloseTable}
-        >
-          Close
-        </button>
-      </div>
+      <button
+        className="btn btn-danger"
+        type="reset"
+        onClick={handleCloseTable}
+      >
+        Close
+      </button>
     </div>
   );
 };

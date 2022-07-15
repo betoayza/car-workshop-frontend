@@ -35,7 +35,7 @@ const AddClient = () => {
       .then((res) => {
         console.log(res);
         if (res.data) {
-          alert("Add successful!");          
+          alert("Add successful!");
         } else {
           alert("Error: user already exist :(");
         }
@@ -132,20 +132,13 @@ const AddClient = () => {
             />
           </div>
 
-          <div className="col-12">
-            <button className="btn btn-primary" type="submit">
-              Enviar
-            </button>
-          </div>
-          <div className="col-12">
-            <button
-              className="btn btn-danger"
-              type="reset"
-              onClick={handleReset}
-            >
-              Reset
-            </button>
-          </div>
+          <button className="btn btn-primary" type="submit">
+            Enviar
+          </button>
+
+          <button className="btn btn-danger" type="reset" onClick={handleReset}>
+            Reset
+          </button>
         </form>
       </div>
     </>

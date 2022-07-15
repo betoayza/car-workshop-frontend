@@ -9,11 +9,14 @@ const CarsTable = ({ cars, setCars }) => {
   const handleCloseTable = () => {
     setCars(null);
   };
-  
+
   return (
     <>
       <h2>Cars:</h2>
-      <table id="cars-table" className="table table-dark table-striped table-hover border-info">
+      <table
+        id="cars-table"
+        className="table table-dark table-striped table-hover border-info"
+      >
         <thead>
           <tr>
             <th scope="col">Code</th>
@@ -33,15 +36,13 @@ const CarsTable = ({ cars, setCars }) => {
         </tbody>
       </table>
 
-      <div className="col-12">
-        <button
-          className="btn btn-danger"
-          type="reset"
-          onClick={handleCloseTable}
-        >
-          Close
-        </button>
-      </div>
+      <button
+        className="btn btn-danger"
+        type="reset"
+        onClick={handleCloseTable}
+      >
+        Close
+      </button>
     </>
   );
 };

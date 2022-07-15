@@ -32,7 +32,7 @@ h1 {
 
 h2 {
   color: firebrick;
-  font-family: "Courier New", Courier, monospace;
+  font-family: monospace;
   font-weight: bold;
   -webkit-text-stroke: 1px black;
 }
@@ -47,4 +47,6 @@ label {
 
 p {
   color: darkorange;
+  font-size: 30px;  
+  -webkit-text-stroke: 1px black;
 }

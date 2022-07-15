@@ -13,7 +13,10 @@ export const ClientsTable = ({ clients, setClients }) => {
   return (
     <div>
       <h2>Clients:</h2>
-      <table id="users-table" className="table table-dark table-striped table-hover border-danger">
+      <table
+        id="users-table"
+        className="table table-dark table-striped table-hover border-danger"
+      >
         <thead>
           <tr>
             <th scope="col">Codigo</th>
@@ -33,15 +36,13 @@ export const ClientsTable = ({ clients, setClients }) => {
         </tbody>
       </table>
 
-      <div className="col-12">
-        <button
-          className="btn btn-danger"
-          type="reset"
-          onClick={handleCloseTable}
-        >
-          Close
-        </button>
-      </div>
+      <button
+        className="btn btn-danger"
+        type="reset"
+        onClick={handleCloseTable}
+      >
+        Close
+      </button>
     </div>
   );
 };

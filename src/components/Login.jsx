@@ -56,7 +56,13 @@ const Login = () => {
     <>
       <div className="row">
         <div className="col-12">
-          <button type="submit" className="btn btn-primary" onClick={()=>{navigate('/signup')}}>
+          <button
+            type="submit"
+            className="btn btn-primary"
+            onClick={() => {
+              navigate("/signup");
+            }}
+          >
             SignUp
           </button>
         </div>
@@ -87,20 +93,12 @@ const Login = () => {
             />
           </div>
 
-          <div className="row">
-            <div className="col-12">
-              <button type="submit" className="btn btn-primary">
-                Enviar
-              </button>
-              <button
-                type="reset"
-                className="btn btn-danger"
-                onClick={handleReset}
-              >
-                Reset
-              </button>
-            </div>
-          </div>
+          <button type="submit" className="btn btn-primary">
+            Enviar
+          </button>
+          <button type="reset" className="btn btn-danger" onClick={handleReset}>
+            Reset
+          </button>
         </form>
       </div>
     </>
