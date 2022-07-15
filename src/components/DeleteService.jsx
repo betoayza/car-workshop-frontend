@@ -29,6 +29,7 @@ const DeleteService = () => {
         }
       })
       .catch((error) => error);
+      handleReset();
   };
 
   const handleChange = (e) => {

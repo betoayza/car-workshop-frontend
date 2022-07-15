@@ -95,7 +95,7 @@ const AddCar = () => {
           </div>
 
           {patentError && (
-            <p className="error-p" style={{ color: "#ff6347" }}>
+            <p className="error-p" style={{ color: "yellow" }}>
               Not valid patent: e.g. "ABC 123"
             </p>
           )}
@@ -130,6 +130,8 @@ const AddCar = () => {
               className="form-control"
               name="year"
               placeholder="Year..."
+              min="1900"
+              max="2022"
               value={form.year}
               onChange={handleChange}
               required

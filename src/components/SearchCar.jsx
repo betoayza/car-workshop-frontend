@@ -34,15 +34,15 @@ const SearchCar = () => {
         } else alert("No matches :(");
       })
       .catch((error) => error);
+      handleReset();
   };
 
   const handleReset = (e) => {
-    setCode("");
-    setCar(null);
+    setCode("");    
   };
 
   return (
-    <>
+    <div>
       <h2> Find car: </h2>
 
       <div className="form-group w-25">
@@ -69,8 +69,10 @@ const SearchCar = () => {
         </form>
       </div>
 
+      <br />     
+
       {car && <CarsTable cars={car} setCars={setCar} />}
-    </>
+    </div>
   );
 };
 

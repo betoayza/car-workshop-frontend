@@ -43,9 +43,9 @@ const ModifyService = () => {
         if (res.data) {
           setService(res.data);
           setForm(res.data);
-          alert("Client found!");
+          alert("Service found!");
         } else {
-          alert("Not found :(");
+          alert("Service not found :(");
         }
       })
       .catch((error) => error);
@@ -82,7 +82,7 @@ const ModifyService = () => {
       .then((res) => {
         console.log(res.data);
         if (res.data) {
-          alert("Services updated!");
+          alert("Service updated!");
         } else {
           alert("Update error :(");
         }

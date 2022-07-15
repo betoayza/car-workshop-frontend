@@ -44,9 +44,9 @@ const ModifyCar = () => {
         if (res.data) {
           setCar(res.data);
           setForm(res.data);
-          alert("Car finded!");
+          alert("Car found!");
         } else {
-          alert("Car not finded :(");
+          alert("Car not found :(");
         }
       })
       .catch((error) => error);

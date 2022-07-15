@@ -46,7 +46,7 @@ const SearchService = () => {
   };
 
   return (
-    <>
+    <div>
       <h2>Find Service: </h2>
       <div className="form-group w-25">
         <form onSubmit={handleSubmit}>
@@ -73,7 +73,7 @@ const SearchService = () => {
       </div>
 
       {service && <ServicesTable services={service} setServices={setService} />}
-    </>
+    </div>
   );
 };
 
