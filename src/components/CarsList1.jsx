@@ -30,7 +30,7 @@ const CarsList1 = () => {
 
   return (
     <div>
-      <p>Cars with more 3 years old and just 1 service done</p>
+      <h3>Cars with more 3 years old and just 1 service done</h3>
 
       <button className="btn btn-primary" type="submit" onClick={handleClick}>
         Find!

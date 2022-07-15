@@ -20,20 +20,23 @@ form {
 }
 
 h1 {
-  color: darkgoldenrod;
+  color: yellowgreen;
   font-family: monospace;
   font-weight: bold;
-}
-
-h1 {
   text-shadow: black 0.1em 0.1em 0.5em;
   -webkit-text-stroke: 1px black;
 }
 
 h2 {
-  color: firebrick;
+  color: orangered;
   font-family: monospace;
   font-weight: bold;
+  -webkit-text-stroke: 1px black;
+}
+
+h3 {
+  color: darkorange;
+  font-size: 30px;  
   -webkit-text-stroke: 1px black;
 }
 
@@ -45,8 +48,3 @@ label {
   color: darkgoldenrod;
 }
 
-p {
-  color: darkorange;
-  font-size: 30px;  
-  -webkit-text-stroke: 1px black;
-}
