@@ -55,7 +55,6 @@ const AddClient = () => {
 
   const handleBlur = () => {
     console.log(form.id);
-    console.log(typeof form.id);
     let regExp = new RegExp("^[0-9]{8}$");
     let match = regExp.test(form.id);
     if (match) {
