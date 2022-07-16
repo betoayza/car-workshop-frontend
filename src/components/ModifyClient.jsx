@@ -91,6 +91,7 @@ const ModifyClient = () => {
       .catch((error) => {
         console.error(error);
       });
+      handleReset2();
   };
 
   const handleReset2 = (e) => {
@@ -125,10 +126,12 @@ const ModifyClient = () => {
           </button>
         </form>
       </div>
+      <br />
+      <br />
 
       {client && (
         <div>
-          <h3>Modify Client:</h3>
+          <h2>Modify Client:</h2>
           <div className="form-group w-25">
             <form onSubmit={handleSubmit2}>
               <label htmlFor="code">Code:</label>           

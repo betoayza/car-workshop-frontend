@@ -34,6 +34,7 @@ const SearchClient = () => {
         }
       })
       .catch((error) => error);
+      handleReset();
   };
 
   const handleChange = (e) => {
@@ -41,8 +42,7 @@ const SearchClient = () => {
   };
 
   const handleReset = (e) => {
-    setCode("");
-    setClient(null);
+    setCode("");    
   };
 
   return (
@@ -69,12 +69,14 @@ const SearchClient = () => {
           >
             Enviar
           </button>
-          
+
           <button type="reset" className="btn btn-danger" onClick={handleReset}>
             Reset
           </button>
         </form>
       </div>
+      <br />
+      <br />
       {client && <ClientsTable clients={client} setClients={setClient} />}
     </div>
   );

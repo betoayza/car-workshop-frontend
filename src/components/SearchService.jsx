@@ -71,7 +71,8 @@ const SearchService = () => {
           </button>
         </form>
       </div>
-
+      <br />
+      <br />
       {service && <ServicesTable services={service} setServices={setService} />}
     </div>
   );

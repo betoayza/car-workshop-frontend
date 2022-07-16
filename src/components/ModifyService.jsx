@@ -90,6 +90,7 @@ const ModifyService = () => {
       .catch((error) => {
         console.error(error);
       });
+      handleReset2();
   };
 
   const handleReset2 = (e) => {
