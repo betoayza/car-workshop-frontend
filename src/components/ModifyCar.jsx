@@ -139,9 +139,12 @@ const ModifyCar = () => {
         </form>
       </div>
 
+      <br />
+      <br />
+
       {car && (
         <div>
-          <h1>Modify Car:</h1>
+          <h2>Modify Car:</h2>
           <div className="form-group w-25">
             <form onSubmit={handleSubmit2}>
 
@@ -214,6 +217,8 @@ const ModifyCar = () => {
                   name="year"
                   id="year"
                   placeholder="Year..."
+                  min="1900"
+                  max="2022"
                   value={form.year}
                   onChange={handleChange2}
                   required

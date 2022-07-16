@@ -13,6 +13,7 @@ const initialForm = {
 
 const AddClient = () => {
   const [form, setForm] = useState(initialForm);
+  const [idError, setIdError] = useState(false);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -37,7 +38,7 @@ const AddClient = () => {
         if (res.data) {
           alert("Add successful!");
         } else {
-          alert("Error: user already exist :(");
+          alert("Error: User already exists :(");
         }
       })
       .catch((error) => error);
@@ -50,6 +51,19 @@ const AddClient = () => {
 
   const handleReset = (e) => {
     setForm({ ...initialForm, code: Date.now() });
+  };
+
+  const handleBlur = () => {
+    console.log(form.id);
+    console.log(typeof form.id);
+    let regExp = new RegExp("^[0-9]{8}$");
+    let match = regExp.test(form.id);
+    if (match) {
+      setIdError(false);
+    } else {
+      setIdError(true);
+      setForm({ ...form, id: "" });
+    }
   };
 
   return (
@@ -66,39 +80,48 @@ const AddClient = () => {
               value={form.code}
             />
           </div>
+
           <div className="input-group mb-3">
             <input
               type="number"
               className="form-control"
               name="id"
-              placeholder="DNI..."
+              placeholder="ID..."
               value={form.id}
               onChange={handleChange}
+              onBlur={handleBlur}
               required
             />
           </div>
+
+          {idError && (
+            <p style={{ color: "yellow" }}>Not valid ID: e.g. "12345678"</p>
+          )}
+
           <div className="input-group mb-3">
             <input
               type="text"
               className="form-control"
               name="name"
-              placeholder="Nombre..."
+              placeholder="Name..."
               value={form.name}
               onChange={handleChange}
               required
             />
           </div>
+
           <div className="input-group mb-3">
             <input
               type="text"
               className="form-control"
               name="surname"
-              placeholder="Apellido..."
+              placeholder="Surname..."
               value={form.surname}
               onChange={handleChange}
               required
             />
           </div>
+
           <div className="input-group mb-3">
             <input
               type="email"
@@ -110,12 +133,13 @@ const AddClient = () => {
               required
             />
           </div>
+
           <div className="input-group mb-3">
             <input
               type="tel"
               className="form-control"
               name="phone"
-              placeholder="Tel..."
+              placeholder="Phone..."
               value={form.phone}
               onChange={handleChange}
               required

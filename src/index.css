@@ -20,7 +20,7 @@ form {
 }
 
 h1 {
-  color: yellowgreen;
+  color: lime;
   font-family: monospace;
   font-weight: bold;
   text-shadow: black 0.1em 0.1em 0.5em;
@@ -45,6 +45,6 @@ img {
 }
 
 label {
-  color: darkgoldenrod;
+  color: lime;
 }
 

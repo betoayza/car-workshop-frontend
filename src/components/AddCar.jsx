@@ -95,7 +95,7 @@ const AddCar = () => {
           </div>
 
           {patentError && (
-            <p className="error-p" style={{ color: "yellow" }}>
+            <p style={{ color: "yellow" }}>
               Not valid patent: e.g. "ABC 123"
             </p>
           )}
