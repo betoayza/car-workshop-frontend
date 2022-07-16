@@ -9,6 +9,7 @@ export default defineConfig({
     port: 12312,
     proxy: {
       "/api": "http://localhost:5000"       
-    },     
+    },  
+    base: '/car-workshop-frontend/'   
   }  
 })
