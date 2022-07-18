@@ -47,7 +47,7 @@ Error generating stack: `+l.message+`
  * LICENSE.md file in the root directory of this source tree.
  *
  * @license MIT
- */function Vy(e){let{basename:t,children:n,window:r}=e,i=A.exports.useRef();i.current==null&&(i.current=_y({window:r}));let l=i.current,[o,a]=A.exports.useState({action:l.action,location:l.location});return A.exports.useLayoutEffect(()=>l.listen(a),[l]),A.exports.createElement($y,{basename:t,children:n,location:o.location,navigationType:o.action,navigator:l})}var By="/assets/ferrari.d17ac1eb.jpg",mo={exports:{}},vo={};/**
+ */function Vy(e){let{basename:t,children:n,window:r}=e,i=A.exports.useRef();i.current==null&&(i.current=_y({window:r}));let l=i.current,[o,a]=A.exports.useState({action:l.action,location:l.location});return A.exports.useLayoutEffect(()=>l.listen(a),[l]),A.exports.createElement($y,{basename:t,children:n,location:o.location,navigationType:o.action,navigator:l})}var By="/car-workshop-frontend/assets/ferrari.d17ac1eb.jpg",mo={exports:{}},vo={};/**
  * @license React
  * react-jsx-runtime.production.min.js
  *
