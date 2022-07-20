@@ -7,7 +7,6 @@ export const AllCars = () => {
 
   useEffect(() => {
     const getAllCars = async () => {
-
       const options = {
         headers: {
           "Content-Type": "application/json",
@@ -24,7 +23,7 @@ export const AllCars = () => {
           console.log(res.data);
           if (res.data) {
             setCars(res.data);
-            alert("Cars finded!");
+            alert("Cars found!");
           } else alert("No cars yet :(");
         })
         .catch((error) => error);
@@ -32,9 +31,5 @@ export const AllCars = () => {
     getAllCars();
   }, []);
 
-  return (
-    <div>
-      {cars && <CarsTable cars={cars} setCars={setCars} /> }   
-    </div>
-  );
+  return <div>{cars && <CarsTable cars={cars} setCars={setCars} />}</div>;
 };

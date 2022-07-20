@@ -1,12 +1,5 @@
 import "./App.css";
-import {
-  HashRouter,
-  BrowserRouter,
-  Link,
-  NavLink,
-  Routes,
-  Route,
-} from "react-router-dom";
+import { NavLink, Routes, Route } from "react-router-dom";
 import * as Components from "./components/indexComponents.jsx";
 //import Login from "./components/Login";
 
@@ -14,13 +7,22 @@ const App = () => {
   return (
     <div id="app-div">
       <h1>SuperCar Workshop:</h1>
-
       <div>
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
           <div className="container-fluid">
-            <a className="navbar-brand" href="/">
-              Menu
-            </a>
+            <NavLink to="/">
+              {({ isActive }) => (
+                <p
+                  className={
+                    isActive
+                      ? "dropdown-item navbar-brand"
+                      : "dropdown-item navbar-brand"
+                  }
+                >
+                  Menu
+                </p>
+              )}
+            </NavLink>
             <button
               className="navbar-toggler"
               type="button"
@@ -35,9 +37,17 @@ const App = () => {
             <div className="collapse navbar-collapse" id="navbarNavDropdown">
               <ul className="navbar-nav">
                 <li className="nav-item">
-                  <a className="nav-link active" aria-current="page" href="/">
-                    Home
-                  </a>
+                  <NavLink to="/">
+                    {({ isActive }) => (
+                      <p
+                        className={
+                          isActive ? "nav-link active" : "nav-link active"
+                        }
+                      >
+                        Home
+                      </p>
+                    )}
+                  </NavLink>
                 </li>
 
                 <li className="nav-item dropdown">
@@ -164,7 +174,7 @@ const App = () => {
                         )}
                       </NavLink>
                     </li>
-                    <li>                      
+                    <li>
                       <NavLink to="/clients/search">
                         {({ isActive }) => (
                           <p
