@@ -1,5 +1,12 @@
 import "./App.css";
-import { Routes, Route } from "react-router-dom";
+import {
+  HashRouter,
+  BrowserRouter,
+  Link,
+  NavLink,
+  Routes,
+  Route,
+} from "react-router-dom";
 import * as Components from "./components/indexComponents.jsx";
 //import Login from "./components/Login";
 
@@ -7,6 +14,7 @@ const App = () => {
   return (
     <div id="app-div">
       <h1>SuperCar Workshop:</h1>
+
       <div>
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
           <div className="container-fluid">
@@ -48,29 +56,69 @@ const App = () => {
                     aria-labelledby="navbarDropdownMenuLink"
                   >
                     <li>
-                      <a className="dropdown-item" href="/cars/add">
-                        Add
-                      </a>
+                      <NavLink to="/cars/add">
+                        {({ isActive }) => (
+                          <p
+                            className={
+                              isActive ? "dropdown-item" : "dropdown-item"
+                            }
+                          >
+                            Add
+                          </p>
+                        )}
+                      </NavLink>
                     </li>
                     <li>
-                      <a className="dropdown-item" href="/cars/delete">
-                        Delete
-                      </a>
+                      <NavLink to="/cars/delete">
+                        {({ isActive }) => (
+                          <p
+                            className={
+                              isActive ? "dropdown-item" : "dropdown-item"
+                            }
+                          >
+                            Delete
+                          </p>
+                        )}
+                      </NavLink>
                     </li>
                     <li>
-                      <a className="dropdown-item" href="/cars/search">
-                        Search
-                      </a>
+                      <NavLink to="/cars/search">
+                        {({ isActive }) => (
+                          <p
+                            className={
+                              isActive ? "dropdown-item" : "dropdown-item"
+                            }
+                          >
+                            Search
+                          </p>
+                        )}
+                      </NavLink>
                     </li>
                     <li>
-                      <a className="dropdown-item" href="/cars/modify">
-                        Modify
-                      </a>
+                      <NavLink to="/cars/modify">
+                        {({ isActive }) => (
+                          <p
+                            className={
+                              isActive ? "dropdown-item" : "dropdown-item"
+                            }
+                          >
+                            Modify
+                          </p>
+                        )}
+                      </NavLink>
                     </li>
                     <li>
-                      <a className="dropdown-item" href="/cars/all">
-                        All
-                      </a>
+                      <NavLink to="/cars/all">
+                        {({ isActive }) => (
+                          <p
+                            className={
+                              isActive ? "dropdown-item" : "dropdown-item"
+                            }
+                          >
+                            All
+                          </p>
+                        )}
+                      </NavLink>
                     </li>
                   </ul>
                 </li>
@@ -91,29 +139,69 @@ const App = () => {
                     aria-labelledby="navbarDropdownMenuLink"
                   >
                     <li>
-                      <a className="dropdown-item" href="/clients/add">
-                        Add
-                      </a>
+                      <NavLink to="/clients/add">
+                        {({ isActive }) => (
+                          <p
+                            className={
+                              isActive ? "dropdown-item" : "dropdown-item"
+                            }
+                          >
+                            Add
+                          </p>
+                        )}
+                      </NavLink>
                     </li>
                     <li>
-                      <a className="dropdown-item" href="/clients/delete">
-                        Delete
-                      </a>
+                      <NavLink to="/clients/delete">
+                        {({ isActive }) => (
+                          <p
+                            className={
+                              isActive ? "dropdown-item" : "dropdown-item"
+                            }
+                          >
+                            Delete
+                          </p>
+                        )}
+                      </NavLink>
+                    </li>
+                    <li>                      
+                      <NavLink to="/clients/search">
+                        {({ isActive }) => (
+                          <p
+                            className={
+                              isActive ? "dropdown-item" : "dropdown-item"
+                            }
+                          >
+                            Search
+                          </p>
+                        )}
+                      </NavLink>
                     </li>
                     <li>
-                      <a className="dropdown-item" href="/clients/search">
-                        Search
-                      </a>
+                      <NavLink to="/clients/modify">
+                        {({ isActive }) => (
+                          <p
+                            className={
+                              isActive ? "dropdown-item" : "dropdown-item"
+                            }
+                          >
+                            Modify
+                          </p>
+                        )}
+                      </NavLink>
                     </li>
                     <li>
-                      <a className="dropdown-item" href="/clients/modify">
-                        Modify
-                      </a>
-                    </li>
-                    <li>
-                      <a className="dropdown-item" href="/clients/all">
-                        All
-                      </a>
+                      <NavLink to="/clients/all">
+                        {({ isActive }) => (
+                          <p
+                            className={
+                              isActive ? "dropdown-item" : "dropdown-item"
+                            }
+                          >
+                            All
+                          </p>
+                        )}
+                      </NavLink>
                     </li>
                   </ul>
                 </li>
@@ -134,29 +222,69 @@ const App = () => {
                     aria-labelledby="navbarDropdownMenuLink"
                   >
                     <li>
-                      <a className="dropdown-item" href="/services/add">
-                        Add
-                      </a>
+                      <NavLink to="/services/add">
+                        {({ isActive }) => (
+                          <p
+                            className={
+                              isActive ? "dropdown-item" : "dropdown-item"
+                            }
+                          >
+                            Add
+                          </p>
+                        )}
+                      </NavLink>
                     </li>
                     <li>
-                      <a className="dropdown-item" href="/services/delete">
-                        Delete
-                      </a>
+                      <NavLink to="/services/delete">
+                        {({ isActive }) => (
+                          <p
+                            className={
+                              isActive ? "dropdown-item" : "dropdown-item"
+                            }
+                          >
+                            Delete
+                          </p>
+                        )}
+                      </NavLink>
                     </li>
                     <li>
-                      <a className="dropdown-item" href="/services/search">
-                        Search
-                      </a>
+                      <NavLink to="/services/search">
+                        {({ isActive }) => (
+                          <p
+                            className={
+                              isActive ? "dropdown-item" : "dropdown-item"
+                            }
+                          >
+                            Search
+                          </p>
+                        )}
+                      </NavLink>
                     </li>
                     <li>
-                      <a className="dropdown-item" href="/services/modify">
-                        Modify
-                      </a>
+                      <NavLink to="/services/modify">
+                        {({ isActive }) => (
+                          <p
+                            className={
+                              isActive ? "dropdown-item" : "dropdown-item"
+                            }
+                          >
+                            Modify
+                          </p>
+                        )}
+                      </NavLink>
                     </li>
                     <li>
-                      <a className="dropdown-item" href="/services/all">
-                        All
-                      </a>
+                      <NavLink to="/services/all">
+                        {({ isActive }) => (
+                          <p
+                            className={
+                              isActive ? "dropdown-item" : "dropdown-item"
+                            }
+                          >
+                            All
+                          </p>
+                        )}
+                      </NavLink>
                     </li>
                   </ul>
                 </li>
@@ -167,7 +295,6 @@ const App = () => {
       </div>
 
       <div id="components-div"></div>
-
       <Routes>
         <Route exact path="/" element={<Components.Home />} />
 

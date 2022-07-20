@@ -10,6 +10,6 @@ export default defineConfig({
     proxy: {
       "/api": "http://localhost:5000"       
     },  
-    base: '/car-workshop-frontend/'   
-  }  
+  },
+  base: '/car-workshop-frontend/'
 })
