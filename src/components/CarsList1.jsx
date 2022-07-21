@@ -18,7 +18,7 @@ const CarsList1 = () => {
     };
 
     await axios
-      .get(`${API}/cars/search/lists/CarsList1`, options)
+      .get(`${API}/cars/search/lists/1`, options)
       .then((res) => {
         console.log(res.data);
         if (res.data) {
