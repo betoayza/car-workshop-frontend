@@ -18,7 +18,7 @@ export const AllCars = () => {
       };
 
       await axios
-        .get("/api/cars/all", options)
+        .get("/cars/all", options)
         .then((res) => {
           console.log(res.data);
           if (res.data) {
