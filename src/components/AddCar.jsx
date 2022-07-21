@@ -24,7 +24,7 @@ const AddCar = () => {
     event.preventDefault();
 
     const options = {
-      url: `/api/cars/add`,
+      url: `${API}/cars/add`,
       method: "post",
       headers: {
         "Content-Type": "application/json",
@@ -55,16 +55,16 @@ const AddCar = () => {
   };
 
   //Patent validation
-  const handleBlur = (e) => {   
+  const handleBlur = (e) => {
     console.log(form.patent);
     let regExp = new RegExp("^[A-Z]{3} [0-9]{3}$");
     let match = regExp.test(form.patent);
     if (match) {
       setPatentError(false);
-    } else{
+    } else {
       setPatentError(true);
       setForm({ ...form, patent: "" });
-    } 
+    }
   };
 
   return (
@@ -76,7 +76,7 @@ const AddCar = () => {
             <input
               type="hidden"
               className="form-control"
-              name="code"          
+              name="code"
               value={form.code}
             />
           </div>
@@ -85,7 +85,7 @@ const AddCar = () => {
             <input
               type="text"
               className="form-control"
-              name="patent"            
+              name="patent"
               placeholder="Patent..."
               value={form.patent}
               onChange={handleChange}
@@ -95,9 +95,7 @@ const AddCar = () => {
           </div>
 
           {patentError && (
-            <p style={{ color: "yellow" }}>
-              Not valid patent: e.g. "ABC 123"
-            </p>
+            <p style={{ color: "yellow" }}>Not valid patent: e.g. "ABC 123"</p>
           )}
 
           <div className="input-group mb-2">
