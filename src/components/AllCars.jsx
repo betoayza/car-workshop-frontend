@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import CarsTable from "./CarsTable";
+import { API } from "../api/api.js";
 
 export const AllCars = () => {
   const [cars, setCars] = useState(null);
@@ -18,7 +19,7 @@ export const AllCars = () => {
       };
 
       await axios
-        .get("/cars/all", options)
+        .get(`${API}/cars/all`, options)
         .then((res) => {
           console.log(res.data);
           if (res.data) {
