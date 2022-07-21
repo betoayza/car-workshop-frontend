@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useState } from "react";
 import moment from "moment";
+import { API } from "../api/api";
 
 const initialForm = {
   code: Date.now(),
@@ -19,7 +20,7 @@ const AddService = () => {
     e.preventDefault();
 
     const options = {
-      url: '/api/services/add',
+      url: `${API}/services/add`,
       method: "post",
       headers: {
         "Content-Type": "application/json",

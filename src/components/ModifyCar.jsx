@@ -68,7 +68,7 @@ const ModifyCar = () => {
     e.preventDefault();
 
     const options = {
-      url: "/api/cars/modify",
+      url: `${API}/cars/modify`,
       method: "put",
       headers: {
         "Content-Type": "application/json",

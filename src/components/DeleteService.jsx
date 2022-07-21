@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useState } from "react";
+import { API } from "../api/api";
 
 const DeleteService = () => {
   const [code, setCode] = useState("");
@@ -19,7 +20,7 @@ const DeleteService = () => {
     };
 
     await axios
-      .delete("/api/services/delete", options)
+      .delete(`${API}/services/delete`, options)
       .then((res) => {
         console.log(res.data);
         if (res.data) {

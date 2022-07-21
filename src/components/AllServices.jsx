@@ -19,7 +19,7 @@ export const AllServices = () => {
       };
 
       await axios
-        .get("/api/services/all", options)
+        .get(`${API}/services/all`, options)
         .then((res) => {
           console.log(res.data);
           if (res.data) {

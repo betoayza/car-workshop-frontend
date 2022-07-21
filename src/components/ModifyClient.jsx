@@ -67,7 +67,7 @@ const ModifyClient = () => {
     e.preventDefault();
 
     const options = {
-      url: "/api/clients/modify",
+      url: `${API}/clients/modify`,
       method: "put",
       headers: {
         "Content-Type": "application/json",

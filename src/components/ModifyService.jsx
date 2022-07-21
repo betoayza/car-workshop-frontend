@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { API } from "../api/api";
 
 const initialForm = {
   code: "",
@@ -24,7 +25,7 @@ const ModifyService = () => {
     e.preventDefault();
 
     const options = {
-      url: "/api/services/search",
+      url: `${API}/services/search`,
 
       headers: {
         "Content-Type": "application/json",
@@ -65,7 +66,7 @@ const ModifyService = () => {
   const handleSubmit2 = async (e) => {
     e.preventDefault();
     const options = {
-      url: "/api/services/modify",
+      url: `${API}/services/modify`,
       method: "put",
       headers: {
         "Content-Type": "application/json",
