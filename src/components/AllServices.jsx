@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import ServicesTable from "./ServicesTable";
+import { API } from "../api/api";
 
 export const AllServices = () => {
   const [services, setServices] = useState(null);
