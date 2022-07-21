@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useState } from "react";
+import { API } from "../api/api";
 
 const DeleteClient = () => {
   const [code, setCode] = useState("");
@@ -19,7 +20,7 @@ const DeleteClient = () => {
     };
 
     await axios
-      .delete("/api/clients/delete", options)
+      .delete(`${API}/clients/delete`, options)
       .then((res) => {
         console.log(res);
         if (res.data) {

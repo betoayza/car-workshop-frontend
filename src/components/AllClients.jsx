@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { ClientsTable } from "./ClientsTable";
+import { API } from "../api/api";
 
 export const AllClients = () => {
   const [clients, setClients] = useState(null);
@@ -18,7 +19,7 @@ export const AllClients = () => {
       };
 
       await axios
-        .get("/api/clients/all", options)
+        .get(`${API}/clients/all`, options)
         .then((res) => {
           console.log(res.data);
           if (res.data) {

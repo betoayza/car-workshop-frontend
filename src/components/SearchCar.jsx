@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import CarsTable from "./CarsTable";
+import { API } from "../api/api";
 
 const SearchCar = () => {
   const [code, setCode] = useState("");
@@ -25,7 +26,7 @@ const SearchCar = () => {
     };
 
     await axios
-      .get("/api/cars/search", options)
+      .get(`${API}/cars/search`, options)
       .then((res) => {
         console.log(res.data);
         if (res.data) {

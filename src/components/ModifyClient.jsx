@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useState } from "react";
+import { API } from "../api/api";
 
 const initialForm = {
   code: "",
@@ -24,7 +25,7 @@ const ModifyClient = () => {
     e.preventDefault();
 
     const options = {
-      url: "/api/clients/search",
+      url: `${API}/clients/search`,
 
       headers: {
         "Content-Type": "application/json",

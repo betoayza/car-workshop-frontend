@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { API } from "../api/api";
 
 const initialForm = {
   code: Date.now(),
@@ -19,7 +20,7 @@ const AddClient = () => {
     event.preventDefault();
 
     const options = {
-      url: "/api/clients/add",
+      url: `${API}/clients/add`,
       method: "post",
       headers: {
         "Content-Type": "application/json",

@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useState } from "react";
+import { API } from "../api/api";
 
 const initialForm = {
   code: "",
@@ -25,7 +26,7 @@ const ModifyCar = () => {
     e.preventDefault();
 
     const options = {
-      url: `/api/cars/search`,
+      url: `${API}/cars/search`,
 
       headers: {
         "Content-Type": "application/json",
