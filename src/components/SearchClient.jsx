@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { ClientsTable } from "./ClientsTable";
+import { API } from "../api/api";
 
 const SearchClient = () => {
   const [code, setCode] = useState("");
@@ -10,7 +11,7 @@ const SearchClient = () => {
     e.preventDefault();
 
     const options = {
-      url: "/api/clients/search",
+      url: `${API}/clients/search`,
 
       headers: {
         "Content-Type": "application/json",
@@ -34,7 +35,7 @@ const SearchClient = () => {
         }
       })
       .catch((error) => error);
-      handleReset();
+    handleReset();
   };
 
   const handleChange = (e) => {
@@ -42,7 +43,7 @@ const SearchClient = () => {
   };
 
   const handleReset = (e) => {
-    setCode("");    
+    setCode("");
   };
 
   return (
