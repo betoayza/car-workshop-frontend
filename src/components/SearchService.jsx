@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useState } from "react";
 import ServicesTable from "./ServicesTable";
+import { API } from "../api/api";
 
 const SearchService = () => {
   const [code, setCode] = useState("");
@@ -14,7 +15,7 @@ const SearchService = () => {
     e.preventDefault();
 
     const options = {
-      url: "/api/services/search",
+      url: `${API}/services/search`,
 
       headers: {
         "Content-Type": "application/json",
