@@ -43,8 +43,7 @@ const ModifyService = () => {
         console.log(res.data);
         if (res.data) {
           setService(res.data);
-          setForm(res.data);
-          alert("Service found!");
+          setForm(res.data);          
         } else {
           alert("Service not found :(");
         }

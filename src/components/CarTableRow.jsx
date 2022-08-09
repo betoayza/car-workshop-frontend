@@ -9,8 +9,10 @@ const CarTableRow = ({ car, seeClient }) => {
       <td>{car.model}</td>
       <td>{car.year}</td>
       <td>
-        {car.clientCode}
-        <button onClick={seeClient(car.clientCode)}>See</button>
+        {car.clientCode}{" "}
+        <button className="btn btn-light" onClick={()=>seeClient(car.clientCode)}>
+          See
+        </button>
       </td>
       <td>{car.status}</td>
     </tr>

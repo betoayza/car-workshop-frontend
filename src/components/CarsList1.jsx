@@ -22,8 +22,7 @@ const CarsList1 = () => {
       .then((res) => {
         console.log(res.data);
         if (res.data) {
-          setCars(res.data);
-          alert("Cars found!");
+          setCars(res.data);          
         } else alert("No matches :(");
       })
       .catch((error) => error);

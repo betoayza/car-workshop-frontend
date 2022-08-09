@@ -28,8 +28,7 @@ const SearchClient = () => {
       .then((res) => {
         console.log(res.data);
         if (res.data) {
-          setClient(res.data);
-          alert("Client found!");
+          setClient(res.data);          
         } else {
           alert("No matches :(");
         }

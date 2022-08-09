@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import CarTableRow from "./CarTableRow";
 import { ClientsTable } from "./ClientsTable";
+import { API } from "../api/api";
+import axios from "axios";
+import { useEffect } from "react";
 
 const CarsTable = ({ cars }) => {
   const [client, setClient] = useState(null);
@@ -9,32 +12,38 @@ const CarsTable = ({ cars }) => {
     cars = [cars];
   }
 
-  const seeClient = async (carCode) => {
-    const code = carCode;
-    const options = {
-      url: `${API}/clients/search`,
+  useEffect(() => {
+    const getClient = async (client) => {
+      const code = client;
+      const options = {
+        url: `${API}/clients/search`,
+        headers: {
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Headers": "*",
+          Accept: "application/json",
+          timeout: 3000,
+        },
+        params: { code },
+      };
 
-      headers: {
-        "Content-Type": "application/json",
-        "Access-Control-Allow-Origin": "*",
-        "Access-Control-Allow-Headers": "*",
-        Accept: "application/json",
-        timeout: 3000,
-      },
-      params: { code },
+      await axios
+        .request(options)
+        .then((res) => {
+          console.log(res.data);
+          if (res.data) {
+            setClient(res.data);
+          } else {
+            alert("No cars yet :(");
+          }
+        })
+        .catch((error) => error);
     };
+    getClient(client);
+  }, [client]);
 
-    await axios
-      .request(options)
-      .then((res) => {
-        console.log(res.data);
-        if (res.data) {
-          setClient(res.data);
-        } else {
-          alert("No matches :(");
-        }
-      })
-      .catch((error) => error);
+  const seeClient = (clientCode) => {
+    setClient(clientCode);
   };
 
   return (
@@ -64,6 +73,7 @@ const CarsTable = ({ cars }) => {
             })}
         </tbody>
       </table>
+      <br />     
       {client && <ClientsTable clients={client} setClients={setClient} />};
     </>
   );

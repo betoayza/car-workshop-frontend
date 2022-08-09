@@ -40,7 +40,7 @@ const Login = () => {
         console.log(res.data);
         if (res.data) {
           alert("Login Successful!");
-          console.log("Bienvenido: ", res.data.username, "!");
+          console.log("Wellcome: ", res.data.username, "!");
           navigate(uri, { state: { userData } });
         } else {
           alert("Wrong credentials :(");

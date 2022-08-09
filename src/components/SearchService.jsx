@@ -31,8 +31,7 @@ const SearchService = () => {
       .request(options)
       .then((res) => {
         console.log(res);
-        if (res.data) {
-          alert("Service found!");
+        if (res.data) {          
           setService(res.data);
         } else {
           alert("Not found :(");

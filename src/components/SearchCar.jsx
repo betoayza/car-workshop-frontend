@@ -30,8 +30,7 @@ const SearchCar = () => {
       .then((res) => {
         console.log(res.data);
         if (res.data) {
-          setCar(res.data);
-          alert("Car found!");
+          setCar(res.data);         
         } else alert("No matches :(");
       })
       .catch((error) => error);

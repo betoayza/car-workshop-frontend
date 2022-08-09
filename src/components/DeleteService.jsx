@@ -26,7 +26,7 @@ const DeleteService = () => {
         if (res.data) {
           alert("Delete Successful!");
         } else {
-          alert("Not founded :(");
+          alert("Not found :(");
         }
       })
       .catch((error) => error);

@@ -26,7 +26,7 @@ const DeleteClient = () => {
         if (res.data) {
           alert("Delete successful!");
         } else {
-          alert("Not founded :(");
+          alert("Not found :(");
         }
       })
       .catch((error) => error);
