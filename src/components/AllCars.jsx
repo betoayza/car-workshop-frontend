@@ -23,8 +23,7 @@ export const AllCars = () => {
         .then((res) => {
           console.log(res.data);
           if (res.data) {
-            setCars(res.data);
-            //alert("Cars found!");
+            setCars(res.data);            
           } else alert("No cars yet :(");
         })
         .catch((error) => error);

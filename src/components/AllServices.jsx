@@ -24,14 +24,13 @@ export const AllServices = () => {
         .then((res) => {
           console.log(res.data);
           if (res.data) {
-            setServices(res.data);
-            alert("Services found!");
+            setServices(res.data);            
           } else alert("No services yet :(");
         })
         .catch((error) => error);
     };
     getAllServices();
-  }, []);
+  }, [services]);
 
   return (
     <div>

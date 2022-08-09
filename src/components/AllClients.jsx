@@ -23,14 +23,13 @@ export const AllClients = () => {
         .then((res) => {
           console.log(res.data);
           if (res.data) {
-            setClients(res.data);
-            alert("Clients found!");
+            setClients(res.data);            
           } else alert("No clients yet :(");
         })
         .catch((error) => error);
     };
     getAllCars();
-  }, []);
+  }, [clients]);
 
   return (
     <div>
