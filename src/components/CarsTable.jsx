@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import CarTableRow from "./CarTableRow";
-import { ClientsTable } from ".ClientsTable";
+import { ClientsTable } from "./ClientsTable";
 
 const CarsTable = ({ cars }) => {
   const [client, setClient] = useState(null);
