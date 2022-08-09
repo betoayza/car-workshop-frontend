@@ -34,7 +34,7 @@ const CarsTable = ({ cars }) => {
           if (res.data) {
             setClient(res.data);
           } else {
-            alert("No cars yet :(");
+            return;
           }
         })
         .catch((error) => error);
@@ -73,7 +73,7 @@ const CarsTable = ({ cars }) => {
             })}
         </tbody>
       </table>
-      <br />     
+      <br />
       {client && <ClientsTable clients={client} setClients={setClient} />};
     </>
   );
