@@ -30,7 +30,7 @@ export const AllCars = () => {
         .catch((error) => error);
     };
     getAllCars();
-  }, []);
+  }, [cars]);
 
   return <div>{cars && <CarsTable cars={cars} setCars={setCars} />}</div>;
 };

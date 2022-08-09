@@ -63,7 +63,7 @@ const AddService = () => {
             <input
               type="hidden"
               className="form-control"
-              name="code"            
+              name="code"
               value={form.code}
             />
           </div>
@@ -73,7 +73,7 @@ const AddService = () => {
               type="hidden"
               className="form-control"
               name="date"
-              value={form.date}             
+              value={form.date}
             />
           </div>
 
@@ -85,7 +85,7 @@ const AddService = () => {
               placeholder="Amount..."
               value={form.amount}
               onChange={handleChange}
-              required             
+              required
             />
           </div>
 
@@ -115,7 +115,7 @@ const AddService = () => {
 
           <div className="input-group mb-2">
             <input
-              type="text"
+              type="number"
               className="form-control"
               name="carKms"
               placeholder="Car Kms..."
