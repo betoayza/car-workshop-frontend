@@ -31,17 +31,17 @@ const SearchService = () => {
       .request(options)
       .then((res) => {
         console.log(res);
-        if (res.data) {          
+        if (res.data) {
           setService(res.data);
         } else {
           alert("Not found :(");
         }
       })
       .catch((error) => error);
-    handleReset();
+    handleClean();
   };
 
-  const handleReset = (e) => {
+  const handleClean = (e) => {
     setCode("");
   };
 
@@ -66,8 +66,8 @@ const SearchService = () => {
             Find!
           </button>
 
-          <button className="btn btn-danger" type="reset" onClick={handleReset}>
-            Reset
+          <button className="btn btn-danger" type="Clean" onClick={handleClean}>
+            Clean
           </button>
         </form>
       </div>

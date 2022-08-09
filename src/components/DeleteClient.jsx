@@ -30,14 +30,14 @@ const DeleteClient = () => {
         }
       })
       .catch((error) => error);
-    handleReset();
+    handleClean();
   };
 
   const handleChange = (e) => {
     setCode(e.target.value);
   };
 
-  const handleReset = (e) => {
+  const handleClean = (e) => {
     setCode("");
   };
 
@@ -63,8 +63,8 @@ const DeleteClient = () => {
             Send
           </button>
 
-          <button className="btn btn-danger" type="reset" onClick={handleReset}>
-            Reset
+          <button className="btn btn-danger" type="Clean" onClick={handleClean}>
+            Clean
           </button>
         </form>
       </div>

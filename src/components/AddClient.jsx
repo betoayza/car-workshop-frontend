@@ -43,14 +43,14 @@ const AddClient = () => {
         }
       })
       .catch((error) => error);
-    handleReset();
+    handleClean();
   };
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleReset = (e) => {
+  const handleClean = (e) => {
     setForm({ ...initialForm, code: Date.now() });
   };
 
@@ -160,8 +160,8 @@ const AddClient = () => {
             Send
           </button>
 
-          <button className="btn btn-danger" type="reset" onClick={handleReset}>
-            Reset
+          <button className="btn btn-danger" type="Clean" onClick={handleClean}>
+            Clean
           </button>
         </form>
       </div>

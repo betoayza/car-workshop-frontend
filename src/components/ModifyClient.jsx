@@ -43,16 +43,16 @@ const ModifyClient = () => {
         console.log(res.data);
         if (res.data) {
           setClient(res.data);
-          setForm(res.data);          
+          setForm(res.data);
         } else {
           alert("Client not found :(");
         }
       })
       .catch((error) => error);
-    handleReset();
+    handleClean();
   };
 
-  const handleReset = (e) => {
+  const handleClean = (e) => {
     setCode("");
   };
 
@@ -91,10 +91,10 @@ const ModifyClient = () => {
       .catch((error) => {
         console.error(error);
       });
-      handleReset2();
+    handleClean2();
   };
 
-  const handleReset2 = (e) => {
+  const handleClean2 = (e) => {
     setForm(initialForm);
     setClient(null);
   };
@@ -121,8 +121,8 @@ const ModifyClient = () => {
             Find!
           </button>
 
-          <button className="btn btn-danger" type="reset" onClick={handleReset}>
-            Reset
+          <button className="btn btn-danger" type="Clean" onClick={handleClean}>
+            Clean
           </button>
         </form>
       </div>
@@ -134,8 +134,8 @@ const ModifyClient = () => {
           <h2>Modify Client:</h2>
           <div className="form-group w-25">
             <form onSubmit={handleSubmit2}>
-              <label htmlFor="code">Code:</label>           
-              <div className="input-group mb-3">  
+              <label htmlFor="code">Code:</label>
+              <div className="input-group mb-3">
                 <input
                   type="text"
                   className="form-control"
@@ -232,8 +232,8 @@ const ModifyClient = () => {
 
               <button
                 className="btn btn-danger"
-                type="reset"
-                onClick={handleReset2}
+                type="Clean"
+                onClick={handleClean2}
               >
                 Close
               </button>

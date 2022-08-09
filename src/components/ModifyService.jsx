@@ -43,16 +43,16 @@ const ModifyService = () => {
         console.log(res.data);
         if (res.data) {
           setService(res.data);
-          setForm(res.data);          
+          setForm(res.data);
         } else {
           alert("Service not found :(");
         }
       })
       .catch((error) => error);
-    handleReset();
+    handleClean();
   };
 
-  const handleReset = (e) => {
+  const handleClean = (e) => {
     setCode("");
   };
 
@@ -90,10 +90,10 @@ const ModifyService = () => {
       .catch((error) => {
         console.error(error);
       });
-      handleReset2();
+    handleClean2();
   };
 
-  const handleReset2 = (e) => {
+  const handleClean2 = (e) => {
     setForm(initialForm);
     setService(null);
   };
@@ -119,8 +119,8 @@ const ModifyService = () => {
             Find!
           </button>
 
-          <button className="btn btn-danger" type="reset" onClick={handleReset}>
-            Reset
+          <button className="btn btn-danger" type="Clean" onClick={handleClean}>
+            Clean
           </button>
         </form>
       </div>
@@ -212,8 +212,8 @@ const ModifyService = () => {
 
               <button
                 className="btn btn-danger"
-                type="reset"
-                onClick={handleReset2}
+                type="Clean"
+                onClick={handleClean2}
               >
                 Close
               </button>

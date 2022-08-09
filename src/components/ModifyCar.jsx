@@ -44,16 +44,16 @@ const ModifyCar = () => {
         console.log(res.data);
         if (res.data) {
           setCar(res.data);
-          setForm(res.data);          
+          setForm(res.data);
         } else {
           alert("Car not found :(");
         }
       })
       .catch((error) => error);
-    handleReset();
+    handleClean();
   };
 
-  const handleReset = (e) => {
+  const handleClean = (e) => {
     setCode("");
   };
 
@@ -92,10 +92,10 @@ const ModifyCar = () => {
       .catch((error) => {
         console.error(error);
       });
-    handleReset2();
+    handleClean2();
   };
 
-  const handleReset2 = (e) => {
+  const handleClean2 = (e) => {
     setForm(initialForm);
     setCar(null);
   };
@@ -133,8 +133,8 @@ const ModifyCar = () => {
             Find!
           </button>
 
-          <button className="btn btn-danger" type="reset" onClick={handleReset}>
-            Reset
+          <button className="btn btn-danger" type="Clean" onClick={handleClean}>
+            Clean
           </button>
         </form>
       </div>
@@ -147,9 +147,8 @@ const ModifyCar = () => {
           <h2>Modify Car:</h2>
           <div className="form-group w-25">
             <form onSubmit={handleSubmit2}>
-
-            <label htmlFor="code">Code:</label>
-              <div className="input-group mb-3">               
+              <label htmlFor="code">Code:</label>
+              <div className="input-group mb-3">
                 <input
                   type="text"
                   className="form-control"
@@ -244,8 +243,8 @@ const ModifyCar = () => {
 
               <button
                 className="btn btn-danger"
-                type="reset"
-                onClick={handleReset2}
+                type="Clean"
+                onClick={handleClean2}
               >
                 Close
               </button>

@@ -15,7 +15,7 @@ const Login = () => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleReset = (e) => {
+  const handleClean = (e) => {
     setForm(initialForm);
   };
 
@@ -49,7 +49,7 @@ const Login = () => {
       .catch((error) => {
         console.error(error);
       });
-    handleReset();
+    handleClean();
   };
 
   return (
@@ -96,8 +96,8 @@ const Login = () => {
           <button type="submit" className="btn btn-primary">
             Send
           </button>
-          <button type="reset" className="btn btn-danger" onClick={handleReset}>
-            Reset
+          <button type="Clean" className="btn btn-danger" onClick={handleClean}>
+            Clean
           </button>
         </form>
       </div>

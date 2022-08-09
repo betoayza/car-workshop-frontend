@@ -30,14 +30,14 @@ const SearchCar = () => {
       .then((res) => {
         console.log(res.data);
         if (res.data) {
-          setCar(res.data);         
+          setCar(res.data);
         } else alert("No matches :(");
       })
       .catch((error) => error);
-    handleReset();
+    handleClean();
   };
 
-  const handleReset = (e) => {
+  const handleClean = (e) => {
     setCode("");
   };
 
@@ -63,8 +63,8 @@ const SearchCar = () => {
             Find!
           </button>
 
-          <button className="btn btn-danger" type="reset" onClick={handleReset}>
-            Reset
+          <button className="btn btn-danger" type="Clean" onClick={handleClean}>
+            Clean
           </button>
         </form>
       </div>
