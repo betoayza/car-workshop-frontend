@@ -24,7 +24,7 @@ export const AllCars = () => {
           console.log(res.data);
           if (res.data) {
             setCars(res.data);
-            alert("Cars found!");
+            //alert("Cars found!");
           } else alert("No cars yet :(");
         })
         .catch((error) => error);
