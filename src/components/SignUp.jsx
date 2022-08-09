@@ -203,7 +203,7 @@ const SignUp = () => {
             className="btn btn-primary"
             onClick={handleSubmit}
           >
-            Enviar
+            Send
           </button>
 
           <button type="reset" className="btn btn-danger" onClick={handleReset}>

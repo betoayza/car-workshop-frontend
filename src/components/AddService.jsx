@@ -136,7 +136,7 @@ const AddService = () => {
           </div>
 
           <button className="btn btn-primary" type="submit">
-            Enviar
+            Send
           </button>
 
           <button className="btn btn-danger" type="reset" onClick={handleReset}>

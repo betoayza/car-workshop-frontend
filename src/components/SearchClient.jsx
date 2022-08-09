@@ -28,7 +28,7 @@ const SearchClient = () => {
       .then((res) => {
         console.log(res.data);
         if (res.data) {
-          setClient(res.data);          
+          setClient(res.data);
         } else {
           alert("No matches :(");
         }
@@ -67,7 +67,7 @@ const SearchClient = () => {
             className="btn btn-primary"
             onClick={handleSubmit}
           >
-            Enviar
+            Send
           </button>
 
           <button type="reset" className="btn btn-danger" onClick={handleReset}>

@@ -94,7 +94,7 @@ const Login = () => {
           </div>
 
           <button type="submit" className="btn btn-primary">
-            Enviar
+            Send
           </button>
           <button type="reset" className="btn btn-danger" onClick={handleReset}>
             Reset
