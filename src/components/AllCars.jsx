@@ -23,7 +23,7 @@ export const AllCars = () => {
         .then((res) => {
           console.log(res.data);
           if (res.data) {
-            setCars(res.data);            
+            setCars(res.data);
           } else alert("No cars yet :(");
         })
         .catch((error) => error);
@@ -31,5 +31,5 @@ export const AllCars = () => {
     getAllCars();
   }, [cars]);
 
-  return <div>{cars && <CarsTable cars={cars} setCars={setCars} />}</div>;
+  return <div>{cars && <CarsTable cars={cars} />}</div>;
 };

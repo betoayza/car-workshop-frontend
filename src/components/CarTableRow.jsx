@@ -1,6 +1,6 @@
 import React from "react";
 
-const CarTableRow = ({ car }) => {
+const CarTableRow = ({ car, seeClient }) => {
   return (
     <tr>
       <td>{car.code}</td>
@@ -8,7 +8,10 @@ const CarTableRow = ({ car }) => {
       <td>{car.brand}</td>
       <td>{car.model}</td>
       <td>{car.year}</td>
-      <td>{car.clientCode}</td>     
+      <td>
+        {car.clientCode}
+        <button onClick={seeClient(car.clientCode)}>See</button>
+      </td>
       <td>{car.status}</td>
     </tr>
   );

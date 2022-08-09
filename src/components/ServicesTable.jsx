@@ -34,15 +34,7 @@ const ServicesTable = ({ services, setServices }) => {
               return <ServiceTableRow key={service._id} service={service} />;
             })}
         </tbody>
-      </table>
-
-      <button
-        className="btn btn-danger"
-        type="reset"
-        onClick={handleCloseTable}
-      >
-        Close
-      </button>
+      </table>      
     </div>
   );
 };

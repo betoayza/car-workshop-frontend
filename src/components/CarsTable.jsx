@@ -1,13 +1,40 @@
-import React from "react";
+import React, { useState } from "react";
 import CarTableRow from "./CarTableRow";
+import {ClientsTable} from '.ClientsTable';
 
-const CarsTable = ({ cars, setCars }) => {
+const CarsTable = ({ cars }) => {
+  const [client, setClient] = useState(null);
+
   if (!Array.isArray(cars)) {
     cars = [cars];
   }
 
-  const handleCloseTable = () => {
-    setCars(null);
+  const seeClient=(carCode)=>{
+    const code = carCode;
+    const options = {
+      url: `${API}/clients/search`,
+
+      headers: {
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Headers": "*",
+        Accept: "application/json",
+        timeout: 3000,
+      },
+      params: { code },
+    };
+
+    await axios.request(options)
+      .then((res) => {
+        console.log(res.data);
+        if (res.data) {
+          setClient(res.data);
+          
+        } else {
+          alert("No matches :(");
+        }
+      })
+      .catch((error) => error);
   };
 
   return (
@@ -31,18 +58,13 @@ const CarsTable = ({ cars, setCars }) => {
         <tbody>
           {cars &&
             cars.map((car) => {
-              return <CarTableRow key={car._id} car={car} />;
+              return <CarTableRow key={car._id} car={car} seeClient={seeClient} />;
             })}
         </tbody>
-      </table>
+      </table> 
 
-      <button
-        className="btn btn-danger"
-        type="reset"
-        onClick={handleCloseTable}
-      >
-        Close
-      </button>
+      {client && <ClientsTable clients={client} setClients={setClient}  />};
+
     </>
   );
 };

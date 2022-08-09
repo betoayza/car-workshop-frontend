@@ -35,14 +35,6 @@ export const ClientsTable = ({ clients, setClients }) => {
             })}
         </tbody>
       </table>
-
-      <button
-        className="btn btn-danger"
-        type="reset"
-        onClick={handleCloseTable}
-      >
-        Close
-      </button>
     </div>
   );
 };
