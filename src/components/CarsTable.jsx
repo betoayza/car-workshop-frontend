@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import CarTableRow from "./CarTableRow";
 import { ClientsTable } from "./ClientsTable";
 import { API } from "../api/api";
 import axios from "axios";
-import { useEffect } from "react";
+
 
 const CarsTable = ({ cars }) => {
   const [client, setClient] = useState(null);

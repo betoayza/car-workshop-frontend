@@ -1,14 +1,10 @@
 import React from "react";
 import { ClientTableRow } from "./ClientTableRow";
 
-export const ClientsTable = ({ clients, setClients }) => {
+export const ClientsTable = ({ clients }) => {
   if (!Array.isArray(clients)) {
     clients = [clients];
   }
-
-  const handleCloseTable = () => {
-    setClients(null);
-  };
 
   return (
     <div>
@@ -19,8 +15,8 @@ export const ClientsTable = ({ clients, setClients }) => {
       >
         <thead>
           <tr>
-            <th scope="col">Codigo</th>
-            <th scope="col">DNI</th>
+            <th scope="col">Code</th>
+            <th scope="col">ID</th>
             <th scope="col">Name</th>
             <th scope="col">Surname</th>
             <th scope="col">Email</th>

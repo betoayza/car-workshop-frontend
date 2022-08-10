@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import ServiceTableRow from "./ServiceTableRow";
+import { API } from "../api/api";
+import axios from "axios";
+import CarsTable from "./CarsTable";
 
-const ServicesTable = ({ services, setServices }) => {
+const ServicesTable = ({ services }) => {
   const [car, setCar] = useState(null);
 
   if (!Array.isArray(services)) {
@@ -9,7 +12,7 @@ const ServicesTable = ({ services, setServices }) => {
   }
 
   useEffect(() => {
-    const getClient = async (car) => {
+    const getCar = async (car) => {
       const code = car;
       const options = {
         url: `${API}/cars/search`,
@@ -35,7 +38,7 @@ const ServicesTable = ({ services, setServices }) => {
         })
         .catch((error) => error);
     };
-    getClient(car);
+    getCar(car);
   }, [car]);
 
   const seeCar = (carCode) => {
@@ -73,6 +76,7 @@ const ServicesTable = ({ services, setServices }) => {
             })}
         </tbody>
       </table>
+      <br />
       {car && <CarsTable cars={car} />}
     </div>
   );
