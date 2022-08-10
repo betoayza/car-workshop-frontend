@@ -2,12 +2,44 @@ import React from "react";
 import ServiceTableRow from "./ServiceTableRow";
 
 const ServicesTable = ({ services, setServices }) => {
+  const [car, setCar] = useState(null);
+
   if (!Array.isArray(services)) {
     services = [services];
   }
 
-  const handleCloseTable = () => {
-    setServices(null);
+  useEffect(() => {
+    const getClient = async (car) => {
+      const code = car;
+      const options = {
+        url: `${API}/cars/search`,
+        headers: {
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Headers": "*",
+          Accept: "application/json",
+          timeout: 3000,
+        },
+        params: { code },
+      };
+
+      await axios
+        .request(options)
+        .then((res) => {
+          console.log(res.data);
+          if (res.data) {
+            setCar(res.data);
+          } else {
+            return;
+          }
+        })
+        .catch((error) => error);
+    };
+    getClient(car);
+  }, [car]);
+
+  const seeCar = (carCode) => {
+    setCar(carCode);
   };
 
   return (
@@ -31,10 +63,17 @@ const ServicesTable = ({ services, setServices }) => {
         <tbody>
           {services &&
             services.map((service) => {
-              return <ServiceTableRow key={service._id} service={service} />;
+              return (
+                <ServiceTableRow
+                  key={service._id}
+                  service={service}
+                  seeCar={seeCar}
+                />
+              );
             })}
         </tbody>
-      </table>      
+      </table>
+      {car && <CarsTable cars={car} />}
     </div>
   );
 };
