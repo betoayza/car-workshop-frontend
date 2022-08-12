@@ -2,27 +2,26 @@ import axios from "axios";
 import React, { useState } from "react";
 import { API } from "../api/api";
 
-const initialForm = {
-  code: "",
-  patent: "",
-  brand: "",
-  model: "",
-  year: "",
-  clientCode: "",
-  status: "",
-};
+// const initialForm = {
+//   code: "",
+//   patent: "",
+//   brand: "",
+//   model: "",
+//   year: "",
+//   clientCode: "",
+//   status: "",
+// };
 
-const ModifyCar = (car) => {
+const ModifyCar = ({ car, setCar }) => {
   const [form, setForm] = useState(car);
   const [patentError, setPatentError] = useState(false);
+  console.log(car);
 
-  //---------
-  //Handle Update Form
-  const handleChange2 = (e) => {
+  const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit2 = async (e) => {
+  const handleUpdate = async (e) => {
     e.preventDefault();
 
     const options = {
@@ -51,11 +50,11 @@ const ModifyCar = (car) => {
       .catch((error) => {
         console.error(error);
       });
-    handleClose2();
+    handleClose();
   };
 
-  const handleClose2 = (e) => {
-    setForm(null);
+  const handleClose = () => {
+    setCar(null);
   };
 
   const handleBlur = () => {
@@ -72,116 +71,118 @@ const ModifyCar = (car) => {
 
   return (
     <>
-      {form && (
-        <div>
-          <h2>Modify Car:</h2>
-          <div className="form-group w-25">
-            <form onSubmit={handleSubmit2}>
-              <label htmlFor="code">Code:</label>
-              <div className="input-group mb-3">
-                <input
-                  type="text"
-                  className="form-control"
-                  name="code"
-                  value={form.code}
-                  disabled
-                  readOnly
-                />
-              </div>
+      <div>
+        <h2>Update Car:</h2>
+        <div className="form-group w-25">
+          <form onSubmit={handleUpdate}>
+            <label htmlFor="code">Code:</label>
+            <div className="input-group mb-3">
+              <input
+                type="text"
+                className="form-control"
+                name="code"
+                value={form.code}
+                disabled
+                readOnly
+              />
+            </div>
 
-              <label htmlFor="patent">Patent:</label>
-              <div className="input-group mb-3">
-                <input
-                  type="text"
-                  className="form-control"
-                  name="patent"
-                  id="patent"
-                  placeholder="Patent..."
-                  value={form.patent}
-                  onChange={handleChange2}
-                  onBlur={handleBlur}
-                  required
-                />
-              </div>
+            <label htmlFor="patent">Patent:</label>
+            <div className="input-group mb-3">
+              <input
+                type="text"
+                className="form-control"
+                name="patent"
+                id="patent"
+                placeholder="Patent..."
+                value={form.patent}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                required
+              />
+            </div>
 
-              {patentError && (
-                <p className="error-p" style={{ color: "#ff6347" }}>
-                  Not valid patent: e.g. "ABC 123"
-                </p>
-              )}
+            {patentError && (
+              <p className="error-p" style={{ color: "#ff6347" }}>
+                Not valid patent: e.g. "ABC 123"
+              </p>
+            )}
 
-              <label htmlFor="brand">Brand:</label>
-              <div className="input-group mb-3">
-                <input
-                  type="text"
-                  className="form-control"
-                  name="brand"
-                  id="brand"
-                  placeholder="Brand..."
-                  value={form.brand}
-                  onChange={handleChange2}
-                  required
-                />
-              </div>
+            <label htmlFor="brand">Brand:</label>
+            <div className="input-group mb-3">
+              <input
+                type="text"
+                className="form-control"
+                name="brand"
+                id="brand"
+                placeholder="Brand..."
+                value={form.brand}
+                onChange={handleChange}
+                required
+              />
+            </div>
 
-              <label htmlFor="model">Model:</label>
-              <div className="input-group mb-3">
-                <input
-                  type="text"
-                  className="form-control"
-                  name="model"
-                  id="model"
-                  placeholder="Model..."
-                  value={form.model}
-                  onChange={handleChange2}
-                  required
-                />
-              </div>
+            <label htmlFor="model">Model:</label>
+            <div className="input-group mb-3">
+              <input
+                type="text"
+                className="form-control"
+                name="model"
+                id="model"
+                placeholder="Model..."
+                value={form.model}
+                onChange={handleChange}
+                required
+              />
+            </div>
 
-              <label htmlFor="year">Year:</label>
-              <div className="input-group mb-3">
-                <input
-                  type="number"
-                  className="form-control"
-                  name="year"
-                  id="year"
-                  placeholder="Year..."
-                  min="1900"
-                  max="2022"
-                  value={form.year}
-                  onChange={handleChange2}
-                  required
-                />
-              </div>
+            <label htmlFor="year">Year:</label>
+            <div className="input-group mb-3">
+              <input
+                type="number"
+                className="form-control"
+                name="year"
+                id="year"
+                placeholder="Year..."
+                min="1900"
+                max="2022"
+                value={form.year}
+                onChange={handleChange}
+                required
+              />
+            </div>
 
-              <label htmlFor="clientCode">Client code:</label>
-              <div className="input-group mb-3">
-                <input
-                  type="number"
-                  className="form-control"
-                  name="clientCode"
-                  id="clientCode"
-                  value={form.clientCode}
-                  disabled
-                  readOnly
-                />
-              </div>
+            <label htmlFor="clientCode">Client code:</label>
+            <div className="input-group mb-3">
+              <input
+                type="number"
+                className="form-control"
+                name="clientCode"
+                id="clientCode"
+                value={form.clientCode}
+                disabled
+                readOnly
+              />
+            </div>
 
-              <button className="btn btn-primary" type="submit">
-                Update
-              </button>
+            <button
+              className="btn btn-primary"
+              type="submit"
+              onClick={handleUpdate}
+            >
+              Update
+            </button>
 
-              <button
-                className="btn btn-danger"
-                type="reset"
-                onClick={handleClose2}
-              >
-                Close
-              </button>
-            </form>
-          </div>
+            <button
+              className="btn btn-danger"
+              type="reset"
+              onClick={handleClose}
+            >
+              Close
+            </button>
+          </form>
         </div>
-      )}
+      </div>
     </>
   );
 };

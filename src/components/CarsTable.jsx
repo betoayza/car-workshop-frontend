@@ -7,16 +7,18 @@ import ModifyCar from "./ModifyCar";
 
 const CarsTable = ({ cars }) => {
   const [client, setClient] = useState(null);
-  const [modCar, setModCar] = useState(null);
-  const [delCar, setDelCar] = useState(null);
+  const [clientCode, setClientCode] = useState(null);
+  const [modCode, setModeCode] = useState(null);
+  const [delCode, setDelCode] = useState(null);
+  const [car, setCar] = useState(null);
 
   if (!Array.isArray(cars)) {
     cars = [cars];
   }
 
   useEffect(() => {
-    const getClient = async (client) => {
-      const code = client;
+    const getClient = async () => {
+      const code = clientCode;
       const options = {
         url: `${API}/clients/search`,
         headers: {
@@ -41,56 +43,57 @@ const CarsTable = ({ cars }) => {
         })
         .catch((error) => error);
     };
-    getClient(client);
-  }, [client]);
+    getClient();
+  }, [clientCode]);
 
   const seeClient = (clientCode) => {
-    setClient(clientCode);
+    setClientCode(clientCode);
   };
 
   useEffect(() => {
-    const searchCar = async () => {
-      const code = carCode;
-      const options = {
-        url: `${API}/cars/search`,
+    if (modCode) {
+      const searchCar = async (modCode) => {
+        const code = modCode;
+        console.log(code);
+        const options = {
+          url: `${API}/cars/search`,
+          headers: {
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Headers": "*",
+            Accept: "application/json",
+            timeout: 3000,
+          },
+          params: { code },
+        };
 
-        headers: {
-          "Content-Type": "application/json",
-          "Access-Control-Allow-Origin": "*",
-          "Access-Control-Allow-Headers": "*",
-          Accept: "application/json",
-          timeout: 3000,
-        },
-        params: { code },
+        await axios
+          .request(options)
+          .then((res) => {
+            console.log(res.data);
+            if (res.data) {
+              setCar(res.data);
+            } else {
+              setModeCode(null);
+              alert("Car not found :(");
+            }
+          })
+          .catch((error) => error);
       };
-
-      await axios
-        .request(options)
-        .then((res) => {
-          console.log(res.data);
-          if (res.data) {
-            setCar(res.data);
-            setForm(res.data);
-          } else {
-            alert("Car not found :(");
-          }
-        })
-        .catch((error) => error);
-    };
-    searchCar();
-  }, [modCar])
-  
+      searchCar(modCode);
+    } else return;
+  }, [modCode]);
 
   const editCar = (carCode) => {
-    setModCar(carCode);
+    setModeCode(carCode);
   };
 
   useEffect(() => {
-    console.log(delCar);
+    console.log(delCode);
     const deleteCar = async () => {
-      if (delCar) {
+      if (delCode) {
         if (confirm("Are you sure you want to delete?") == true) {
-          const code = delCar;
+          const code = delCode;
           const options = {
             headers: {
               "Content-Type": "application/json",
@@ -117,10 +120,10 @@ const CarsTable = ({ cars }) => {
       } else return;
     };
     deleteCar();
-  }, [delCar]);
+  }, [delCode]);
 
   const deleteCar = (carCode) => {
-    setDelCar(carCode);
+    setDelCode(carCode);
   };
 
   return (
@@ -158,9 +161,9 @@ const CarsTable = ({ cars }) => {
         </tbody>
       </table>
       <br />
-      {client && <ClientsTable clients={client} setClients={setClient} />};
+      {client && <ClientsTable clients={client} setClients={setClient} />}
       <br />
-      {modCar && <ModifyCar carCode={modCar} />}
+      {car && <ModifyCar car={car} setCar={setCar} />}
     </>
   );
 };
