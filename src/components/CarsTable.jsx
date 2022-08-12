@@ -5,7 +5,7 @@ import { API } from "../api/api";
 import axios from "axios";
 import ModifyCar from "./ModifyCar";
 
-const CarsTable = ({ cars }) => {
+const CarsTable = ({ cars, setCars }) => {
   const [client, setClient] = useState(null);
   const [clientCode, setClientCode] = useState(null);
   const [modCode, setModeCode] = useState(null);
@@ -126,6 +126,10 @@ const CarsTable = ({ cars }) => {
     setDelCode(carCode);
   };
 
+  const handleClose = () => {
+    setCars(null);
+  };
+
   return (
     <>
       <h2>Cars:</h2>
@@ -160,6 +164,9 @@ const CarsTable = ({ cars }) => {
             })}
         </tbody>
       </table>
+      <button className="btn btn-danger" onClick={handleClose}>
+        Close
+      </button>
       <br />
       {client && <ClientsTable clients={client} setClients={setClient} />}
       <br />

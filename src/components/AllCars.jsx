@@ -31,5 +31,5 @@ export const AllCars = () => {
     getAllCars();
   }, [cars]);
 
-  return <div>{cars && <CarsTable cars={cars} />}</div>;
+  return <div>{cars && <CarsTable cars={cars} setCars={setCars} />}</div>;
 };
