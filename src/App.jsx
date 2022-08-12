@@ -79,19 +79,6 @@ const App = () => {
                       </NavLink>
                     </li>
                     <li>
-                      <NavLink to="/cars/delete">
-                        {({ isActive }) => (
-                          <p
-                            className={
-                              isActive ? "dropdown-item" : "dropdown-item"
-                            }
-                          >
-                            Delete
-                          </p>
-                        )}
-                      </NavLink>
-                    </li>
-                    <li>
                       <NavLink to="/cars/search">
                         {({ isActive }) => (
                           <p
@@ -100,19 +87,6 @@ const App = () => {
                             }
                           >
                             Search
-                          </p>
-                        )}
-                      </NavLink>
-                    </li>
-                    <li>
-                      <NavLink to="/cars/modify">
-                        {({ isActive }) => (
-                          <p
-                            className={
-                              isActive ? "dropdown-item" : "dropdown-item"
-                            }
-                          >
-                            Modify
                           </p>
                         )}
                       </NavLink>
@@ -313,8 +287,6 @@ const App = () => {
         {/* <Route exact path="/signup" element={<Components.SignUp />} /> */}
 
         <Route exact path="/cars/add/" element={<Components.AddCar />} />
-
-        <Route exact path="/cars/delete" element={<Components.DeleteCar />} />
 
         <Route exact path="/cars/modify" element={<Components.ModifyCar />} />
 

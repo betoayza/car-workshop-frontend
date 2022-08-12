@@ -70,7 +70,7 @@ const SearchClient = () => {
             Send
           </button>
 
-          <button type="Clean" className="btn btn-danger" onClick={handleClean}>
+          <button type="reset" className="btn btn-danger" onClick={handleClean}>
             Clean
           </button>
         </form>

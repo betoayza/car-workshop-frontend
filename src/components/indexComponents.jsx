@@ -15,7 +15,6 @@ import SearchService from "./SearchService.jsx";
 import { AllServices } from "./AllServices.jsx";
 
 import AddCar from "./AddCar.jsx";
-import DeleteCar from "./DeleteCar.jsx";
 import ModifyCar from "./ModifyCar.jsx";
 import SearchCarForms from "./SearchCarForms.jsx";
 import CarsList1 from "./CarsList1.jsx";
@@ -37,7 +36,6 @@ export {
   SearchService,
   AllServices,
   AddCar,
-  DeleteCar,
   ModifyCar,
   AllCars,
   SearchCarForms,

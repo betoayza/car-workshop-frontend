@@ -119,7 +119,7 @@ const ModifyService = () => {
             Find!
           </button>
 
-          <button className="btn btn-danger" type="Clean" onClick={handleClean}>
+          <button className="btn btn-danger" type="reset" onClick={handleClean}>
             Clean
           </button>
         </form>
@@ -212,7 +212,7 @@ const ModifyService = () => {
 
               <button
                 className="btn btn-danger"
-                type="Clean"
+                type="reset"
                 onClick={handleClean2}
               >
                 Close
