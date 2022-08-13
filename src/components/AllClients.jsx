@@ -7,7 +7,7 @@ export const AllClients = () => {
   const [clients, setClients] = useState(null);
 
   useEffect(() => {
-    const getAllCars = async () => {
+    const getAllClients = async () => {
       const options = {
         headers: {
           "Content-Type": "application/json",
@@ -23,12 +23,12 @@ export const AllClients = () => {
         .then((res) => {
           console.log(res.data);
           if (res.data) {
-            setClients(res.data);            
+            setClients(res.data);
           } else alert("No clients yet :(");
         })
         .catch((error) => error);
     };
-    getAllCars();
+    getAllClients();
   }, [clients]);
 
   return (

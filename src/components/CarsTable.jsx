@@ -50,8 +50,7 @@ const CarsTable = ({ cars, setCars }) => {
     setClientCode(clientCode);
   };
 
-  useEffect(() => {
-    if (modCode) {
+  useEffect(() => {    
       const searchCar = async (modCode) => {
         const code = modCode;
         console.log(code);
@@ -80,8 +79,7 @@ const CarsTable = ({ cars, setCars }) => {
           })
           .catch((error) => error);
       };
-      searchCar(modCode);
-    } else return;
+      modCode ?searchCar(modCode) : null;    
   }, [modCode]);
 
   const editCar = (carCode) => {
@@ -167,6 +165,7 @@ const CarsTable = ({ cars, setCars }) => {
       <button className="btn btn-danger" onClick={handleClose}>
         Close
       </button>
+      <br />
       <br />
       {client && <ClientsTable clients={client} setClients={setClient} />}
       <br />
