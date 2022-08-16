@@ -43,18 +43,17 @@ const CarsTable = ({ cars }) => {
           console.log(res.data);
           if (res.data) {
             setClient(res.data);
-          } else {
-            return;
-          }
+            setModal(true);
+            setModalClient(true);
+          } else return;
         })
         .catch((error) => error);
     };
-    getClient();
+    clientCode ? getClient() : null;
   }, [clientCode]);
 
   const seeClient = (clientCode) => {
     setClientCode(clientCode);
-    modalClient(true);
   };
 
   const editCar = (carCode) => {
@@ -73,7 +72,13 @@ const CarsTable = ({ cars }) => {
     <Modal>
       {modalCarEdit && <ModifyCar code={carCode} setModal={setModal} />}
       {modalCarDelete && <DeleteCar code={carCode} setModal={setModal} />}
-      {modalClient && <ClientsTable clients={client} setClients={setClient} />}
+      {modalClient && (
+        <ClientsTable
+          clients={client}
+          setClients={setClient}
+          setModal={setModal}
+        />
+      )}
     </Modal>
   ) : (
     <>

@@ -1,13 +1,13 @@
 import React from "react";
 import { ClientTableRow } from "./ClientTableRow";
 
-export const ClientsTable = ({ clients, setClients }) => {
+export const ClientsTable = ({ clients, setClients, setModal }) => {
   if (!Array.isArray(clients)) {
     clients = [clients];
   }
 
   const handleClose = () => {
-    setClients(null);
+    setModal(false);
   };
 
   return (
