@@ -4,11 +4,10 @@ import CarsTable from "./CarsTable";
 import { API } from "../api/api.js";
 
 export const AllCars = () => {
-  const [cars, setCars] = useState({});
-  //const [flag, setS] = useState(second);
+  const [cars, setCars] = useState(null);
+  const [flag, setFlag] = useState(true);
 
-  useEffect(() => {
-    if (cars) {
+  useEffect(() => {    
       const getAllCars = async () => {
         const options = {
           headers: {
@@ -25,14 +24,13 @@ export const AllCars = () => {
           .then((res) => {
             console.log(res.data);
             if (res.data) {
-              setCars(res.data);
+              setCars(res.data);              
             } else return;
           })
           .catch((error) => error);
       };
-      getAllCars();
-    } else return;
+      getAllCars();    
   }, [cars]);
 
-  return <div>{cars && <CarsTable cars={cars} setCars={setCars} />}</div>;
+  return <div>{cars && <CarsTable cars={cars} flag={flag} setFlag={setFlag} />}</div>;
 };

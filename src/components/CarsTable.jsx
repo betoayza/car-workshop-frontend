@@ -4,13 +4,19 @@ import { ClientsTable } from "./ClientsTable";
 import { API } from "../api/api";
 import axios from "axios";
 import ModifyCar from "./ModifyCar";
+import { Modal } from "./Modal";
+import { DeleteCar } from "./DeleteCar";
 
-const CarsTable = ({ cars, setCars }) => {
+const CarsTable = ({ cars }) => {
   const [client, setClient] = useState(null);
   const [clientCode, setClientCode] = useState(null);
-  const [modCode, setModeCode] = useState(null);
+  const [carCode, setCarCode] = useState(null);
   const [delCode, setDelCode] = useState(null);
   const [car, setCar] = useState(null);
+  const [modal, setModal] = useState(false);
+  const [modalCarEdit, setModalCarEdit] = useState(false);
+  const [modalCarDelete, setModalCarDelete] = useState(false);
+  const [modalClient, setModalClient] = useState(false);
 
   if (!Array.isArray(cars)) {
     cars = [cars];
@@ -48,87 +54,28 @@ const CarsTable = ({ cars, setCars }) => {
 
   const seeClient = (clientCode) => {
     setClientCode(clientCode);
+    modalClient(true);
   };
-
-  useEffect(() => {    
-      const searchCar = async (modCode) => {
-        const code = modCode;
-        console.log(code);
-        const options = {
-          url: `${API}/cars/search`,
-          headers: {
-            "Content-Type": "application/json",
-            "Access-Control-Allow-Origin": "*",
-            "Access-Control-Allow-Headers": "*",
-            Accept: "application/json",
-            timeout: 3000,
-          },
-          params: { code },
-        };
-
-        await axios
-          .request(options)
-          .then((res) => {
-            console.log(res.data);
-            if (res.data) {
-              setCar(res.data);
-            } else {
-              setModeCode(null);
-              alert("Car not found :(");
-            }
-          })
-          .catch((error) => error);
-      };
-      modCode ?searchCar(modCode) : null;    
-  }, [modCode]);
 
   const editCar = (carCode) => {
-    setModeCode(carCode);
+    setCarCode(carCode);
+    setModalCarEdit(true);
+    setModal(true);
   };
-
-  useEffect(() => {
-    console.log(delCode);
-    const deleteCar = async () => {
-      if (delCode) {
-        if (confirm("Are you sure you want to delete?") == true) {
-          const code = delCode;
-          const options = {
-            headers: {
-              "Content-Type": "application/json",
-              "Access-Control-Allow-Origin": "*",
-              "Access-Control-Allow-Headers": "*",
-              Accept: "application/json",
-              timeout: 3000,
-            },
-            data: { code },
-          };
-
-          await axios
-            .delete(`${API}/cars/delete`, options)
-            .then((res) => {
-              console.log(res.data);
-              if (res.data) {
-                alert("Delete Successful!");
-              } else {
-                alert("Delete failed :(");
-              }
-            })
-            .catch((error) => error);
-        } else alert("Delete aborted.");
-      } else return;
-    };
-    deleteCar();
-  }, [delCode]);
 
   const deleteCar = (carCode) => {
-    setDelCode(carCode);
+    setCarCode(carCode);
+    setModal(true);
+    setModalCarDelete(true);
   };
 
-  const handleClose = () => {
-    setCars(null);
-  };
-
-  return (
+  return modal ? (
+    <Modal>
+      {modalCarEdit && <ModifyCar code={carCode} setModal={setModal} />}
+      {modalCarDelete && <DeleteCar code={carCode} setModal={setModal} />}
+      {modalClient && <ClientsTable clients={client} setClients={setClient} />}
+    </Modal>
+  ) : (
     <>
       <h2>Cars:</h2>
       <table
@@ -162,14 +109,9 @@ const CarsTable = ({ cars, setCars }) => {
             })}
         </tbody>
       </table>
-      <button className="btn btn-danger" onClick={handleClose}>
+      {/* <button className="btn btn-danger" onClick={handleClose}>
         Close
-      </button>
-      <br />
-      <br />
-      {client && <ClientsTable clients={client} setClients={setClient} />}
-      <br />
-      {car && <ModifyCar car={car} setCar={setCar} />}
+      </button> */}
     </>
   );
 };
