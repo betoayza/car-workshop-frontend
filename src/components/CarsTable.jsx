@@ -10,12 +10,10 @@ import AddCar from "./AddCar";
 import { SelectCarsCodes } from "./SelectCarsCodes";
 import SearchCar from "./SearchCar";
 
-const CarsTable = ({ cars, AddAndSearch=true }) => {
+const CarsTable = ({ cars, AddAndSearch = true }) => {
   const [client, setClient] = useState(null);
   const [clientCode, setClientCode] = useState(null);
   const [carCode, setCarCode] = useState(null);
-  const [delCode, setDelCode] = useState(null);
-  const [car, setCar] = useState(null);
   const [modal, setModal] = useState(false);
   const [modalCarEdit, setModalCarEdit] = useState(false);
   const [modalCarDelete, setModalCarDelete] = useState(false);

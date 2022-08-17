@@ -50,61 +50,16 @@ const App = () => {
                   </NavLink>
                 </li>
 
-                <li className="nav-item dropdown">
-                  <a
-                    className="nav-link dropdown-toggle"
-                    href="#"
-                    id="navbarDropdownMenuLink"
-                    role="button"
-                    data-bs-toggle="dropdown"
-                    aria-expanded="false"
-                  >
-                    Cars
-                  </a>
-                  <ul
-                    className="dropdown-menu"
-                    aria-labelledby="navbarDropdownMenuLink"
-                  >
-                    <li>
-                      <NavLink to="/cars/add">
-                        {({ isActive }) => (
-                          <p
-                            className={
-                              isActive ? "dropdown-item" : "dropdown-item"
-                            }
-                          >
-                            Add
-                          </p>
-                        )}
-                      </NavLink>
-                    </li>
-                    <li>
-                      <NavLink to="/cars/search">
-                        {({ isActive }) => (
-                          <p
-                            className={
-                              isActive ? "dropdown-item" : "dropdown-item"
-                            }
-                          >
-                            Search
-                          </p>
-                        )}
-                      </NavLink>
-                    </li>
-                    <li>
-                      <NavLink to="/cars/all">
-                        {({ isActive }) => (
-                          <p
-                            className={
-                              isActive ? "dropdown-item" : "dropdown-item"
-                            }
-                          >
-                            All
-                          </p>
-                        )}
-                      </NavLink>
-                    </li>
-                  </ul>
+                <li>
+                  <NavLink to="/cars/all">
+                    {({ isActive }) => (
+                      <p
+                        className={isActive ? "dropdown-item" : "dropdown-item"}
+                      >
+                        Cars
+                      </p>
+                    )}
+                  </NavLink>
                 </li>
 
                 <li className="nav-item dropdown">
