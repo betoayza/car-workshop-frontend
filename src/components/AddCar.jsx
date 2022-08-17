@@ -12,7 +12,7 @@ const initialForm = {
   status: "Active",
 };
 
-const AddCar = () => {
+const AddCar = ({ setModal }) => {
   const [form, setForm] = useState(initialForm);
   const [patentError, setPatentError] = useState(false);
 
@@ -50,8 +50,9 @@ const AddCar = () => {
     handleClean();
   };
 
-  const handleClean = (e) => {
+  const handleClose = (e) => {
     setForm({ ...initialForm, code: Date.now() });
+    setModal(false);
   };
 
   //Patent validation
@@ -162,8 +163,8 @@ const AddCar = () => {
             Send
           </button>
 
-          <button className="btn btn-danger" type="reset" onClick={handleClean}>
-            Clean
+          <button className="btn btn-danger" type="reset" onClick={handleClose}>
+            Close
           </button>
         </form>
       </div>

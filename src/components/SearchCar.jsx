@@ -1,76 +1,48 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import CarsTable from "./CarsTable";
 import { API } from "../api/api";
 
-const SearchCar = () => {
-  const [code, setCode] = useState("");
+const SearchCar = ({ code, setModal, setShowAddAndSearch }) => {
   const [car, setCar] = useState(null);
 
-  const handleChange = (e) => {
-    setCode(e.target.value);
-  };
+  useEffect(() => {
+    const getCar = async () => {
+      const options = {
+        headers: {
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Headers": "*",
+          Accept: "application/json",
+          timeout: 3000,
+        },
+        params: { code },
+      };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    const options = {
-      headers: {
-        "Content-Type": "application/json",
-        "Access-Control-Allow-Origin": "*",
-        "Access-Control-Allow-Headers": "*",
-        Accept: "application/json",
-        timeout: 3000,
-      },
-      params: { code },
+      await axios
+        .get(`${API}/cars/search`, options)
+        .then((res) => {
+          console.log(res.data);
+          if (res.data) {
+            setCar(res.data);
+          } else return;
+        })
+        .catch((error) => error);
     };
+    getCar();
+  }, []);
 
-    await axios
-      .get(`${API}/cars/search`, options)
-      .then((res) => {
-        console.log(res.data);
-        if (res.data) {
-          setCar(res.data);
-        } else alert("No matches :(");
-      })
-      .catch((error) => error);
-    handleClean();
-  };
-
-  const handleClean = (e) => {
-    setCode("");
+  const handleClose = () => {
+    setModal(false);
+    setShowAddAndSearch(true);
   };
 
   return (
     <div>
-      <h2> Find car: </h2>
-
-      <div className="form-group w-25">
-        <form onSubmit={handleSubmit}>
-          <div className="input-group mb-3">
-            <input
-              type="number"
-              className="form-control"
-              name="code"
-              placeholder="Code..."
-              value={code}
-              onChange={handleChange}
-              required
-            />
-          </div>
-
-          <button className="btn btn-primary" type="submit">
-            Find!
-          </button>
-
-          <button className="btn btn-danger" type="reset" onClick={handleClean}>
-            Clean
-          </button>
-        </form>
-      </div>
-      <br />
-      <br />
-      {car && <CarsTable cars={car} setCars={setCar} />}
+      {car && <CarsTable cars={car} setCars={setCar} AddAndSearch={false}/>}
+      <button className={"btn btn-danger"} onClick={handleClose}>
+        Close
+      </button>
     </div>
   );
 };

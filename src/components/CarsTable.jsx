@@ -6,8 +6,11 @@ import axios from "axios";
 import ModifyCar from "./ModifyCar";
 import { Modal } from "./Modal";
 import { DeleteCar } from "./DeleteCar";
+import AddCar from "./AddCar";
+import { SelectCarsCodes } from "./SelectCarsCodes";
+import SearchCar from "./SearchCar";
 
-const CarsTable = ({ cars }) => {
+const CarsTable = ({ cars, AddAndSearch=true }) => {
   const [client, setClient] = useState(null);
   const [clientCode, setClientCode] = useState(null);
   const [carCode, setCarCode] = useState(null);
@@ -17,6 +20,9 @@ const CarsTable = ({ cars }) => {
   const [modalCarEdit, setModalCarEdit] = useState(false);
   const [modalCarDelete, setModalCarDelete] = useState(false);
   const [modalClient, setModalClient] = useState(false);
+  const [modalAddCar, setModalAddCar] = useState(false);
+  const [modalSearchCar, setModalSearchCar] = useState(false);
+  const [showAddAndSearch, setShowAddAndSearch] = useState(AddAndSearch);
 
   if (!Array.isArray(cars)) {
     cars = [cars];
@@ -68,6 +74,11 @@ const CarsTable = ({ cars }) => {
     setModalCarDelete(true);
   };
 
+  const addCar = () => {
+    setModal(true);
+    setModalAddCar(true);
+  };
+
   return modal ? (
     <Modal>
       {modalCarEdit && <ModifyCar code={carCode} setModal={setModal} />}
@@ -79,9 +90,32 @@ const CarsTable = ({ cars }) => {
           setModal={setModal}
         />
       )}
+      {modalAddCar && <AddCar setModal={setModal} />}
+      {modalSearchCar && (
+        <SearchCar
+          code={carCode}
+          setModal={setModal}
+          setShowAddAndSearch={setShowAddAndSearch}
+        />
+      )}
     </Modal>
   ) : (
     <>
+      {showAddAndSearch && (
+        <div>
+          <button className={"btn btn-success"} onClick={addCar}>
+            Add
+          </button>
+          <SelectCarsCodes
+            cars={cars}
+            setModal={setModal}
+            setCarCode={setCarCode}
+            setModalSearchCar={setModalSearchCar}
+            setShowAddAndSearch={setShowAddAndSearch}
+          />
+        </div>
+      )}
+
       <h2>Cars:</h2>
       <table
         id="cars-table"
