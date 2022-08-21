@@ -1,75 +1,81 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { API } from "../api/api";
 
-const DeleteClient = () => {
-  const [code, setCode] = useState("");
+export const DeleteClient = ({ code, setModal, setModalDeleteClient, setClients }) => {
+  const [deleted, setDeleted] = useState(false);
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  useEffect(() => {
+    const deleteClient = async () => {
+      const options = {
+        headers: {
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Headers": "*",
+          Accept: "application/json",
+          timeout: 3000,
+        },
+        data: { code },
+      };
 
-    const options = {
-      headers: {
-        "Content-Type": "application/json",
-        "Access-Control-Allow-Origin": "*",
-        "Access-Control-Allow-Headers": "*",
-        Accept: "application/json",
-        timeout: 3000,
-      },
-      data: { code },
+      await axios
+        .delete(`${API}/clients/delete`, options)
+        .then((res) => {
+          console.log(res);
+          if (res.data) setDeleted(true);
+        })
+        .catch((error) => error);
     };
 
-    await axios
-      .delete(`${API}/clients/delete`, options)
-      .then((res) => {
-        console.log(res);
-        if (res.data) {
-          alert("Delete successful!");
-        } else {
-          alert("Not found :(");
-        }
-      })
-      .catch((error) => error);
-    handleClean();
+    if(deleted){
+      console.log("asdasdsdsd");
+      const getAllClients = async () => {
+        const options = {
+          headers: {
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Headers": "*",
+            Accept: "application/json",
+            timeout: 3000,
+          },
+        };
+  
+        await axios
+          .get(`${API}/clients/all`, options)
+          .then((res) => {
+            console.log(res.data);
+            if (res.data) {
+              setClients(res.data);
+            } else alert("No clients yet :(");
+          })
+          .catch((error) => error);
+      };
+      getAllClients();
+    }
+    deleteClient();
+  }, []);
+
+
+
+  const handleClose = () => {
+    setModal(false);
+    setModalDeleteClient(false);
+    setDeleted(false);
   };
 
-  const handleChange = (e) => {
-    setCode(e.target.value);
-  };
-
-  const handleClean = (e) => {
-    setCode("");
-  };
-
-  return (
+  return deleted ? (
     <>
-      <h2>Delete client:</h2>
-
-      <div className="form-group w-25">
-        <form onSubmit={handleSubmit}>
-          <div className="input-group mb-3">
-            <input
-              type="number"
-              className="form-control"
-              name="code"
-              placeholder="Code..."
-              value={code}
-              onChange={handleChange}
-              required
-            />
-          </div>
-
-          <button className="btn btn-primary" type="submit">
-            Send
-          </button>
-
-          <button className="btn btn-danger" type="reset" onClick={handleClean}>
-            Clean
-          </button>
-        </form>
-      </div>
+      <h3>Delete successful :)</h3>
+      <button className="btn btn-danger" type="button" onClick={handleClose}>
+        Close
+      </button>
+    </>
+  ) : (
+    <>
+      <h3>Delete failed :(</h3>
+      <button className="btn btn-danger" type="button" onClick={handleClose}>
+        Close
+      </button>
     </>
   );
 };
-
-export default DeleteClient;

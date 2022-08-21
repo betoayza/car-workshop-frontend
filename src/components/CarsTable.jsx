@@ -9,6 +9,7 @@ import { DeleteCar } from "./DeleteCar";
 import AddCar from "./AddCar";
 import { SelectCarsCodes } from "./SelectCarsCodes";
 import SearchCar from "./SearchCar";
+import SearchClient from "./SearchClient";
 
 const CarsTable = ({ cars, AddAndSearch = true }) => {
   const [client, setClient] = useState(null);
@@ -17,47 +18,19 @@ const CarsTable = ({ cars, AddAndSearch = true }) => {
   const [modal, setModal] = useState(false);
   const [modalCarEdit, setModalCarEdit] = useState(false);
   const [modalCarDelete, setModalCarDelete] = useState(false);
-  const [modalClient, setModalClient] = useState(false);
   const [modalAddCar, setModalAddCar] = useState(false);
   const [modalSearchCar, setModalSearchCar] = useState(false);
   const [showAddAndSearch, setShowAddAndSearch] = useState(AddAndSearch);
+  const [modalSeeClient, setModalSeeClient] = useState(false);
 
   if (!Array.isArray(cars)) {
     cars = [cars];
-  }
-
-  useEffect(() => {
-    const getClient = async () => {
-      const code = clientCode;
-      const options = {
-        url: `${API}/clients/search`,
-        headers: {
-          "Content-Type": "application/json",
-          "Access-Control-Allow-Origin": "*",
-          "Access-Control-Allow-Headers": "*",
-          Accept: "application/json",
-          timeout: 3000,
-        },
-        params: { code },
-      };
-
-      await axios
-        .request(options)
-        .then((res) => {
-          console.log(res.data);
-          if (res.data) {
-            setClient(res.data);
-            setModal(true);
-            setModalClient(true);
-          } else return;
-        })
-        .catch((error) => error);
-    };
-    clientCode ? getClient() : null;
-  }, [clientCode]);
+  }  
 
   const seeClient = (clientCode) => {
     setClientCode(clientCode);
+    setModal(true);
+    setModalSeeClient(true);
   };
 
   const editCar = (carCode) => {
@@ -86,14 +59,7 @@ const CarsTable = ({ cars, AddAndSearch = true }) => {
           setModalCarEdit={setModalCarEdit}
         />
       )}
-      {modalCarDelete && <DeleteCar code={carCode} setModal={setModal} />}
-      {modalClient && ( 
-        <ClientsTable
-          clients={client}
-          setClients={setClient}
-          setModal={setModal}
-        />
-      )}
+      {modalCarDelete && <DeleteCar code={carCode} setModal={setModal} />}      
       {modalAddCar && (
         <AddCar setModal={setModal} setModalAddCar={setModalAddCar} />
       )}
@@ -103,6 +69,13 @@ const CarsTable = ({ cars, AddAndSearch = true }) => {
           setModal={setModal}
           setShowAddAndSearch={setShowAddAndSearch}
           setModalSearchCar={setModalSearchCar}
+        />
+      )}
+      {modalSeeClient && (
+        <SearchClient
+          code={clientCode}
+          setModal={setModal}
+          setModalSeeClient={setModalSeeClient}
         />
       )}
     </Modal>
@@ -155,9 +128,6 @@ const CarsTable = ({ cars, AddAndSearch = true }) => {
             })}
         </tbody>
       </table>
-      {/* <button className="btn btn-danger" onClick={handleClose}>
-        Close
-      </button> */}
     </>
   );
 };

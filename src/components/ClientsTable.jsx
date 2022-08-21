@@ -1,16 +1,54 @@
-import React from "react";
+import React, { useState } from "react";
 import { ClientTableRow } from "./ClientTableRow";
+import { Modal } from "./Modal";
+import { DeleteClient } from "./DeleteClient";
+import { ReAddClient } from "./ReAddClient";
 
-export const ClientsTable = ({ clients, setClients, setModal }) => {
+export const ClientsTable = ({ clients, setClients, setModal2 }) => {
+  const [modalDeleteClient, setModalDeleteClient] = useState(false);
+  const [modal, setModal] = useState(false);
+  const [clientCode, setClientCode] = useState(null);
+  const [modalReAddClient, setModalReAddClient] = useState(false);
+
   if (!Array.isArray(clients)) {
     clients = [clients];
   }
 
   const handleClose = () => {
-    setModal(false);
+    setModal2(false);
   };
 
-  return (
+  const handleDelete = (clientCode) => {
+    setClientCode(clientCode);
+    setModalDeleteClient(true);
+    setModal(true);
+  };
+
+  const handleReAdd = (clientCode) => {
+    setModal(true);
+    setModalReAddClient(true);
+    setClientCode(clientCode);
+  };
+
+  return modal ? (
+    <Modal>
+      {modalDeleteClient && (
+        <DeleteClient
+          code={clientCode}
+          setModal={setModal}
+          setModalDeleteClient={setModalDeleteClient}
+          setClients={setClients}
+        />
+      )}
+      {modalReAddClient && (
+        <ReAddClient
+          code={clientCode}
+          setModal={setModal}
+          setModalReAddClient={setModalReAddClient}
+        />
+      )}
+    </Modal>
+  ) : (
     <div>
       <h2>Clients:</h2>
       <table
@@ -32,13 +70,17 @@ export const ClientsTable = ({ clients, setClients, setModal }) => {
         <tbody>
           {clients &&
             clients.map((client) => {
-              return <ClientTableRow key={client._id} client={client} />;
+              return (
+                <ClientTableRow
+                  key={client._id}
+                  client={client}
+                  handleDelete={handleDelete}
+                  handleReAdd={handleReAdd}
+                />
+              );
             })}
         </tbody>
       </table>
-      <button className="btn btn-danger" onClick={handleClose}>
-        Close
-      </button>
     </div>
   );
 };

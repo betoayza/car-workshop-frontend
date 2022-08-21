@@ -3,7 +3,7 @@ import Home from "./Home.jsx";
 // import Login from "./Login";
 
 import AddClient from "./AddClient.jsx";
-import DeleteClient from "./DeleteClient.jsx";
+import { DeleteClient } from "./DeleteClient.jsx";
 import ModifyClient from "./ModifyClient.jsx";
 import SearchClient from "./SearchClient.jsx";
 import { AllClients } from "./AllClients.jsx";
