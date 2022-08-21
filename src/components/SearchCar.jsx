@@ -3,7 +3,7 @@ import axios from "axios";
 import CarsTable from "./CarsTable";
 import { API } from "../api/api";
 
-const SearchCar = ({ code, setModal, setShowAddAndSearch }) => {
+const SearchCar = ({ code, setModal, setShowAddAndSearch, setModalSearchCar }) => {
   const [car, setCar] = useState(null);
   const [found, setFound] = useState(false);
 
@@ -37,6 +37,8 @@ const SearchCar = ({ code, setModal, setShowAddAndSearch }) => {
   const handleClose = () => {
     setModal(false);
     setShowAddAndSearch(true);
+    setFound(false);
+    setModalSearchCar(false);
   };
 
   return found ? (

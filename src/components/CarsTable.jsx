@@ -79,21 +79,30 @@ const CarsTable = ({ cars, AddAndSearch = true }) => {
 
   return modal ? (
     <Modal>
-      {modalCarEdit && <ModifyCar code={carCode} setModal={setModal} />}
+      {modalCarEdit && (
+        <ModifyCar
+          code={carCode}
+          setModal={setModal}
+          setModalCarEdit={setModalCarEdit}
+        />
+      )}
       {modalCarDelete && <DeleteCar code={carCode} setModal={setModal} />}
-      {modalClient && (
+      {modalClient && ( 
         <ClientsTable
           clients={client}
           setClients={setClient}
           setModal={setModal}
         />
       )}
-      {modalAddCar && <AddCar setModal={setModal} />}
+      {modalAddCar && (
+        <AddCar setModal={setModal} setModalAddCar={setModalAddCar} />
+      )}
       {modalSearchCar && (
         <SearchCar
           code={carCode}
           setModal={setModal}
           setShowAddAndSearch={setShowAddAndSearch}
+          setModalSearchCar={setModalSearchCar}
         />
       )}
     </Modal>

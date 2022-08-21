@@ -12,7 +12,7 @@ import { API } from "../api/api";
 //   status: "",
 // };
 
-const ModifyCar = ({ code, setModal }) => {
+const ModifyCar = ({ code, setModal, setModalCarEdit }) => {
   const [form, setForm] = useState({});
   const [patentError, setPatentError] = useState(false);
   const [updated, setUpdated] = useState(false);
@@ -79,6 +79,7 @@ const ModifyCar = ({ code, setModal }) => {
 
   const handleClose = () => {
     setModal(false);
+    setModalCarEdit(false);
   };
 
   const handleBlur = () => {

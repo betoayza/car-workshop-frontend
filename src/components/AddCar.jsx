@@ -12,7 +12,7 @@ const initialForm = {
   status: "Active",
 };
 
-const AddCar = ({ setModal }) => {
+const AddCar = ({ setModal, setModalAddCar }) => {
   const [form, setForm] = useState(initialForm);
   const [patentError, setPatentError] = useState(false);
 
@@ -46,13 +46,13 @@ const AddCar = ({ setModal }) => {
           alert("Add failed :(");
         }
       })
-      .catch((error) => error);
-    handleClean();
+      .catch((error) => error);    
   };
 
   const handleClose = (e) => {
     setForm({ ...initialForm, code: Date.now() });
     setModal(false);
+    setModalAddCar(false);
   };
 
   //Patent validation
