@@ -5,7 +5,6 @@ import { API } from "../api/api.js";
 
 export const AllCars = () => {
   const [cars, setCars] = useState(null);
-  const [flag, setFlag] = useState(true);
 
   useEffect(() => {    
       const getAllCars = async () => {
@@ -32,5 +31,5 @@ export const AllCars = () => {
       getAllCars();    
   }, [cars]);
 
-  return <div>{cars && <CarsTable cars={cars} flag={flag} setFlag={setFlag} />}</div>;
+  return <div>{cars && <CarsTable cars={cars} setCars={setCars} />}</div>;
 };

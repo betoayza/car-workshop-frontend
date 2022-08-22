@@ -28,7 +28,9 @@ const SearchCar = ({
         .get(`${API}/cars/search`, options)
         .then((res) => {
           console.log(res.data);
-          if (res.data) setCar(res.data);
+          if (res.data) {
+            setCar(res.data);
+          }
         })
         .catch((error) => error);
     };
@@ -38,24 +40,24 @@ const SearchCar = ({
   const handleClose = () => {
     setModal(false);
     setShowAddAndSearch(true);
-    setFound(false);
     setModalSearchCar(false);
+    setCar(null);
   };
 
   return car ? (
-    <div>
+    <>
       <CarsTable cars={car} setCars={setCar} AddAndSearch={false} />
       <button className={"btn btn-danger"} onClick={handleClose}>
         Close
       </button>
-    </div>
+    </>
   ) : (
-    <div>
+    <>
       <h3>Car not found :(</h3>
       <button className={"btn btn-danger"} onClick={handleClose}>
         Close
       </button>
-    </div>
+    </>
   );
 };
 

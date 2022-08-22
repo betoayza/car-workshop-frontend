@@ -1,8 +1,5 @@
 import React, { useState, useEffect } from "react";
 import CarTableRow from "./CarTableRow";
-import { ClientsTable } from "./ClientsTable";
-import { API } from "../api/api";
-import axios from "axios";
 import ModifyCar from "./ModifyCar";
 import { Modal } from "./Modal";
 import { DeleteCar } from "./DeleteCar";
@@ -41,7 +38,7 @@ const CarsTable = ({ cars, setCars, AddAndSearch = true }) => {
   const deleteCar = (carCode) => {
     setCarCode(carCode);
     setModal(true);
-    setModalCarDelete(true);    
+    setModalCarDelete(true);
   };
 
   const addCar = () => {

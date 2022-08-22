@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { API } from "../api/api";
 
-export const DeleteCar = ({ code, setModal, setModalCarDelete, setCars }) => {
+export const DeleteCar = ({ code, setModal, setModalCarDelete }) => {
   const [deleted, setDeleted] = useState(false);
 
   const handleClose = () => {
@@ -32,32 +32,7 @@ export const DeleteCar = ({ code, setModal, setModalCarDelete, setCars }) => {
         })
         .catch((error) => error);
     };
-    deleteCar();
-
-    if(deleted){
-      const getAllCars = async () => {
-        const options = {
-          headers: {
-            "Content-Type": "application/json",
-            "Access-Control-Allow-Origin": "*",
-            "Access-Control-Allow-Headers": "*",
-            Accept: "application/json",
-            timeout: 3000,
-          },
-        };
-
-        await axios
-          .get(`${API}/cars/all`, options)
-          .then((res) => {
-            console.log(res.data);
-            if (res.data) {
-              setCars(res.data);              
-            } else return;
-          })
-          .catch((error) => error);
-      };
-      getAllCars();   
-    }
+    deleteCar();   
   }, []);
 
   return deleted ? (

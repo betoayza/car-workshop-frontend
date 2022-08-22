@@ -20,7 +20,7 @@ export const SelectCarsCodes = ({
       <label>
         Search:{" "}
         <select value={selected} onChange={handleChange}>
-          <option value="---">---</option>
+          <option value={"---"}>---</option>
           {cars &&
             cars.map((car) => (
               <option key={car._id} value={car.code}>
