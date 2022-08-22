@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { API } from "../api/api";
 import axios from "axios";
 
-
 export const ReAddClient = ({ code, setModal, setModalReAddClient }) => {
   const [reAdded, setReAdded] = useState(false);
 
@@ -49,6 +48,11 @@ export const ReAddClient = ({ code, setModal, setModalReAddClient }) => {
       </button>
     </>
   ) : (
-    <div>Readded failed: client already active</div>
+    <>
+      <h3>Failed: client already active</h3>
+      <button className={"btn btn-danger"} onClick={handleClose}>
+        Close
+      </button>
+    </>
   );
 };

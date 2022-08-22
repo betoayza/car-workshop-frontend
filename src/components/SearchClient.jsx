@@ -29,7 +29,7 @@ const SearchClient = ({ code, setModal, setModalSeeClient }) => {
         .catch((error) => error);
     };
     getClient();
-  }, []);
+  }, [client]);
 
   const handleClose = () => {
     setModal(false);

@@ -21,7 +21,7 @@ export const ClientTableRow = ({ client, handleDelete, handleReAdd }) => {
           className={"btn btn-warning"}
           onClick={() => handleReAdd(client.code)}
         >
-          Re-Add
+          Re Add
         </button>
       </td>
     </tr>
