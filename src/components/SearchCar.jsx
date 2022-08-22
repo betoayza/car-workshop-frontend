@@ -3,9 +3,13 @@ import axios from "axios";
 import CarsTable from "./CarsTable";
 import { API } from "../api/api";
 
-const SearchCar = ({ code, setModal, setShowAddAndSearch, setModalSearchCar }) => {
+const SearchCar = ({
+  code,
+  setModal,
+  setShowAddAndSearch,
+  setModalSearchCar,
+}) => {
   const [car, setCar] = useState(null);
-  const [found, setFound] = useState(false);
 
   useEffect(() => {
     const getCar = async () => {
@@ -24,15 +28,12 @@ const SearchCar = ({ code, setModal, setShowAddAndSearch, setModalSearchCar }) =
         .get(`${API}/cars/search`, options)
         .then((res) => {
           console.log(res.data);
-          if (res.data) {
-            setCar(res.data);
-            setFound(true);
-          } else return;
+          if (res.data) setCar(res.data);
         })
         .catch((error) => error);
     };
     getCar();
-  }, []);
+  }, [car]);
 
   const handleClose = () => {
     setModal(false);
@@ -41,9 +42,9 @@ const SearchCar = ({ code, setModal, setShowAddAndSearch, setModalSearchCar }) =
     setModalSearchCar(false);
   };
 
-  return found ? (
+  return car ? (
     <div>
-      {car && <CarsTable cars={car} setCars={setCar} AddAndSearch={false} />}
+      <CarsTable cars={car} setCars={setCar} AddAndSearch={false} />
       <button className={"btn btn-danger"} onClick={handleClose}>
         Close
       </button>

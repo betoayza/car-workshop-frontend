@@ -11,8 +11,7 @@ import { SelectCarsCodes } from "./SelectCarsCodes";
 import SearchCar from "./SearchCar";
 import SearchClient from "./SearchClient";
 
-const CarsTable = ({ cars, AddAndSearch = true }) => {
-  const [client, setClient] = useState(null);
+const CarsTable = ({ cars, setCars, AddAndSearch = true }) => {
   const [clientCode, setClientCode] = useState(null);
   const [carCode, setCarCode] = useState(null);
   const [modal, setModal] = useState(false);
@@ -25,7 +24,7 @@ const CarsTable = ({ cars, AddAndSearch = true }) => {
 
   if (!Array.isArray(cars)) {
     cars = [cars];
-  }  
+  }
 
   const seeClient = (clientCode) => {
     setClientCode(clientCode);
@@ -42,7 +41,7 @@ const CarsTable = ({ cars, AddAndSearch = true }) => {
   const deleteCar = (carCode) => {
     setCarCode(carCode);
     setModal(true);
-    setModalCarDelete(true);
+    setModalCarDelete(true);    
   };
 
   const addCar = () => {
@@ -59,7 +58,14 @@ const CarsTable = ({ cars, AddAndSearch = true }) => {
           setModalCarEdit={setModalCarEdit}
         />
       )}
-      {modalCarDelete && <DeleteCar code={carCode} setModal={setModal} />}      
+      {modalCarDelete && (
+        <DeleteCar
+          code={carCode}
+          setModal={setModal}
+          setModalCarDelete={setModalCarDelete}
+          setCars={setCars}
+        />
+      )}
       {modalAddCar && (
         <AddCar setModal={setModal} setModalAddCar={setModalAddCar} />
       )}

@@ -27,8 +27,7 @@ export const DeleteClient = ({ code, setModal, setModalDeleteClient, setClients 
         .catch((error) => error);
     };
 
-    if(deleted){
-      console.log("asdasdsdsd");
+    if(deleted){      
       const getAllClients = async () => {
         const options = {
           headers: {

@@ -4,8 +4,7 @@ export const SelectCarsCodes = ({
   cars,
   setModal,
   setCarCode,
-  setModalSearchCar,
-  setShowAddAndSearch,
+  setModalSearchCar  
 }) => {
   const [selected, setSelected] = useState("");
 
