@@ -48,7 +48,7 @@ export const ReAddCar = ({ code, setModal, setModalReAddCar }) => {
     </>
   ) : (
     <>
-      <h3>Failed: car already active</h3>
+      <h3>Car was already active</h3>
       <button className={"btn btn-danger"} onClick={handleClose}>
         Close
       </button>

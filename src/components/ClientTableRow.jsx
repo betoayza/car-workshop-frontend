@@ -1,6 +1,11 @@
 import React from "react";
 
-export const ClientTableRow = ({ client, handleDelete, handleReAdd }) => {
+export const ClientTableRow = ({
+  client,
+  handleDelete,
+  handleReAdd,
+  handleEdit,
+}) => {
   return (
     <tr>
       <td>{client.code}</td>
@@ -12,16 +17,22 @@ export const ClientTableRow = ({ client, handleDelete, handleReAdd }) => {
       <td>{client.status}</td>
       <td>
         <button
-          className={"btn btn-danger"}
-          onClick={() => handleDelete(client.code)}
+          className={"btn btn-primary"}
+          onClick={() => handleEdit(client.code)}
         >
-          Delete
+          Edit
         </button>
         <button
           className={"btn btn-warning"}
           onClick={() => handleReAdd(client.code)}
         >
           Re Add
+        </button>
+        <button
+          className={"btn btn-danger"}
+          onClick={() => handleDelete(client.code)}
+        >
+          Delete
         </button>
       </td>
     </tr>

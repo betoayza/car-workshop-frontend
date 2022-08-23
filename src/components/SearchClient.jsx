@@ -39,7 +39,11 @@ const SearchClient = ({ code, setModal, setModalSeeClient }) => {
 
   return client ? (
     <>
-      <ClientsTable clients={client} setClients={setClient} />
+      <ClientsTable
+        clients={client}
+        setClients={setClient}
+        addAndSearch={false}
+      />
       <button className="btn btn-danger" onClick={handleClose}>
         Close
       </button>

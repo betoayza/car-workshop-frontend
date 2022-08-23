@@ -28,14 +28,14 @@ const CarTableRow = ({
         <button className="btn btn-primary" onClick={() => editCar(car.code)}>
           Edit
         </button>
-        <button className="btn btn-danger" onClick={() => deleteCar(car.code)}>
-          Delete
-        </button>
         <button
           className="btn btn-warning"
           onClick={() => handleActivateCar(car.code)}
         >
           Re Add
+        </button>
+        <button className="btn btn-danger" onClick={() => deleteCar(car.code)}>
+          Delete
         </button>
       </td>
     </tr>

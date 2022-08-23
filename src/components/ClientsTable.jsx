@@ -3,20 +3,24 @@ import { ClientTableRow } from "./ClientTableRow";
 import { Modal } from "./Modal";
 import { DeleteClient } from "./DeleteClient";
 import { ReAddClient } from "./ReAddClient";
+import ModifyClient from "./ModifyClient";
+import { SelectClientsCodes } from "./SelectClientsCodes";
+import AddClient from "./AddClient";
+import SearchClient from "./SearchClient";
 
-export const ClientsTable = ({ clients, setClients, setModal2 }) => {
+export const ClientsTable = ({ clients, setClients, addAndSearch = true }) => {
   const [modalDeleteClient, setModalDeleteClient] = useState(false);
   const [modal, setModal] = useState(false);
   const [clientCode, setClientCode] = useState(null);
   const [modalReAddClient, setModalReAddClient] = useState(false);
+  const [modalEdit, setModalEdit] = useState(false);
+  const [modalSearchClient, setModalSearchClient] = useState(false);
+  const [modalAdd, setModalAdd] = useState(false);
+  const [showAddAndSearch, setShowAddAndSearch] = useState(addAndSearch);
 
   if (!Array.isArray(clients)) {
     clients = [clients];
   }
-
-  const handleClose = () => {
-    setModal2(false);
-  };
 
   const handleDelete = (clientCode) => {
     setClientCode(clientCode);
@@ -28,6 +32,17 @@ export const ClientsTable = ({ clients, setClients, setModal2 }) => {
     setModal(true);
     setModalReAddClient(true);
     setClientCode(clientCode);
+  };
+
+  const handleEdit = (clientCode) => {
+    setModal(true);
+    setModalEdit(true);
+    setClientCode(clientCode);
+  };
+
+  const handleAdd = () => {
+    setModal(true);
+    setModalAdd(true);
   };
 
   return modal ? (
@@ -47,9 +62,37 @@ export const ClientsTable = ({ clients, setClients, setModal2 }) => {
           setModalReAddClient={setModalReAddClient}
         />
       )}
+      {modalEdit && (
+        <ModifyClient
+          code={clientCode}
+          setModal={setModal}
+          setModalEdit={setModalEdit}
+        />
+      )}
+      {modalAdd && <AddClient setModal={setModal} setModalAdd={setModalAdd} />}
+      {modalSearchClient && (
+        <SearchClient
+          code={clientCode}
+          setModal={setModal}
+          setModalSearchClient={setModalSearchClient}
+        />
+      )}
     </Modal>
   ) : (
     <div>
+      {showAddAndSearch && (
+        <>
+          <button className={"btn btn-success"} onClick={handleAdd}>
+            Add
+          </button>
+          <SelectClientsCodes
+            clients={clients}
+            setModal={setModal}
+            setClientCode={setClientCode}
+            setModalSearchClient={setModalSearchClient}
+          />
+        </>
+      )}
       <h2>Clients:</h2>
       <table
         id="users-table"
@@ -76,6 +119,7 @@ export const ClientsTable = ({ clients, setClients, setModal2 }) => {
                   client={client}
                   handleDelete={handleDelete}
                   handleReAdd={handleReAdd}
+                  handleEdit={handleEdit}
                 />
               );
             })}

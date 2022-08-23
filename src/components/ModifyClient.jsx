@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { API } from "../api/api";
 
 const initialForm = {
@@ -12,48 +12,44 @@ const initialForm = {
   status: "Active",
 };
 
-const ModifyClient = () => {
+const ModifyClient = ({ code, setModal, setModalEdit }) => {
   const [form, setForm] = useState(initialForm);
   const [client, setClient] = useState(null);
-  const [code, setCode] = useState("");
+  const [updated, setUpdated] = useState(false);
 
-  const handleChange = (e) => {
-    setCode(e.target.value);
-  };
+  useEffect(() => {
+    const getClient = async () => {
+      const options = {
+        url: `${API}/clients/search`,
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+        headers: {
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Headers": "*",
+          Accept: "application/json",
+          timeout: 3000,
+        },
+        params: { code },
+      };
 
-    const options = {
-      url: `${API}/clients/search`,
-
-      headers: {
-        "Content-Type": "application/json",
-        "Access-Control-Allow-Origin": "*",
-        "Access-Control-Allow-Headers": "*",
-        Accept: "application/json",
-        timeout: 3000,
-      },
-      params: { code },
+      await axios
+        .request(options)
+        .then((res) => {
+          console.log(res.data);
+          if (res.data) {
+            setClient(res.data);
+            setForm(res.data);
+          }
+        })
+        .catch((error) => error);
     };
+    getClient();
+  }, []);
 
-    await axios
-      .request(options)
-      .then((res) => {
-        console.log(res.data);
-        if (res.data) {
-          setClient(res.data);
-          setForm(res.data);
-        } else {
-          alert("Client not found :(");
-        }
-      })
-      .catch((error) => error);
-    handleClean();
-  };
-
-  const handleClean = (e) => {
-    setCode("");
+  const handleClose = () => {
+    setModal(false);
+    setModalEdit(false);
+    setClient(null);
   };
 
   //---------
@@ -82,11 +78,7 @@ const ModifyClient = () => {
       .request(options)
       .then((res) => {
         console.log(res.data);
-        if (res.data) {
-          alert("Client updated!");
-        } else {
-          alert("Update error :(");
-        }
+        if (res.data) setUpdated(true);
       })
       .catch((error) => {
         console.error(error);
@@ -94,41 +86,19 @@ const ModifyClient = () => {
     handleClean2();
   };
 
-  const handleClean2 = (e) => {
+  const handleClean2 = () => {
     setForm(initialForm);
-    setClient(null);
   };
 
-  return (
+  return updated ? (
     <>
-      <h2>Search client:</h2>
-
-      <div className="form-group w-25">
-        <form onSubmit={handleSubmit}>
-          <div className="input-group mb-3">
-            <input
-              type="number"
-              className="form-control"
-              name="code"
-              placeholder="Code..."
-              value={code}
-              onChange={handleChange}
-              required
-            />
-          </div>
-
-          <button className="btn btn-primary" type="submit">
-            Find!
-          </button>
-
-          <button className="btn btn-danger" type="reset" onClick={handleClean}>
-            Clean
-          </button>
-        </form>
-      </div>
-      <br />
-      <br />
-
+      <h3>Client updated :)</h3>
+      <button className="btn btn-danger" type="reset" onClick={handleClose}>
+        Close
+      </button>
+    </>
+  ) : (
+    <>
       {client && (
         <div>
           <h2>Modify Client:</h2>
@@ -154,6 +124,7 @@ const ModifyClient = () => {
                   className="form-control"
                   name="id"
                   id="id"
+                  placeholder="ID..."
                   value={form.id}
                   onChange={handleChange2}
                   required
@@ -226,14 +197,21 @@ const ModifyClient = () => {
                 />
               </div>
 
-              <button className="btn btn-primary" type="submit">
+              <button className="btn btn-success" type="submit">
                 Update
               </button>
 
               <button
-                className="btn btn-danger"
-                type="reset"
+                className="btn btn-warning"
+                type="button"
                 onClick={handleClean2}
+              >
+                Clean
+              </button>
+              <button
+                className="btn btn-danger"
+                type="button"
+                onClick={handleClose}
               >
                 Close
               </button>

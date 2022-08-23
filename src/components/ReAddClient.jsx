@@ -49,7 +49,7 @@ export const ReAddClient = ({ code, setModal, setModalReAddClient }) => {
     </>
   ) : (
     <>
-      <h3>Failed: client already active</h3>
+      <h3>Client was already active</h3>
       <button className={"btn btn-danger"} onClick={handleClose}>
         Close
       </button>

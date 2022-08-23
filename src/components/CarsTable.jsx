@@ -18,7 +18,7 @@ const CarsTable = ({ cars, setCars, AddAndSearch = true }) => {
   const [modalAddCar, setModalAddCar] = useState(false);
   const [modalSearchCar, setModalSearchCar] = useState(false);
   const [showAddAndSearch, setShowAddAndSearch] = useState(AddAndSearch);
-  const [modalSeeClient, setModalSeeClient] = useState(false);
+  const [modalSearchClient, setModalSearchClient] = useState(false);
   const [modalReAddCar, setModalReAddCar] = useState(false);
 
   if (!Array.isArray(cars)) {
@@ -28,7 +28,7 @@ const CarsTable = ({ cars, setCars, AddAndSearch = true }) => {
   const seeClient = (clientCode) => {
     setClientCode(clientCode);
     setModal(true);
-    setModalSeeClient(true);
+    setmodalSearchClient(true);
   };
 
   const editCar = (carCode) => {
@@ -82,11 +82,11 @@ const CarsTable = ({ cars, setCars, AddAndSearch = true }) => {
           setModalSearchCar={setModalSearchCar}
         />
       )}
-      {modalSeeClient && (
+      {modalSearchClient && (
         <SearchClient
           code={clientCode}
           setModal={setModal}
-          setModalSeeClient={setModalSeeClient}
+          setmodalSearchClient={setModalSearchClient}
         />
       )}
       {modalReAddCar && (

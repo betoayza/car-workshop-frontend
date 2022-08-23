@@ -12,39 +12,36 @@ const initialForm = {
   status: "Active",
 };
 
-const AddClient = () => {
+const AddClient = ({ setModal, setModalAdd }) => {
   const [form, setForm] = useState(initialForm);
   const [idError, setIdError] = useState(false);
+  const [added, setAdded] = useState(false);
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
+   
+    const handleSubmit = async (e) => {
+      e.preventDefault();
 
-    const options = {
-      url: `${API}/clients/add`,
-      method: "post",
-      headers: {
-        "Content-Type": "application/json",
-        "Access-Control-Allow-Origin": "*",
-        "Access-Control-Allow-Headers": "*",
-        Accept: "application/json",
-        timeout: 3000,
-      },
-      data: form,
-    };
+      const options = {
+        url: `${API}/clients/add`,
+        method: "post",
+        headers: {
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Headers": "*",
+          Accept: "application/json",
+          timeout: 3000,
+        },
+        data: form,
+      };
 
-    await axios
-      .request(options)
-      .then((res) => {
-        console.log(res);
-        if (res.data) {
-          alert("Add successful!");
-        } else {
-          alert("Error: User already exists :(");
-        }
-      })
-      .catch((error) => error);
-    handleClean();
-  };
+      await axios
+        .request(options)
+        .then((res) => {
+          console.log(res);
+          if (res.data) setAdded(true);
+        })
+        .catch((error) => error);
+    };  
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -66,7 +63,20 @@ const AddClient = () => {
     }
   };
 
-  return (
+  const handleClose = () => {
+    setModal(false);
+    setModalAdd(false);
+    setAdded(false);
+  };
+
+  return added ? (
+    <>
+      <h3>Client added ;)</h3>
+      <button className="btn btn-danger" type="reset" onClick={handleClose}>
+        Close
+      </button>
+    </>
+  ) : (
     <>
       <h2>Add client:</h2>
 
