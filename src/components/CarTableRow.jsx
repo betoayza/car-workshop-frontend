@@ -1,6 +1,12 @@
 import React from "react";
 
-const CarTableRow = ({ car, seeClient, editCar, deleteCar }) => {
+const CarTableRow = ({
+  car,
+  seeClient,
+  editCar,
+  deleteCar,
+  handleActivateCar,
+}) => {
   return (
     <tr>
       <td>{car.code}</td>
@@ -24,6 +30,12 @@ const CarTableRow = ({ car, seeClient, editCar, deleteCar }) => {
         </button>
         <button className="btn btn-danger" onClick={() => deleteCar(car.code)}>
           Delete
+        </button>
+        <button
+          className="btn btn-warning"
+          onClick={() => handleActivateCar(car.code)}
+        >
+          Re Add
         </button>
       </td>
     </tr>

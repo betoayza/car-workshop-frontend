@@ -7,6 +7,7 @@ import AddCar from "./AddCar";
 import { SelectCarsCodes } from "./SelectCarsCodes";
 import SearchCar from "./SearchCar";
 import SearchClient from "./SearchClient";
+import { ReAddCar } from "./ReAddCar";
 
 const CarsTable = ({ cars, setCars, AddAndSearch = true }) => {
   const [clientCode, setClientCode] = useState(null);
@@ -18,6 +19,7 @@ const CarsTable = ({ cars, setCars, AddAndSearch = true }) => {
   const [modalSearchCar, setModalSearchCar] = useState(false);
   const [showAddAndSearch, setShowAddAndSearch] = useState(AddAndSearch);
   const [modalSeeClient, setModalSeeClient] = useState(false);
+  const [modalReAddCar, setModalReAddCar] = useState(false);
 
   if (!Array.isArray(cars)) {
     cars = [cars];
@@ -44,6 +46,12 @@ const CarsTable = ({ cars, setCars, AddAndSearch = true }) => {
   const addCar = () => {
     setModal(true);
     setModalAddCar(true);
+  };
+
+  const handleActivateCar = (carCode) => {
+    setModal(true);
+    setModalReAddCar(true);
+    setCarCode(carCode);
   };
 
   return modal ? (
@@ -79,6 +87,13 @@ const CarsTable = ({ cars, setCars, AddAndSearch = true }) => {
           code={clientCode}
           setModal={setModal}
           setModalSeeClient={setModalSeeClient}
+        />
+      )}
+      {modalReAddCar && (
+        <ReAddCar
+          code={carCode}
+          setModal={setModal}
+          setModalReAddCar={setModalReAddCar}
         />
       )}
     </Modal>
@@ -126,6 +141,7 @@ const CarsTable = ({ cars, setCars, AddAndSearch = true }) => {
                   seeClient={seeClient}
                   editCar={editCar}
                   deleteCar={deleteCar}
+                  handleActivateCar={handleActivateCar}
                 />
               );
             })}
