@@ -9,8 +9,8 @@ import SearchClient from "./SearchClient.jsx";
 import { AllClients } from "./AllClients.jsx";
 
 import AddService from "./AddService.jsx";
-import DeleteService from "./DeleteService.jsx";
-import ModifyService from "./ModifyService.jsx";
+import { DeleteService } from "./DeleteService.jsx";
+import { ModifyService } from "./ModifyService.jsx";
 import SearchService from "./SearchService.jsx";
 import { AllServices } from "./AllServices.jsx";
 

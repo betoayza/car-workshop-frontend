@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { API } from "../api/api";
 
@@ -12,48 +12,47 @@ const initialForm = {
   status: "",
 };
 
-const ModifyService = () => {
-  const [code, setCode] = useState("");
+export const ModifyService = ({ code, setModal, setModalEditService }) => {
   const [service, setService] = useState(null);
   const [form, setForm] = useState(initialForm);
+  const [updated, setUpdated] = useState(false);
+  const [error, setError] = useState(false);
 
-  const handleChange = (e) => {
-    setCode(e.target.value);
-  };
+  useEffect(() => {
+    const getService = async () => {
+      const options = {
+        url: `${API}/services/search`,
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+        headers: {
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Headers": "*",
+          Accept: "application/json",
+          timeout: 3000,
+        },
+        params: { code },
+      };
 
-    const options = {
-      url: `${API}/services/search`,
-
-      headers: {
-        "Content-Type": "application/json",
-        "Access-Control-Allow-Origin": "*",
-        "Access-Control-Allow-Headers": "*",
-        Accept: "application/json",
-        timeout: 3000,
-      },
-      params: { code },
+      await axios
+        .request(options)
+        .then((res) => {
+          console.log(res.data);
+          if (res.data) {
+            setService(res.data);
+            setForm(res.data);
+          } else setError(true);
+        })
+        .catch((error) => error);
     };
+    getService();
+  }, []);
 
-    await axios
-      .request(options)
-      .then((res) => {
-        console.log(res.data);
-        if (res.data) {
-          setService(res.data);
-          setForm(res.data);
-        } else {
-          alert("Service not found :(");
-        }
-      })
-      .catch((error) => error);
-    handleClean();
-  };
-
-  const handleClean = (e) => {
-    setCode("");
+  const handleClose = () => {
+    setModal(false);
+    setModalEditService(false);
+    setService(null);
+    setUpdated(false);
+    setError(false);
   };
 
   //---------
@@ -81,11 +80,7 @@ const ModifyService = () => {
       .request(options)
       .then((res) => {
         console.log(res.data);
-        if (res.data) {
-          alert("Service updated!");
-        } else {
-          alert("Update error :(");
-        }
+        if (res.data) setUpdated(true);
       })
       .catch((error) => {
         console.error(error);
@@ -93,38 +88,26 @@ const ModifyService = () => {
     handleClean2();
   };
 
-  const handleClean2 = (e) => {
+  const handleClean2 = () => {
     setForm(initialForm);
-    setService(null);
   };
 
-  return (
+  return error ? (
     <>
-      <h2>Find Service: </h2>
-      <div className="form-group w-25">
-        <form onSubmit={handleSubmit}>
-          <div className="input-group mb-3">
-            <input
-              type="number"
-              className="form-control"
-              name="code"
-              placeholder="Code..."
-              value={code}
-              onChange={handleChange}
-              required
-            />
-          </div>
-
-          <button className="btn btn-primary" type="submit">
-            Find!
-          </button>
-
-          <button className="btn btn-danger" type="reset" onClick={handleClean}>
-            Clean
-          </button>
-        </form>
-      </div>
-
+      <h3>Service doesn't exist :(</h3>
+      <button className="btn btn-danger" type="button" onClick={handleClose}>
+        Close
+      </button>
+    </>
+  ) : updated ? (
+    <>
+      <h3>Service updated ;)</h3>
+      <button className="btn btn-danger" type="button" onClick={handleClose}>
+        Close
+      </button>
+    </>
+  ) : (
+    <>
       {service && (
         <div>
           <h1>Edit Service:</h1>
@@ -211,9 +194,16 @@ const ModifyService = () => {
               </button>
 
               <button
-                className="btn btn-danger"
+                className="btn btn-warning"
                 type="reset"
                 onClick={handleClean2}
+              >
+                Clean
+              </button>
+              <button
+                className="btn btn-danger"
+                type="button"
+                onClick={handleClose}
               >
                 Close
               </button>
@@ -224,5 +214,3 @@ const ModifyService = () => {
     </>
   );
 };
-
-export default ModifyService;

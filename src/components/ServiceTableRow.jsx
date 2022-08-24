@@ -1,16 +1,23 @@
 import React from "react";
 
-const ServiceTableRow = ({ service, seeCar, handleEdit, handleDelete }) => {
+const ServiceTableRow = ({
+  service,
+  handleSearchCar,
+  handleEdit,
+  handleReAdd,
+  handleDelete,
+}) => {
   return (
     <tr>
       <td>{service.code}</td>
       <td>{service.date}</td>
       <td>{service.amount}</td>
       <td>
-        {service.carCode}{" "}
+        {service.carCode}
+        {"  "}
         <button
           className="btn btn-light"
-          onClick={() => seeCar(service.carCode)}
+          onClick={() => handleSearchCar(service.carCode)}
         >
           See
         </button>
@@ -18,10 +25,26 @@ const ServiceTableRow = ({ service, seeCar, handleEdit, handleDelete }) => {
       <td>{service.work}</td>
       <td>{service.carKms}</td>
       <td>{service.status}</td>
-      <td><button className="button" onClick={()=>handleEdit(service.code)}>Edit
+      <td>
+        <button
+          className="btn btn-primary"
+          onClick={() => handleEdit(service.code)}
+        >
+          Edit
         </button>
-        <button className="button" onClick={()=>handleDelete(service.code)}></button>
-        </td>
+        <button
+          className="btn btn-warning"
+          onClick={() => handleReAdd(service.code)}
+        >
+          Re Add
+        </button>
+        <button
+          className="btn btn-danger"
+          onClick={() => handleDelete(service.code)}
+        >
+          Delete
+        </button>
+      </td>
     </tr>
   );
 };
