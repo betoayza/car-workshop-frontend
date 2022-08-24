@@ -7,6 +7,7 @@ import { ModifyService } from "./ModifyService";
 import { DeleteService } from "./DeleteService";
 import { SelectServicesCodes } from "./SelectServicesCodes";
 import SearchService from "./SearchService";
+import AddService from "./AddService";
 
 const ServicesTable = ({ services, setServices, showAddAndSearch = true }) => {
   const [carCode, setCarCode] = useState(null);
@@ -17,6 +18,7 @@ const ServicesTable = ({ services, setServices, showAddAndSearch = true }) => {
   const [modalDeleteService, setModalDeleteService] = useState(false);
   const [serviceCode, setServiceCode] = useState(null);
   const [modalSearchService, setModalSearchService] = useState(false);
+  const [modalAddService, setModalAddService] = useState(false);
 
   if (!Array.isArray(services)) {
     services = [services];
@@ -44,6 +46,11 @@ const ServicesTable = ({ services, setServices, showAddAndSearch = true }) => {
     setServiceCode(serviceCode);
     setModal(true);
     setModalDeleteService(true);
+  };
+
+  const handleAddService = () => {
+    setModal(true);
+    setModalAddService(true);
   };
 
   return modal ? (
@@ -84,16 +91,27 @@ const ServicesTable = ({ services, setServices, showAddAndSearch = true }) => {
           setModalSearchService={setModalSearchService}
         />
       )}
+      {modalAddService && (
+        <AddService
+          setModal={setModal}
+          setModalAddService={setModalAddService}
+        />
+      )}
     </Modal>
   ) : (
     <div>
       {showAddAndSearch && (
-        <SelectServicesCodes
-          services={services}
-          setModal={setModal}
-          setServiceCode={setServiceCode}
-          setModalSearchService={setModalSearchService}
-        />
+        <>
+          <button className="btn btn-success" onClick={handleAddService}>
+            Add
+          </button>
+          <SelectServicesCodes
+            services={services}
+            setModal={setModal}
+            setServiceCode={setServiceCode}
+            setModalSearchService={setModalSearchService}
+          />
+        </>
       )}
 
       <h2>Services:</h2>

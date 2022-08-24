@@ -15,6 +15,8 @@ const initialForm = {
 const AddCar = ({ setModal, setModalAddCar }) => {
   const [form, setForm] = useState(initialForm);
   const [patentError, setPatentError] = useState(false);
+  const [updated, setUpdated] = useState(false);
+  const [error, setError] = useState(false);
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -39,14 +41,11 @@ const AddCar = ({ setModal, setModalAddCar }) => {
     await axios
       .request(options)
       .then((res) => {
-        if (res.data) {
-          console.log(res.data);
-          alert("Add successful!");
-        } else {
-          alert("Add failed :(");
-        }
+        console.log(res.data);
+        if (res.data) setUpdated(true);
+        else setError(true);
       })
-      .catch((error) => error);    
+      .catch((error) => error);
   };
 
   const handleClose = (e) => {
@@ -68,8 +67,22 @@ const AddCar = ({ setModal, setModalAddCar }) => {
     }
   };
 
-  return (
-    <div>
+  return error ? (
+    <>
+      <h3>Add failed :(</h3>
+      <button className="btn btn-danger" type="reset" onClick={handleClose}>
+        Close
+      </button>
+    </>
+  ) : updated ? (
+    <>
+      <h3>Car added ;)</h3>
+      <button className="btn btn-danger" type="reset" onClick={handleClose}>
+        Close
+      </button>
+    </>
+  ) : (
+    <>
       <h2> Add car: </h2>
       <div className="form-group w-25">
         <form onSubmit={handleSubmit}>
@@ -160,7 +173,7 @@ const AddCar = ({ setModal, setModalAddCar }) => {
           </div>
 
           <button className="btn btn-primary" type="submit">
-            Send
+            Add
           </button>
 
           <button className="btn btn-danger" type="reset" onClick={handleClose}>
@@ -168,7 +181,7 @@ const AddCar = ({ setModal, setModalAddCar }) => {
           </button>
         </form>
       </div>
-    </div>
+    </>
   );
 };
 

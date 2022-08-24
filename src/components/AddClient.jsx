@@ -16,32 +16,33 @@ const AddClient = ({ setModal, setModalAdd }) => {
   const [form, setForm] = useState(initialForm);
   const [idError, setIdError] = useState(false);
   const [added, setAdded] = useState(false);
+  const [error, setError] = useState(false);
 
-   
-    const handleSubmit = async (e) => {
-      e.preventDefault();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-      const options = {
-        url: `${API}/clients/add`,
-        method: "post",
-        headers: {
-          "Content-Type": "application/json",
-          "Access-Control-Allow-Origin": "*",
-          "Access-Control-Allow-Headers": "*",
-          Accept: "application/json",
-          timeout: 3000,
-        },
-        data: form,
-      };
+    const options = {
+      url: `${API}/clients/add`,
+      method: "post",
+      headers: {
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Headers": "*",
+        Accept: "application/json",
+        timeout: 3000,
+      },
+      data: form,
+    };
 
-      await axios
-        .request(options)
-        .then((res) => {
-          console.log(res);
-          if (res.data) setAdded(true);
-        })
-        .catch((error) => error);
-    };  
+    await axios
+      .request(options)
+      .then((res) => {
+        console.log(res);
+        if (res.data) setAdded(true);
+        else setError(true);
+      })
+      .catch((error) => error);
+  };
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -69,7 +70,14 @@ const AddClient = ({ setModal, setModalAdd }) => {
     setAdded(false);
   };
 
-  return added ? (
+  return error ? (
+    <>
+      <h3>Add failed :(</h3>
+      <button className="btn btn-danger" type="reset" onClick={handleClose}>
+        Close
+      </button>
+    </>
+  ) : added ? (
     <>
       <h3>Client added ;)</h3>
       <button className="btn btn-danger" type="reset" onClick={handleClose}>
@@ -170,8 +178,19 @@ const AddClient = ({ setModal, setModalAdd }) => {
             Add
           </button>
 
-          <button className="btn btn-danger" type="reset" onClick={handleClean}>
+          <button
+            className="btn btn-warning"
+            type="reset"
+            onClick={handleClean}
+          >
             Clean
+          </button>
+          <button
+            className="btn btn-danger"
+            type="button"
+            onClick={handleClose}
+          >
+            Close
           </button>
         </form>
       </div>

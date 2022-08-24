@@ -13,8 +13,10 @@ const initialForm = {
   status: "Active",
 };
 
-const AddService = () => {
+const AddService = ({ setModal, setModalAddService }) => {
   const [form, setForm] = useState(initialForm);
+  const [added, setAdded] = useState(false);
+  const [error, setError] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -35,12 +37,9 @@ const AddService = () => {
     await axios
       .request(options)
       .then((res) => {
-        if (res.data) {
-          console.log(res.data);
-          alert("Add successful!");
-        } else {
-          alert("Add failed :(");
-        }
+        console.log(res.data);
+        if (res.data) setAdded(true);
+        else setError(true);
       })
       .catch((error) => error);
     handleClean();
@@ -54,8 +53,28 @@ const AddService = () => {
     setForm({ ...initialForm, code: Date.now() });
   };
 
-  return (
-    <div>
+  const handleClose = () => {
+    setModal(false);
+    setModalAddService(false);
+    setAdded(false);
+  };
+
+  return error ? (
+    <>
+      <h3>Added failed :(</h3>
+      <button className="btn btn-danger" type="button" onClick={handleClose}>
+        Close
+      </button>
+    </>
+  ) : added ? (
+    <>
+      <h3>Service added ;)</h3>
+      <button className="btn btn-danger" type="button" onClick={handleClose}>
+        Close
+      </button>
+    </>
+  ) : (
+    <>
       <h2> Add Service: </h2>
       <div className="form-group w-25">
         <form onSubmit={handleSubmit}>
@@ -136,15 +155,26 @@ const AddService = () => {
           </div>
 
           <button className="btn btn-primary" type="submit">
-            Send
+            Add
           </button>
 
-          <button className="btn btn-danger" type="reset" onClick={handleClean}>
+          <button
+            className="btn btn-warning"
+            type="reset"
+            onClick={handleClean}
+          >
             Clean
+          </button>
+          <button
+            className="btn btn-danger"
+            type="button"
+            onClick={handleClose}
+          >
+            Close
           </button>
         </form>
       </div>
-    </div>
+    </>
   );
 };
 
