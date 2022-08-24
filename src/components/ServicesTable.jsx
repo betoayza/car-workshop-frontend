@@ -5,8 +5,10 @@ import SearchCar from "./SearchCar";
 import { ReAddService } from "./ReAddService";
 import { ModifyService } from "./ModifyService";
 import { DeleteService } from "./DeleteService";
+import { SelectServicesCodes } from "./SelectServicesCodes";
+import SearchService from "./SearchService";
 
-const ServicesTable = ({ services }) => {
+const ServicesTable = ({ services, setServices, showAddAndSearch = true }) => {
   const [carCode, setCarCode] = useState(null);
   const [modal, setModal] = useState(false);
   const [modalSearchCar, setModalSearchCar] = useState(false);
@@ -14,6 +16,7 @@ const ServicesTable = ({ services }) => {
   const [modalEditService, setModalEditService] = useState(false);
   const [modalDeleteService, setModalDeleteService] = useState(false);
   const [serviceCode, setServiceCode] = useState(null);
+  const [modalSearchService, setModalSearchService] = useState(false);
 
   if (!Array.isArray(services)) {
     services = [services];
@@ -71,11 +74,28 @@ const ServicesTable = ({ services }) => {
           code={serviceCode}
           setModal={setModal}
           setModalDeleteService={setModalDeleteService}
+          setServices={setServices}
+        />
+      )}
+      {modalSearchService && (
+        <SearchService
+          code={serviceCode}
+          setModal={setModal}
+          setModalSearchService={setModalSearchService}
         />
       )}
     </Modal>
   ) : (
     <div>
+      {showAddAndSearch && (
+        <SelectServicesCodes
+          services={services}
+          setModal={setModal}
+          setServiceCode={setServiceCode}
+          setModalSearchService={setModalSearchService}
+        />
+      )}
+
       <h2>Services:</h2>
       <table
         id="services-table"

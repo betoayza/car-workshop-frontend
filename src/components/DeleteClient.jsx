@@ -2,7 +2,12 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { API } from "../api/api";
 
-export const DeleteClient = ({ code, setModal, setModalDeleteClient, setClients }) => {
+export const DeleteClient = ({
+  code,
+  setModal,
+  setModalDeleteClient,
+  setClients,
+}) => {
   const [deleted, setDeleted] = useState(false);
 
   useEffect(() => {
@@ -27,7 +32,7 @@ export const DeleteClient = ({ code, setModal, setModalDeleteClient, setClients 
         .catch((error) => error);
     };
 
-    if(deleted){      
+    if (deleted) {
       const getAllClients = async () => {
         const options = {
           headers: {
@@ -38,14 +43,12 @@ export const DeleteClient = ({ code, setModal, setModalDeleteClient, setClients 
             timeout: 3000,
           },
         };
-  
+
         await axios
           .get(`${API}/clients/all`, options)
           .then((res) => {
             console.log(res.data);
-            if (res.data) {
-              setClients(res.data);
-            } else alert("No clients yet :(");
+            if (res.data) setClients(res.data);
           })
           .catch((error) => error);
       };
@@ -53,8 +56,6 @@ export const DeleteClient = ({ code, setModal, setModalDeleteClient, setClients 
     }
     deleteClient();
   }, []);
-
-
 
   const handleClose = () => {
     setModal(false);
@@ -64,14 +65,14 @@ export const DeleteClient = ({ code, setModal, setModalDeleteClient, setClients 
 
   return deleted ? (
     <>
-      <h3>Delete successful :)</h3>
+      <h3>Client deleted ;)</h3>
       <button className="btn btn-danger" type="button" onClick={handleClose}>
         Close
       </button>
     </>
   ) : (
     <>
-      <h3>Delete failed :(</h3>
+      <h3>Client was already deleted</h3>
       <button className="btn btn-danger" type="button" onClick={handleClose}>
         Close
       </button>

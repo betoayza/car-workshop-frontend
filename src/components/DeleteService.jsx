@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { API } from "../api/api";
 
-export const DeleteService = ({ code, setModal, setModalDeleteService }) => {
+export const DeleteService = ({ code, setModal, setModalDeleteService, setServices }) => {
   const [deleted, setDeleted] = useState(false);
 
   useEffect(() => {
@@ -27,6 +27,29 @@ export const DeleteService = ({ code, setModal, setModalDeleteService }) => {
         .catch((error) => error);
     };
     deleteService();
+
+    if (deleted) {
+      const getAllServices = async () => {
+        const options = {
+          headers: {
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Headers": "*",
+            Accept: "application/json",
+            timeout: 3000,
+          },
+        };
+
+        await axios
+          .get(`${API}/services/all`, options)
+          .then((res) => {
+            console.log(res.data);
+            if (res.data) setServices(res.data);
+          })
+          .catch((error) => error);
+      };
+      getAllServices();
+    }
   }, []);
 
   const handleClose = () => {
