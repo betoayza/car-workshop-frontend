@@ -167,7 +167,7 @@ const AddClient = ({ setModal, setModalAdd }) => {
           </div>
 
           <button className="btn btn-primary" type="submit">
-            Send
+            Add
           </button>
 
           <button className="btn btn-danger" type="reset" onClick={handleClean}>

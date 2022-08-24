@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import { ClientsTable } from "./ClientsTable";
 import { API } from "../api/api";
 
-const SearchClient = ({ code, setModal, setModalSeeClient }) => {
+const SearchClient = ({ code, setModal, setModalSearchClient }) => {
   const [client, setClient] = useState(null);
 
   useEffect(() => {
@@ -33,7 +33,7 @@ const SearchClient = ({ code, setModal, setModalSeeClient }) => {
 
   const handleClose = () => {
     setModal(false);
-    setModalSeeClient(false);
+    setModalSearchClient(false);
     setClient(false);
   };
 

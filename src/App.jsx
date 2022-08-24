@@ -50,32 +50,33 @@ const App = () => {
                   </NavLink>
                 </li>
 
-                <li>
+                <li className="nav-item">
                   <NavLink to="/cars/all">
                     {({ isActive }) => (
                       <p
-                        className={isActive ? "dropdown-item" : "dropdown-item"}
+                        className={
+                          isActive ? "nav-link active" : "nav-link active"
+                        }
                       >
                         Cars
                       </p>
                     )}
                   </NavLink>
                 </li>
-                
-                    <li>
-                      <NavLink to="/clients/all">
-                        {({ isActive }) => (
-                          <p
-                            className={
-                              isActive ? "dropdown-item" : "dropdown-item"
-                            }
-                          >
-                            Clients
-                          </p>
-                        )}
-                      </NavLink>
-                    </li>                
-                
+
+                <li className="nav-item">
+                  <NavLink to="/clients/all">
+                    {({ isActive }) => (
+                      <p
+                        className={
+                          isActive ? "nav-link active" : "nav-link active"
+                        }
+                      >
+                        Clients
+                      </p>
+                    )}
+                  </NavLink>
+                </li>
 
                 <li className="nav-item dropdown">
                   <a

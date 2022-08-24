@@ -1,6 +1,6 @@
 import React from "react";
 
-const ServiceTableRow = ({ service, seeCar }) => {
+const ServiceTableRow = ({ service, seeCar, handleEdit, handleDelete }) => {
   return (
     <tr>
       <td>{service.code}</td>
@@ -18,6 +18,10 @@ const ServiceTableRow = ({ service, seeCar }) => {
       <td>{service.work}</td>
       <td>{service.carKms}</td>
       <td>{service.status}</td>
+      <td><button className="button" onClick={()=>handleEdit(service.code)}>Edit
+        </button>
+        <button className="button" onClick={()=>handleDelete(service.code)}></button>
+        </td>
     </tr>
   );
 };
