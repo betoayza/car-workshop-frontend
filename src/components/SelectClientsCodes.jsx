@@ -19,7 +19,11 @@ export const SelectClientsCodes = ({
     <div>
       <label>
         Search:{" "}
-        <select value={selected} onChange={handleChange}>
+        <select
+          className={"form-select"}
+          value={selected}
+          onChange={handleChange}
+        >
           <option value={"---"}>---</option>
           {clients &&
             clients.map((client) => (
@@ -29,6 +33,7 @@ export const SelectClientsCodes = ({
             ))}
         </select>
       </label>
+      <br /><br />
     </div>
   );
 };

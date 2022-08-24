@@ -4,7 +4,7 @@ export const SelectCarsCodes = ({
   cars,
   setModal,
   setCarCode,
-  setModalSearchCar  
+  setModalSearchCar,
 }) => {
   const [selected, setSelected] = useState("");
 
@@ -19,7 +19,11 @@ export const SelectCarsCodes = ({
     <div>
       <label>
         Search:{" "}
-        <select value={selected} onChange={handleChange}>
+        <select
+          className={"form-select"}
+          value={selected}
+          onChange={handleChange}
+        >
           <option value={"---"}>---</option>
           {cars &&
             cars.map((car) => (
@@ -29,6 +33,7 @@ export const SelectCarsCodes = ({
             ))}
         </select>
       </label>
+      <br /><br />
     </div>
   );
 };

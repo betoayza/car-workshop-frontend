@@ -19,7 +19,11 @@ export const SelectServicesCodes = ({
     <div>
       <label>
         Search:{" "}
-        <select value={selected} onChange={handleChange}>
+        <select
+          className={"form-select"}
+          value={selected}
+          onChange={handleChange}
+        >
           <option value={"---"}>---</option>
           {services &&
             services.map((service) => (
@@ -29,6 +33,7 @@ export const SelectServicesCodes = ({
             ))}
         </select>
       </label>
+      <br /><br />
     </div>
   );
 };
