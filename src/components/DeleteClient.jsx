@@ -31,29 +31,7 @@ export const DeleteClient = ({
         })
         .catch((error) => error);
     };
-
-    if (deleted) {
-      const getAllClients = async () => {
-        const options = {
-          headers: {
-            "Content-Type": "application/json",
-            "Access-Control-Allow-Origin": "*",
-            "Access-Control-Allow-Headers": "*",
-            Accept: "application/json",
-            timeout: 3000,
-          },
-        };
-
-        await axios
-          .get(`${API}/clients/all`, options)
-          .then((res) => {
-            console.log(res.data);
-            if (res.data) setClients(res.data);
-          })
-          .catch((error) => error);
-      };
-      getAllClients();
-    }
+    
     deleteClient();
   }, []);
 
