@@ -2,18 +2,8 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { API } from "../api/api";
 
-const initialForm = {
-  code: "",
-  id: "",
-  name: "",
-  surname: "",
-  email: "",
-  phone: "",
-  status: "Active",
-};
-
 const ModifyClient = ({ code, setModal, setModalEdit }) => {
-  const [form, setForm] = useState(initialForm);
+  const [form, setForm] = useState({});
   const [client, setClient] = useState(null);
   const [updated, setUpdated] = useState(false);
 
@@ -50,6 +40,7 @@ const ModifyClient = ({ code, setModal, setModalEdit }) => {
     setModal(false);
     setModalEdit(false);
     setClient(null);
+    setUpdated(false);
   };
 
   //---------
@@ -82,13 +73,8 @@ const ModifyClient = ({ code, setModal, setModalEdit }) => {
       })
       .catch((error) => {
         console.error(error);
-      });
-    handleClean2();
-  };
-
-  const handleClean2 = () => {
-    setForm(initialForm);
-  };
+      });    
+  };  
 
   return updated ? (
     <>
@@ -199,15 +185,7 @@ const ModifyClient = ({ code, setModal, setModalEdit }) => {
 
               <button className="btn btn-success" type="submit">
                 Update
-              </button>
-
-              <button
-                className="btn btn-warning"
-                type="button"
-                onClick={handleClean2}
-              >
-                Clean
-              </button>
+              </button>              
               <button
                 className="btn btn-danger"
                 type="button"

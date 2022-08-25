@@ -2,7 +2,12 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { API } from "../api/api";
 
-export const DeleteService = ({ code, setModal, setModalDeleteService, setServices }) => {
+export const DeleteService = ({
+  code,
+  setModal,
+  setModalDeleteService,
+  setServices,
+}) => {
   const [deleted, setDeleted] = useState(false);
 
   useEffect(() => {
@@ -26,7 +31,7 @@ export const DeleteService = ({ code, setModal, setModalDeleteService, setServic
         })
         .catch((error) => error);
     };
-    deleteService();   
+    deleteService();
   }, []);
 
   const handleClose = () => {
@@ -35,21 +40,14 @@ export const DeleteService = ({ code, setModal, setModalDeleteService, setServic
     setDeleted(false);
   };
 
-  return deleted ? (
-    <>
-      <h3>Service deleted ;)</h3>
-
-      <button className="btn btn-danger" type="reset" onClick={handleClose}>
-        Close
-      </button>
-    </>
-  ) : (
-    <>
-      <h3>Service was already deleted</h3>
-
-      <button className="btn btn-danger" type="reset" onClick={handleClose}>
-        Close
-      </button>
-    </>
+  return (
+    deleted && (
+      <>
+        <h3>Service deleted ;)</h3>
+        <button className="btn btn-danger" type="button" onClick={handleClose}>
+          Close
+        </button>
+      </>
+    )
   );
 };

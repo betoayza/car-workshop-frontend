@@ -28,7 +28,7 @@ const CarsTable = ({ cars, setCars, AddAndSearch = true }) => {
   const seeClient = (clientCode) => {
     setClientCode(clientCode);
     setModal(true);
-    setmodalSearchClient(true);
+    setModalSearchClient(true);
   };
 
   const editCar = (carCode) => {
@@ -86,7 +86,7 @@ const CarsTable = ({ cars, setCars, AddAndSearch = true }) => {
         <SearchClient
           code={clientCode}
           setModal={setModal}
-          setmodalSearchClient={setModalSearchClient}
+          setModalSearchClient={setModalSearchClient}
         />
       )}
       {modalReAddCar && (
@@ -114,7 +114,7 @@ const CarsTable = ({ cars, setCars, AddAndSearch = true }) => {
         </div>
       )}
 
-      <h2>Cars:</h2>
+      {cars.length === 1 ? <h2>Car:</h2> : <h2>Cars:</h2>}
       <table
         id="cars-table"
         className="table table-dark table-striped table-hover border-info"

@@ -39,19 +39,14 @@ export const ReAddService = ({ code, setModal, setModalReAddService }) => {
     reAddService();
   }, []);
 
-  return reAdded ? (
-    <>
-      <h3>Service re added ;)</h3>
-      <button className={"btn btn-danger"} onClick={handleClose}>
-        Close
-      </button>
-    </>
-  ) : (
-    <>
-      <h3>Service was already active</h3>
-      <button className={"btn btn-danger"} onClick={handleClose}>
-        Close
-      </button>
-    </>
+  return (
+    reAdded && (
+      <>
+        <h3>Service re added ;)</h3>
+        <button className={"btn btn-danger"} onClick={handleClose}>
+          Close
+        </button>
+      </>
+    )
   );
 };

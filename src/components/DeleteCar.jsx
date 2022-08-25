@@ -32,22 +32,21 @@ export const DeleteCar = ({ code, setModal, setModalCarDelete }) => {
         })
         .catch((error) => error);
     };
-    deleteCar();   
+    deleteCar();
   }, []);
 
-  return deleted ? (
-    <>
-      <h2>Delete successful!</h2>
-      <button className={"btn btn-danger"} type={"reset"} onClick={handleClose}>
-        Close
-      </button>
-    </>
-  ) : (
-    <>
-      <h2>Can't Delete :(</h2>
-      <button className={"btn btn-danger"} type={"reset"} onClick={handleClose}>
-        Close
-      </button>
-    </>
+  return (
+    deleted && (
+      <>
+        <h2>Car deleted ;)</h2>
+        <button
+          className={"btn btn-danger"}
+          type={"button"}
+          onClick={handleClose}
+        >
+          Close
+        </button>
+      </>
+    )
   );
 };

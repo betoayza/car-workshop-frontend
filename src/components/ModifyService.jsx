@@ -2,21 +2,10 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { API } from "../api/api";
 
-const initialForm = {
-  code: "",
-  date: "",
-  amount: "",
-  carCode: "",
-  work: "",
-  carKms: "",
-  status: "",
-};
-
 export const ModifyService = ({ code, setModal, setModalEditService }) => {
   const [service, setService] = useState(null);
   const [form, setForm] = useState(initialForm);
   const [updated, setUpdated] = useState(false);
-  const [error, setError] = useState(false);
 
   useEffect(() => {
     const getService = async () => {
@@ -40,7 +29,7 @@ export const ModifyService = ({ code, setModal, setModalEditService }) => {
           if (res.data) {
             setService(res.data);
             setForm(res.data);
-          } else setError(true);
+          }
         })
         .catch((error) => error);
     };
@@ -51,8 +40,7 @@ export const ModifyService = ({ code, setModal, setModalEditService }) => {
     setModal(false);
     setModalEditService(false);
     setService(null);
-    setUpdated(false);
-    setError(false);
+    setUpdated(false);    
   };
 
   //---------
@@ -84,22 +72,10 @@ export const ModifyService = ({ code, setModal, setModalEditService }) => {
       })
       .catch((error) => {
         console.error(error);
-      });
-    handleClean2();
+      });   
   };
 
-  const handleClean2 = () => {
-    setForm(initialForm);
-  };
-
-  return error ? (
-    <>
-      <h3>Service doesn't exist :(</h3>
-      <button className="btn btn-danger" type="button" onClick={handleClose}>
-        Close
-      </button>
-    </>
-  ) : updated ? (
+  return updated ? (
     <>
       <h3>Service updated ;)</h3>
       <button className="btn btn-danger" type="button" onClick={handleClose}>
@@ -191,14 +167,6 @@ export const ModifyService = ({ code, setModal, setModalEditService }) => {
 
               <button className="btn btn-primary" type="submit">
                 Update
-              </button>
-
-              <button
-                className="btn btn-warning"
-                type="reset"
-                onClick={handleClean2}
-              >
-                Clean
               </button>
               <button
                 className="btn btn-danger"

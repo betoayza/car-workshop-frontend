@@ -93,7 +93,8 @@ export const ClientsTable = ({ clients, setClients, addAndSearch = true }) => {
           />
         </>
       )}
-      <h2>Clients:</h2>
+      
+      {clients.length === 1 ? <h2>Client:</h2> : <h2>Clients:</h2>}
       <table
         id="users-table"
         className="table table-dark table-striped table-hover border-danger"

@@ -114,7 +114,7 @@ const ServicesTable = ({ services, setServices, showAddAndSearch = true }) => {
         </>
       )}
 
-      <h2>Services:</h2>
+      {services.length === 1 ? <h2>Service:</h2> : <h2>Services:</h2>}
       <table
         id="services-table"
         className="table table-dark table-striped table-hover border-success"

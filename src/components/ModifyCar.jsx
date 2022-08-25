@@ -2,21 +2,10 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { API } from "../api/api";
 
-// const initialForm = {
-//   code: "",
-//   patent: "",
-//   brand: "",
-//   model: "",
-//   year: "",
-//   clientCode: "",
-//   status: "",
-// };
-
 const ModifyCar = ({ code, setModal, setModalCarEdit }) => {
   const [form, setForm] = useState({});
   const [patentError, setPatentError] = useState(false);
   const [updated, setUpdated] = useState(false);
-  const [error, setError] = useState(false);
 
   useEffect(() => {
     const searchCar = async () => {
@@ -36,9 +25,7 @@ const ModifyCar = ({ code, setModal, setModalCarEdit }) => {
         .request(options)
         .then((res) => {
           console.log(res.data);
-          if (res.data) {
-            setForm(res.data);
-          } else setError(true);
+          if (res.data) setForm(res.data);
         })
         .catch((error) => error);
     };
@@ -70,7 +57,6 @@ const ModifyCar = ({ code, setModal, setModalCarEdit }) => {
       .then((res) => {
         console.log(res.data);
         if (res.data) setUpdated(true);
-        else return;
       })
       .catch((error) => {
         console.error(error);
@@ -80,6 +66,7 @@ const ModifyCar = ({ code, setModal, setModalCarEdit }) => {
   const handleClose = () => {
     setModal(false);
     setModalCarEdit(false);
+    setUpdated(false);
   };
 
   const handleBlur = () => {
@@ -94,14 +81,7 @@ const ModifyCar = ({ code, setModal, setModalCarEdit }) => {
     }
   };
 
-  return error ? (
-    <>
-      <h2>Car doesn't exist :(</h2>
-      <button className="btn btn-danger" type="reset" onClick={handleClose}>
-        Close
-      </button>
-    </>
-  ) : updated ? (
+  return updated ? (
     <>
       <h2>Update succesful!</h2>
       <button className="btn btn-danger" type="reset" onClick={handleClose}>
@@ -210,7 +190,6 @@ const ModifyCar = ({ code, setModal, setModalCarEdit }) => {
           >
             Update
           </button>
-
           <button className="btn btn-danger" type="reset" onClick={handleClose}>
             Close
           </button>

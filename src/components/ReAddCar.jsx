@@ -39,19 +39,14 @@ export const ReAddCar = ({ code, setModal, setModalReAddCar }) => {
     reAddCar();
   }, []);
 
-  return reAdded ? (
-    <>
-      <h3>Car re added :)</h3>
-      <button className={"btn btn-danger"} onClick={handleClose}>
-        Close
-      </button>
-    </>
-  ) : (
-    <>
-      <h3>Car was already active</h3>
-      <button className={"btn btn-danger"} onClick={handleClose}>
-        Close
-      </button>
-    </>
+  return (
+    reAdded && (
+      <>
+        <h3>Car re added ;)</h3>
+        <button className={"btn btn-danger"} onClick={handleClose}>
+          Close
+        </button>
+      </>
+    )
   );
 };

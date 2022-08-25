@@ -40,19 +40,14 @@ export const ReAddClient = ({ code, setModal, setModalReAddClient }) => {
     reAddClient();
   }, []);
 
-  return reAdded ? (
-    <>
-      <h3>Client re added :)</h3>
-      <button className={"btn btn-danger"} onClick={handleClose}>
-        Close
-      </button>
-    </>
-  ) : (
-    <>
-      <h3>Client was already active</h3>
-      <button className={"btn btn-danger"} onClick={handleClose}>
-        Close
-      </button>
-    </>
+  return (
+    reAdded && (
+      <>
+        <h3>Client re added ;)</h3>
+        <button className={"btn btn-danger"} onClick={handleClose}>
+          Close
+        </button>
+      </>
+    )
   );
 };

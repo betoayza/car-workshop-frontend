@@ -31,7 +31,7 @@ export const DeleteClient = ({
         })
         .catch((error) => error);
     };
-    
+
     deleteClient();
   }, []);
 
@@ -41,19 +41,14 @@ export const DeleteClient = ({
     setDeleted(false);
   };
 
-  return deleted ? (
-    <>
-      <h3>Client deleted ;)</h3>
-      <button className="btn btn-danger" type="button" onClick={handleClose}>
-        Close
-      </button>
-    </>
-  ) : (
-    <>
-      <h3>Client was already deleted</h3>
-      <button className="btn btn-danger" type="button" onClick={handleClose}>
-        Close
-      </button>
-    </>
+  return (
+    deleted && (
+      <>
+        <h3>Client deleted ;)</h3>
+        <button className="btn btn-danger" type="button" onClick={handleClose}>
+          Close
+        </button>
+      </>
+    )
   );
 };
