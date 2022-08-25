@@ -115,38 +115,40 @@ const ServicesTable = ({ services, setServices, showAddAndSearch = true }) => {
       )}
 
       {services.length === 1 ? <h2>Service:</h2> : <h2>Services:</h2>}
-      <table
-        id="services-table"
-        className="table table-dark table-striped table-hover border-success"
-      >
-        <thead>
-          <tr>
-            <th scope="col">Code</th>
-            <th scope="col">Date</th>
-            <th scope="col">Amount (USD)</th>
-            <th scope="col">Car Code</th>
-            <th scope="col">Work</th>
-            <th scope="col">Car Kms</th>
-            <th scope="col">Status</th>
-            <th scope="col">Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          {services &&
-            services.map((service) => {
-              return (
-                <ServiceTableRow
-                  key={service._id}
-                  service={service}
-                  handleSearchCar={handleSearchCar}
-                  handleEdit={handleEdit}
-                  handleReAdd={handleReAdd}
-                  handleDelete={handleDelete}
-                />
-              );
-            })}
-        </tbody>
-      </table>
+      <div className={"table-responsive"}>
+        <table
+          id="services-table"
+          className="table table-dark table-striped table-hover border-success"
+        >
+          <thead>
+            <tr>
+              <th scope="col">Code</th>
+              <th scope="col">Date</th>
+              <th scope="col">Amount (USD)</th>
+              <th scope="col">Car Code</th>
+              <th scope="col">Work</th>
+              <th scope="col">Car Kms</th>
+              <th scope="col">Status</th>
+              <th scope="col">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            {services &&
+              services.map((service) => {
+                return (
+                  <ServiceTableRow
+                    key={service._id}
+                    service={service}
+                    handleSearchCar={handleSearchCar}
+                    handleEdit={handleEdit}
+                    handleReAdd={handleReAdd}
+                    handleDelete={handleDelete}
+                  />
+                );
+              })}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 };

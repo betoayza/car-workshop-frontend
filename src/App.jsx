@@ -5,7 +5,7 @@ import * as Components from "./components/indexComponents.jsx";
 
 const App = () => {
   return (
-    <div id="app-div">
+    <div id="app-div" className={"container-xxl"}>
       <h1>SuperCar Workshop</h1>
       <div>
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark">

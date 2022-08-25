@@ -1,18 +1,4 @@
-#app-div {
-  /* border-color: blueviolet; */
-  /* border: 2px solid; */
-  border-radius: 1rem;
-  display: grid;
-  grid-template-rows: auto auto;
-  width: 100%;
-  height: 100%;
+#app-div { 
   align-items: start;
-  text-align: center;
-}
-
-#components-div {
-  /* border-color: brown; */
-  margin-top: 5%;
-  height: 90%;
-  width: 100%;
-}
+  text-align: center; 
+} 

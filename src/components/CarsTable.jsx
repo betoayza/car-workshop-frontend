@@ -115,38 +115,40 @@ const CarsTable = ({ cars, setCars, AddAndSearch = true }) => {
       )}
 
       {cars.length === 1 ? <h2>Car:</h2> : <h2>Cars:</h2>}
-      <table
-        id="cars-table"
-        className="table table-dark table-striped table-hover border-info"
-      >
-        <thead>
-          <tr>
-            <th scope="col">Code</th>
-            <th scope="col">Patent</th>
-            <th scope="col">Brand</th>
-            <th scope="col">Model</th>
-            <th scope="col">Year</th>
-            <th scope="col">Client code</th>
-            <th scope="col">Status</th>
-            <th scope="col">Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          {cars &&
-            cars.map((car) => {
-              return (
-                <CarTableRow
-                  key={car._id}
-                  car={car}
-                  seeClient={seeClient}
-                  editCar={editCar}
-                  deleteCar={deleteCar}
-                  handleActivateCar={handleActivateCar}
-                />
-              );
-            })}
-        </tbody>
-      </table>
+      <div className={"table-responsive"}>
+        <table
+          id="cars-table"
+          className="table table-dark table-striped table-hover border-info"
+        >
+          <thead>
+            <tr>
+              <th scope="col">Code</th>
+              <th scope="col">Patent</th>
+              <th scope="col">Brand</th>
+              <th scope="col">Model</th>
+              <th scope="col">Year</th>
+              <th scope="col">Client code</th>
+              <th scope="col">Status</th>
+              <th scope="col">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            {cars &&
+              cars.map((car) => {
+                return (
+                  <CarTableRow
+                    key={car._id}
+                    car={car}
+                    seeClient={seeClient}
+                    editCar={editCar}
+                    deleteCar={deleteCar}
+                    handleActivateCar={handleActivateCar}
+                  />
+                );
+              })}
+          </tbody>
+        </table>
+      </div>
     </>
   );
 };
