@@ -22,18 +22,23 @@ export const ClientTableRow = ({
         >
           Edit
         </button>
-        <button
-          className={"btn btn-warning"}
-          onClick={() => handleReAdd(client.code)}
-        >
-          Re Add
-        </button>
-        <button
-          className={"btn btn-danger"}
-          onClick={() => handleDelete(client.code)}
-        >
-          Delete
-        </button>
+        {client.status === "Inactive" && (
+          <button
+            className={"btn btn-warning"}
+            onClick={() => handleReAdd(client.code)}
+          >
+            Re Add
+          </button>
+        )}
+
+        {client.status === "Active" && (
+          <button
+            className={"btn btn-danger"}
+            onClick={() => handleDelete(client.code)}
+          >
+            Delete
+          </button>
+        )}
       </td>
     </tr>
   );

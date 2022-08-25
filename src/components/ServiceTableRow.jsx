@@ -32,18 +32,22 @@ const ServiceTableRow = ({
         >
           Edit
         </button>
-        <button
-          className="btn btn-warning"
-          onClick={() => handleReAdd(service.code)}
-        >
-          Re Add
-        </button>
-        <button
-          className="btn btn-danger"
-          onClick={() => handleDelete(service.code)}
-        >
-          Delete
-        </button>
+        {service.status === "Inactive" && (
+          <button
+            className="btn btn-warning"
+            onClick={() => handleReAdd(service.code)}
+          >
+            Re Add
+          </button>
+        )}
+        {service.status === "Active" && (
+          <button
+            className="btn btn-danger"
+            onClick={() => handleDelete(service.code)}
+          >
+            Delete
+          </button>
+        )}
       </td>
     </tr>
   );
