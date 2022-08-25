@@ -2,13 +2,13 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import ServicesTable from "./ServicesTable";
 import { API } from "../api/api";
+import { Loading } from "./Loading";
 
 export const AllServices = () => {
   const [services, setServices] = useState(null);
 
   useEffect(() => {
     const getAllServices = async () => {
-
       const options = {
         headers: {
           "Content-Type": "application/json",
@@ -24,7 +24,7 @@ export const AllServices = () => {
         .then((res) => {
           console.log(res.data);
           if (res.data) {
-            setServices(res.data);            
+            setServices(res.data);
           } else alert("No services yet :(");
         })
         .catch((error) => error);
@@ -34,7 +34,11 @@ export const AllServices = () => {
 
   return (
     <div>
-      {services && <ServicesTable services={services} setServices={setServices} /> }   
+      {services ? (
+        <ServicesTable services={services} setServices={setServices} />
+      ) : (
+        <Loading />
+      )}
     </div>
   );
 };

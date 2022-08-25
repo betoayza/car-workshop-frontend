@@ -8,6 +8,7 @@ import { SelectCarsCodes } from "./SelectCarsCodes";
 import SearchCar from "./SearchCar";
 import SearchClient from "./SearchClient";
 import { ReAddCar } from "./ReAddCar";
+import { Loading } from "./Loading";
 
 const CarsTable = ({ cars, setCars, AddAndSearch = true }) => {
   const [clientCode, setClientCode] = useState(null);
@@ -19,7 +20,7 @@ const CarsTable = ({ cars, setCars, AddAndSearch = true }) => {
   const [modalSearchCar, setModalSearchCar] = useState(false);
   const [showAddAndSearch, setShowAddAndSearch] = useState(AddAndSearch);
   const [modalSearchClient, setModalSearchClient] = useState(false);
-  const [modalReAddCar, setModalReAddCar] = useState(false);
+  const [modalReAddCar, setModalReAddCar] = useState(false);  
 
   if (!Array.isArray(cars)) {
     cars = [cars];
@@ -113,13 +114,9 @@ const CarsTable = ({ cars, setCars, AddAndSearch = true }) => {
           />
         </div>
       )}
-
       {cars.length === 1 ? <h2>Car:</h2> : <h2>Cars:</h2>}
       <div className={"table-responsive"}>
-        <table
-          id="cars-table"
-          className="table table-dark table-striped table-hover border-info"
-        >
+        <table className="table table-dark table-striped table-hover border-info">
           <thead>
             <tr>
               <th scope="col">Code</th>
@@ -148,7 +145,7 @@ const CarsTable = ({ cars, setCars, AddAndSearch = true }) => {
               })}
           </tbody>
         </table>
-      </div>
+      </div>      
     </>
   );
 };

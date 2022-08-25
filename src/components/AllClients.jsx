@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { ClientsTable } from "./ClientsTable";
 import { API } from "../api/api";
+import { Loading } from "./Loading";
 
 export const AllClients = () => {
   const [clients, setClients] = useState(null);
@@ -33,7 +34,11 @@ export const AllClients = () => {
 
   return (
     <div>
-      {clients && <ClientsTable clients={clients} setClients={setClients} />}
+      {clients ? (
+        <ClientsTable clients={clients} setClients={setClients} />
+      ) : (
+        <Loading />
+      )}
     </div>
   );
 };
