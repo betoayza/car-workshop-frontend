@@ -31,7 +31,7 @@ const CarTableRow = ({
         {car.status === "Inactive" && (
           <button
             className="btn btn-warning"
-            onClick={() => handleActivateCar(car.code)}
+            onClick={() => handleActivateCar(car.code, car.clientCode)}
           >
             Re Add
           </button>

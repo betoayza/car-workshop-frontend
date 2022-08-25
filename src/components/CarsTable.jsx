@@ -49,10 +49,11 @@ const CarsTable = ({ cars, setCars, AddAndSearch = true }) => {
     setModalAddCar(true);
   };
 
-  const handleActivateCar = (carCode) => {
+  const handleActivateCar = (carCode, clientCode) => {
     setModal(true);
     setModalReAddCar(true);
     setCarCode(carCode);
+    setClientCode(clientCode);
   };
 
   return modal ? (
@@ -93,6 +94,7 @@ const CarsTable = ({ cars, setCars, AddAndSearch = true }) => {
       {modalReAddCar && (
         <ReAddCar
           code={carCode}
+          clientCode={clientCode}
           setModal={setModal}
           setModalReAddCar={setModalReAddCar}
         />
