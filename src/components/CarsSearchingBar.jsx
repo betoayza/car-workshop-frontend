@@ -61,6 +61,12 @@ export const CarsSearchingBar = ({
       />
       <br />
 
+      {!term && (
+        <button className={"btn btn-danger"} onClick={handleClose}>
+          Close
+        </button>
+      )}
+
       {cars && term !== "" && (
         <>
           <CarsTable cars={cars} setCars={setCars} showAddAndSearch={false} />
