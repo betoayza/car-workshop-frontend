@@ -1,16 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import CarTableRow from "./CarTableRow";
 import ModifyCar from "./ModifyCar";
 import { Modal } from "./Modal";
 import { DeleteCar } from "./DeleteCar";
 import AddCar from "./AddCar";
-import { SelectCarsCodes } from "./SelectCarsCodes";
-import SearchCar from "./SearchCar";
 import SearchClient from "./SearchClient";
 import { ReAddCar } from "./ReAddCar";
-import { Loading } from "./Loading";
+import { CarsSearchingBar } from "./CarsSearchingBar";
 
-const CarsTable = ({ cars, setCars, AddAndSearch = true }) => {
+const CarsTable = ({ cars, setCars, showAddAndSearch = true }) => {
   const [clientCode, setClientCode] = useState(null);
   const [carCode, setCarCode] = useState(null);
   const [modal, setModal] = useState(false);
@@ -18,9 +16,9 @@ const CarsTable = ({ cars, setCars, AddAndSearch = true }) => {
   const [modalCarDelete, setModalCarDelete] = useState(false);
   const [modalAddCar, setModalAddCar] = useState(false);
   const [modalSearchCar, setModalSearchCar] = useState(false);
-  const [showAddAndSearch, setShowAddAndSearch] = useState(AddAndSearch);
   const [modalSearchClient, setModalSearchClient] = useState(false);
-  const [modalReAddCar, setModalReAddCar] = useState(false);  
+  const [modalReAddCar, setModalReAddCar] = useState(false);
+  const [searchedCars, setSearchedCars] = useState(null);
 
   if (!Array.isArray(cars)) {
     cars = [cars];
@@ -44,9 +42,14 @@ const CarsTable = ({ cars, setCars, AddAndSearch = true }) => {
     setModalCarDelete(true);
   };
 
-  const addCar = () => {
+  const handleAddCar = () => {
     setModal(true);
     setModalAddCar(true);
+  };
+
+  const handleSearchCar = () => {
+    setModal(true);
+    setModalSearchCar(true);
   };
 
   const handleActivateCar = (carCode, clientCode) => {
@@ -77,18 +80,21 @@ const CarsTable = ({ cars, setCars, AddAndSearch = true }) => {
         <AddCar setModal={setModal} setModalAddCar={setModalAddCar} />
       )}
       {modalSearchCar && (
-        <SearchCar
-          code={carCode}
-          setModal={setModal}
-          setShowAddAndSearch={setShowAddAndSearch}
-          setModalSearchCar={setModalSearchCar}
-        />
+        <>
+          <CarsSearchingBar
+            cars={searchedCars}
+            setCars={setSearchedCars}
+            setModal={setModal}
+            setModalSearchCar={setModalSearchCar}
+          />
+          
+        </>
       )}
       {modalSearchClient && (
         <SearchClient
           code={clientCode}
           setModal={setModal}
-          setModalSearchClient={setModalSearchClient}
+          setModalSearchClient={false}
         />
       )}
       {modalReAddCar && (
@@ -104,18 +110,15 @@ const CarsTable = ({ cars, setCars, AddAndSearch = true }) => {
     <>
       {showAddAndSearch && (
         <div>
-          <button className={"btn btn-success"} onClick={addCar}>
+          <button className={"btn btn-success"} onClick={handleAddCar}>
             Add
           </button>
-          <SelectCarsCodes
-            cars={cars}
-            setModal={setModal}
-            setCarCode={setCarCode}
-            setModalSearchCar={setModalSearchCar}
-            setShowAddAndSearch={setShowAddAndSearch}
-          />
+          <button className={"btn btn-primary"} onClick={handleSearchCar}>
+            Search
+          </button>
         </div>
       )}
+
       {cars.length === 1 ? <h2>Car:</h2> : <h2>Cars:</h2>}
       <div className={"table-responsive"}>
         <table className="table table-dark table-striped table-hover border-info">
@@ -147,7 +150,7 @@ const CarsTable = ({ cars, setCars, AddAndSearch = true }) => {
               })}
           </tbody>
         </table>
-      </div>      
+      </div>
     </>
   );
 };
