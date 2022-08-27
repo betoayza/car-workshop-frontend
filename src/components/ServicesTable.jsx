@@ -5,11 +5,10 @@ import SearchCar from "./SearchCar";
 import { ReAddService } from "./ReAddService";
 import { ModifyService } from "./ModifyService";
 import { DeleteService } from "./DeleteService";
-import { SelectServicesCodes } from "./SelectServicesCodes";
-import SearchService from "./SearchService";
 import AddService from "./AddService";
+import { ServicesSearchingBar } from "./ServicesSearchingBar";
 
-const ServicesTable = ({ services, setServices, showAddAndSearch = true }) => {
+export const ServicesTable = ({ services, setServices, showAddAndSearch = true }) => {
   const [carCode, setCarCode] = useState(null);
   const [modal, setModal] = useState(false);
   const [modalSearchCar, setModalSearchCar] = useState(false);
@@ -19,6 +18,7 @@ const ServicesTable = ({ services, setServices, showAddAndSearch = true }) => {
   const [serviceCode, setServiceCode] = useState(null);
   const [modalSearchService, setModalSearchService] = useState(false);
   const [modalAddService, setModalAddService] = useState(false);
+  const [servicesFound, setServicesFound] = useState(null);
 
   if (!Array.isArray(services)) {
     services = [services];
@@ -53,6 +53,11 @@ const ServicesTable = ({ services, setServices, showAddAndSearch = true }) => {
     setModalAddService(true);
   };
 
+  const handleSearchService = () => {
+    setModal(true);
+    setModalSearchService(true);
+  };
+
   return modal ? (
     <Modal>
       {modalSearchCar && (
@@ -85,8 +90,9 @@ const ServicesTable = ({ services, setServices, showAddAndSearch = true }) => {
         />
       )}
       {modalSearchService && (
-        <SearchService
-          code={serviceCode}
+        <ServicesSearchingBar
+          services={servicesFound}
+          setServices={setServicesFound}
           setModal={setModal}
           setModalSearchService={setModalSearchService}
         />
@@ -105,12 +111,9 @@ const ServicesTable = ({ services, setServices, showAddAndSearch = true }) => {
           <button className="btn btn-success" onClick={handleAddService}>
             Add
           </button>
-          <SelectServicesCodes
-            services={services}
-            setModal={setModal}
-            setServiceCode={setServiceCode}
-            setModalSearchService={setModalSearchService}
-          />
+          <button className="btn btn-primary" onClick={handleSearchService}>
+            Search
+          </button>
         </>
       )}
 
@@ -153,4 +156,3 @@ const ServicesTable = ({ services, setServices, showAddAndSearch = true }) => {
   );
 };
 
-export default ServicesTable;

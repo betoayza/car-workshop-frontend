@@ -1,0 +1,6 @@
+#search-service-div {
+    border: solid 1px;
+    display: grid;
+    place-items: center;    
+    max-height: 100vh;
+}

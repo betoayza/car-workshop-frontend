@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import ServicesTable from "./ServicesTable";
+import { ServicesTable } from "./ServicesTable";
 import { API } from "../api/api";
 import { Loading } from "./Loading";
 

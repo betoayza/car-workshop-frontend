@@ -113,13 +113,7 @@ const App = () => {
           exact
           path="/cars/search"
           element={<Components.SearchCarForms />}
-        />
-
-        <Route
-          exact
-          path="/cars/search/getcar"
-          element={<Components.SearchCar />}
-        />
+        />        
 
         <Route exact path="/cars/all" element={<Components.AllCars />} />
 
@@ -141,13 +135,7 @@ const App = () => {
           exact
           path="/services/modify"
           element={<Components.ModifyService />}
-        />
-
-        <Route
-          exact
-          path="/services/search"
-          element={<Components.SearchService />}
-        />
+        />        
 
         <Route
           exact
@@ -167,13 +155,7 @@ const App = () => {
           exact
           path="/clients/modify"
           element={<Components.ModifyClient />}
-        />
-
-        <Route
-          exact
-          path="/clients/search"
-          element={<Components.SearchClient />}
-        />
+        />        
 
         <Route exact path="/clients/all" element={<Components.AllClients />} />
 
