@@ -1,19 +1,19 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { API } from "../api/api";
-import CarsTable from "./CarsTable";
-import "./carsSearchingBar.css";
+import { ClientsTable } from "./ClientsTable";
+import "./clientsSearchingBar.css";
 
-export const CarsSearchingBar = ({
-  cars,
-  setCars,
+export const ClientsSearchingBar = ({
+  clients,
+  setClients,
   setModal,
-  setModalSearchCar,
+  setModalSearchClient,
 }) => {
   const [term, setTerm] = useState("");
 
   useEffect(() => {
-    const getCar = async () => {
+    const getClient = async () => {
       const options = {
         headers: {
           "Content-Type": "application/json",
@@ -26,23 +26,23 @@ export const CarsSearchingBar = ({
       };
 
       await axios
-        .get(`${API}/cars/search`, options)
+        .get(`${API}/clients/search`, options)
         .then((res) => {
           console.log(res.data);
           if (res.data) {
-            setCars(res.data);
-            setSearchedCars(res.data);
-          } else setCars(null);
+            setClients(res.data);
+            setSearchedClients(res.data);
+          } else setClients(null);
         })
         .catch((error) => error);
     };
-    if (term.length > 0) getCar();
+    if (term.length > 0) getClient();
   }, [term]);
 
   const handleClose = () => {
     setModal(false);
-    setModalSearchCar(false);
-    setCars(null);
+    setModalSearchClient(false);
+    setClients(null);
   };
 
   const handleChange = (e) => {
@@ -51,7 +51,7 @@ export const CarsSearchingBar = ({
   };
 
   return (
-    <div id="search-car-div" className={"container-xxl"}>
+    <div id="search-client-div" className={"container-xxl"}>
       <input
         type={"text"}
         className={"form-control w-25"}
@@ -67,9 +67,13 @@ export const CarsSearchingBar = ({
         </button>
       )}
 
-      {cars && term !== "" && (
+      {clients && term !== "" && (
         <>
-          <CarsTable cars={cars} setCars={setCars} showAddAndSearch={false} />
+          <ClientsTable
+            clients={clients}
+            setClients={setClients}
+            showAddAndSearch={false}
+          />
           <button className={"btn btn-danger"} onClick={handleClose}>
             Close
           </button>

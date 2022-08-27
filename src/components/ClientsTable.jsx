@@ -4,11 +4,10 @@ import { Modal } from "./Modal";
 import { DeleteClient } from "./DeleteClient";
 import { ReAddClient } from "./ReAddClient";
 import ModifyClient from "./ModifyClient";
-import { SelectClientsCodes } from "./SelectClientsCodes";
 import AddClient from "./AddClient";
-import SearchClient from "./SearchClient";
+import { ClientsSearchingBar } from "./ClientsSearchingBar";
 
-export const ClientsTable = ({ clients, setClients, addAndSearch = true }) => {
+export const ClientsTable = ({ clients, setClients, showAddAndSearch = true }) => {
   const [modalDeleteClient, setModalDeleteClient] = useState(false);
   const [modal, setModal] = useState(false);
   const [clientCode, setClientCode] = useState(null);
@@ -16,7 +15,7 @@ export const ClientsTable = ({ clients, setClients, addAndSearch = true }) => {
   const [modalEdit, setModalEdit] = useState(false);
   const [modalSearchClient, setModalSearchClient] = useState(false);
   const [modalAdd, setModalAdd] = useState(false);
-  const [showAddAndSearch, setShowAddAndSearch] = useState(addAndSearch);
+  const [clientsFound, setClientsFound] = useState(null);
 
   if (!Array.isArray(clients)) {
     clients = [clients];
@@ -45,6 +44,11 @@ export const ClientsTable = ({ clients, setClients, addAndSearch = true }) => {
     setModalAdd(true);
   };
 
+  const handleSearchClient=()=>{
+    setModal(true);
+    setModalSearchClient(true);
+  };
+
   return modal ? (
     <Modal>
       {modalDeleteClient && (
@@ -71,8 +75,9 @@ export const ClientsTable = ({ clients, setClients, addAndSearch = true }) => {
       )}
       {modalAdd && <AddClient setModal={setModal} setModalAdd={setModalAdd} />}
       {modalSearchClient && (
-        <SearchClient
-          code={clientCode}
+        <ClientsSearchingBar
+          clients={clientsFound}
+          setClients={setClientsFound}
           setModal={setModal}
           setModalSearchClient={setModalSearchClient}
         />
@@ -85,12 +90,9 @@ export const ClientsTable = ({ clients, setClients, addAndSearch = true }) => {
           <button className={"btn btn-success"} onClick={handleAdd}>
             Add
           </button>
-          <SelectClientsCodes
-            clients={clients}
-            setModal={setModal}
-            setClientCode={setClientCode}
-            setModalSearchClient={setModalSearchClient}
-          />
+          <button className={"btn btn-primary"} onClick={handleSearchClient}>
+            Search
+          </button>
         </>
       )}
 
