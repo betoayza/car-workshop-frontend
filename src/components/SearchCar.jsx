@@ -20,7 +20,7 @@ const SearchCar = ({ code, setModal, setModalSearchCar }) => {
       };
 
       await axios
-        .get(`${API}/cars/search`, options)
+        .get(`${API}/cars/search/one`, options)
         .then((res) => {
           console.log(res.data);
           if (res.data) setCar(res.data);
@@ -39,7 +39,7 @@ const SearchCar = ({ code, setModal, setModalSearchCar }) => {
   return (
     car && (
       <>
-        <CarsTable cars={car} setCars={setCar} AddAndSearch={false} />
+        <CarsTable cars={car} setCars={setCar} showAddAndSearch={false} />
         <button className={"btn btn-danger"} onClick={handleClose}>
           Close
         </button>

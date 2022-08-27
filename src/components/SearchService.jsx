@@ -9,7 +9,7 @@ const SearchService = ({ code, setModal, setModalSearchService }) => {
   useEffect(() => {
     const getService = async () => {
       const options = {
-        url: `${API}/services/search`,
+        url: `${API}/services/search/one`,
 
         headers: {
           "Content-Type": "application/json",

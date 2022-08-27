@@ -9,7 +9,7 @@ const SearchClient = ({ code, setModal, setModalSearchClient }) => {
   useEffect(() => {
     const getClient = async () => {
       const options = {
-        url: `${API}/clients/search`,
+        url: `${API}/clients/search/one`,
         headers: {
           "Content-Type": "application/json",
           "Access-Control-Allow-Origin": "*",
@@ -42,7 +42,7 @@ const SearchClient = ({ code, setModal, setModalSearchClient }) => {
       <ClientsTable
         clients={client}
         setClients={setClient}
-        addAndSearch={false}
+        showAddAndSearch={false}
       />
       <button className="btn btn-danger" onClick={handleClose}>
         Close
