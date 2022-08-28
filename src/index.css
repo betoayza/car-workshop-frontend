@@ -42,6 +42,8 @@ h3 {
 
 img {
   border-radius: 1rem;
+  max-width: 100vh;
+  height: auto;
 }
 
 label {

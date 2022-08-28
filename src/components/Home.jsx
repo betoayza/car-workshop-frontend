@@ -4,8 +4,8 @@ import ferrari from "../img/ferrari.jpg";
 const Home = () => {
   return (
     <div>
-      <h2>Super Car for Admin</h2>
-      <img src={ferrari} alt="Ferrari" width="500px" height="400" />
+      <h2>For Admins</h2>
+      <img src={ferrari} alt="Ferrari" />
     </div>
   );
 };
