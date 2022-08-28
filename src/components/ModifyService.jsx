@@ -4,13 +4,13 @@ import { API } from "../api/api";
 
 export const ModifyService = ({ code, setModal, setModalEditService }) => {
   const [service, setService] = useState(null);
-  const [form, setForm] = useState(initialForm);
+  const [form, setForm] = useState({});
   const [updated, setUpdated] = useState(false);
 
   useEffect(() => {
     const getService = async () => {
       const options = {
-        url: `${API}/services/search`,
+        url: `${API}/services/search/one`,
 
         headers: {
           "Content-Type": "application/json",

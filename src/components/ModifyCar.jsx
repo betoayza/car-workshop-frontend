@@ -10,7 +10,7 @@ const ModifyCar = ({ code, setModal, setModalCarEdit }) => {
   useEffect(() => {
     const searchCar = async () => {
       const options = {
-        url: `${API}/cars/search`,
+        url: `${API}/cars/search/one`,
         headers: {
           "Content-Type": "application/json",
           "Access-Control-Allow-Origin": "*",

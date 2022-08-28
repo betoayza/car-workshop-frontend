@@ -10,7 +10,7 @@ const ModifyClient = ({ code, setModal, setModalEdit }) => {
   useEffect(() => {
     const getClient = async () => {
       const options = {
-        url: `${API}/clients/search`,
+        url: `${API}/clients/search/one`,
 
         headers: {
           "Content-Type": "application/json",
