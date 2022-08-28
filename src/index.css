@@ -11,8 +11,13 @@ body {
 
 div {
   /* border: solid 2px; */
-  margin: 0 auto;
-  width: 100%;
+  margin: 0 auto;  
+}
+
+.add-update-div { 
+  display: grid;
+  place-items: center;
+  max-height: 100vh;
 }
 
 form {

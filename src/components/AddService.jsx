@@ -74,9 +74,9 @@ const AddService = ({ setModal, setModalAddService }) => {
       </button>
     </>
   ) : (
-    <>
+    <div className={"add-update-div"}>
       <h2> Add Service: </h2>
-      <div className="form-group w-25">
+      <div>
         <form onSubmit={handleSubmit}>
           <div className="input-group mb-2">
             <input
@@ -174,7 +174,7 @@ const AddService = ({ setModal, setModalAddService }) => {
           </button>
         </form>
       </div>
-    </>
+    </div>
   );
 };
 

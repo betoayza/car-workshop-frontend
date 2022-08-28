@@ -2,8 +2,17 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { API } from "../api/api";
 
+const initialForm = {
+  code: "",
+  patent: "",
+  brand: "",
+  model: "",
+  year: "",
+  clientCode: ""
+}
+
 const ModifyCar = ({ code, setModal, setModalCarEdit }) => {
-  const [form, setForm] = useState({});
+  const [form, setForm] = useState(initialForm);
   const [patentError, setPatentError] = useState(false);
   const [updated, setUpdated] = useState(false);
 
@@ -89,9 +98,9 @@ const ModifyCar = ({ code, setModal, setModalCarEdit }) => {
       </button>
     </>
   ) : (
-    <div>
+    <div className={"add-update-div"}>
       <h2>Update Car:</h2>
-      <div className="form-group w-25">
+      <div>
         <form onSubmit={handleUpdate}>
           <label htmlFor="code">Code:</label>
           <div className="input-group mb-3">

@@ -2,9 +2,18 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { API } from "../api/api";
 
+const initialForm = {
+  code: "",
+  date: "",
+  amount: "",
+  carCode: "",
+  work: "",
+  carKms: "",
+};
+
 export const ModifyService = ({ code, setModal, setModalEditService }) => {
   const [service, setService] = useState(null);
-  const [form, setForm] = useState({});
+  const [form, setForm] = useState(initialForm);
   const [updated, setUpdated] = useState(false);
 
   useEffect(() => {
@@ -40,7 +49,7 @@ export const ModifyService = ({ code, setModal, setModalEditService }) => {
     setModal(false);
     setModalEditService(false);
     setService(null);
-    setUpdated(false);    
+    setUpdated(false);
   };
 
   //---------
@@ -72,7 +81,7 @@ export const ModifyService = ({ code, setModal, setModalEditService }) => {
       })
       .catch((error) => {
         console.error(error);
-      });   
+      });
   };
 
   return updated ? (
@@ -85,9 +94,9 @@ export const ModifyService = ({ code, setModal, setModalEditService }) => {
   ) : (
     <>
       {service && (
-        <div>
+        <div className={"add-update-div"}>
           <h1>Edit Service:</h1>
-          <div className="form-group w-25">
+          <div>
             <form onSubmit={handleSubmit2}>
               <label htmlFor="amount">Code:</label>
               <div className="input-group mb-2">

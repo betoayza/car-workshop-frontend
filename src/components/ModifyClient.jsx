@@ -2,8 +2,18 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { API } from "../api/api";
 
+const initialForm = {
+  code: "",
+  id: "",
+  name: "",
+  surname: "",
+  email: "",
+  phone: "",
+  status: "Active",
+};
+
 const ModifyClient = ({ code, setModal, setModalEdit }) => {
-  const [form, setForm] = useState({});
+  const [form, setForm] = useState(initialForm);
   const [client, setClient] = useState(null);
   const [updated, setUpdated] = useState(false);
 
@@ -73,8 +83,8 @@ const ModifyClient = ({ code, setModal, setModalEdit }) => {
       })
       .catch((error) => {
         console.error(error);
-      });    
-  };  
+      });
+  };
 
   return updated ? (
     <>
@@ -86,9 +96,9 @@ const ModifyClient = ({ code, setModal, setModalEdit }) => {
   ) : (
     <>
       {client && (
-        <div>
+        <div className={"add-update-div"}>
           <h2>Modify Client:</h2>
-          <div className="form-group w-25">
+          <div>
             <form onSubmit={handleSubmit2}>
               <label htmlFor="code">Code:</label>
               <div className="input-group mb-3">
@@ -185,7 +195,7 @@ const ModifyClient = ({ code, setModal, setModalEdit }) => {
 
               <button className="btn btn-success" type="submit">
                 Update
-              </button>              
+              </button>
               <button
                 className="btn btn-danger"
                 type="button"
