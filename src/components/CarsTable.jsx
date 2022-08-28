@@ -94,7 +94,7 @@ const CarsTable = ({ cars, setCars, showAddAndSearch = true }) => {
         <SearchClient
           code={clientCode}
           setModal={setModal}
-          setModalSearchClient={false}
+          setModalSearchClient={setModalSearchClient}
         />
       )}
       {modalReAddCar && (
