@@ -38,12 +38,12 @@ const SearchCar = ({ code, setModal, setModalSearchCar }) => {
 
   return (
     car && (
-      <>
+      <div className={"container"}>
         <CarsTable cars={car} setCars={setCar} showAddAndSearch={false} />
         <button className={"btn btn-danger"} onClick={handleClose}>
           Close
         </button>
-      </>
+      </div>
     )
   );
 };

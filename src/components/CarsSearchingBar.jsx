@@ -68,12 +68,12 @@ export const CarsSearchingBar = ({
       )}
 
       {cars && term !== "" && (
-        <>
+        <div className={"container"}>
           <CarsTable cars={cars} setCars={setCars} showAddAndSearch={false} />
           <button className={"btn btn-danger"} onClick={handleClose}>
             Close
           </button>
-        </>
+        </div>
       )}
     </div>
   );

@@ -8,7 +8,11 @@ import { DeleteService } from "./DeleteService";
 import AddService from "./AddService";
 import { ServicesSearchingBar } from "./ServicesSearchingBar";
 
-export const ServicesTable = ({ services, setServices, showAddAndSearch = true }) => {
+export const ServicesTable = ({
+  services,
+  setServices,
+  showAddAndSearch = true,
+}) => {
   const [carCode, setCarCode] = useState(null);
   const [modal, setModal] = useState(false);
   const [modalSearchCar, setModalSearchCar] = useState(false);
@@ -120,8 +124,9 @@ export const ServicesTable = ({ services, setServices, showAddAndSearch = true }
       {services.length === 1 ? <h2>Service:</h2> : <h2>Services:</h2>}
       <div className={"table-responsive"}>
         <table
-          id="services-table"
-          className="table table-dark table-striped table-hover border-success"
+          className={
+            "table table-dark table-striped table-hover border-success"
+          }
         >
           <thead>
             <tr>
@@ -155,4 +160,3 @@ export const ServicesTable = ({ services, setServices, showAddAndSearch = true }
     </div>
   );
 };
-

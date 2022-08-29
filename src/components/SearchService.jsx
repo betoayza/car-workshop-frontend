@@ -39,7 +39,7 @@ const SearchService = ({ code, setModal, setModalSearchService }) => {
   };
 
   return service ? (
-    <>
+    <div className={"container"}>
       <ServicesTable
         services={service}
         setServices={setService}
@@ -49,7 +49,7 @@ const SearchService = ({ code, setModal, setModalSearchService }) => {
       <button className="btn btn-danger" type="reset" onClick={handleClose}>
         Close
       </button>
-    </>
+    </div>
   ) : (
     <>
       <h3>Service not found :(</h3>

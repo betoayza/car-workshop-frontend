@@ -38,7 +38,7 @@ const SearchClient = ({ code, setModal, setModalSearchClient }) => {
   };
 
   return client ? (
-    <>
+    <div className={"container"}>
       <ClientsTable
         clients={client}
         setClients={setClient}
@@ -47,7 +47,7 @@ const SearchClient = ({ code, setModal, setModalSearchClient }) => {
       <button className="btn btn-danger" onClick={handleClose}>
         Close
       </button>
-    </>
+    </div>
   ) : (
     <>
       <h3>Not found :(</h3>

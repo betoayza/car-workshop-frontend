@@ -121,7 +121,7 @@ const CarsTable = ({ cars, setCars, showAddAndSearch = true }) => {
 
       {cars.length === 1 ? <h2>Car:</h2> : <h2>Cars:</h2>}
       <div className={"table-responsive"}>
-        <table className="table table-dark table-striped table-hover border-info">
+        <table className={"table table-dark table-striped table-hover border-info"}>
           <thead>
             <tr>
               <th scope="col">Code</th>

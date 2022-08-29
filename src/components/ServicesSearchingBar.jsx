@@ -68,7 +68,7 @@ export const ServicesSearchingBar = ({
       )}
 
       {services && term !== "" && (
-        <>
+        <div className={"container"}>
           <ServicesTable
             services={services}
             setServices={setServices}
@@ -77,7 +77,7 @@ export const ServicesSearchingBar = ({
           <button className={"btn btn-danger"} onClick={handleClose}>
             Close
           </button>
-        </>
+        </div>
       )}
     </div>
   );
