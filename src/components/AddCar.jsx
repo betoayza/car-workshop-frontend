@@ -83,7 +83,7 @@ const AddCar = ({ setModal, setModalAddCar }) => {
     </>
   ) : (
     <div className={"add-update-div"}>
-      <h2> Add car: </h2>
+      <h2>Add car:</h2>
       <div>
         <form onSubmit={handleSubmit}>
           <div className="input-group mb-2">

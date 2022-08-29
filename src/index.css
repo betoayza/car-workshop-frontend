@@ -11,7 +11,7 @@ body {
 
 div {
   /* border: solid 2px; */
-  margin: 0 auto;  
+  margin: 0 auto;   
 }
 
 .add-update-div { 
@@ -20,9 +20,13 @@ div {
   max-height: 100vh;
 }
 
-form {
+/* .searching-bar {
+  
+} */
+
+/* form {
   width: 100%;
-}
+} */
 
 h1 {
   color: lime;

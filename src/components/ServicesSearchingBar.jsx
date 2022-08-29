@@ -54,7 +54,7 @@ export const ServicesSearchingBar = ({
     <div id="search-service-div" className={"container-xxl"}>
       <input
         type={"text"}
-        className={"form-control w-25"}
+        className={"form-control w-100"}
         value={term}
         placeholder={"Search..."}
         onChange={handleChange}
