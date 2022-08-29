@@ -7,7 +7,11 @@ import ModifyClient from "./ModifyClient";
 import AddClient from "./AddClient";
 import { ClientsSearchingBar } from "./ClientsSearchingBar";
 
-export const ClientsTable = ({ clients, setClients, showAddAndSearch = true }) => {
+export const ClientsTable = ({
+  clients,
+  setClients,
+  showAddAndSearch = true,
+}) => {
   const [modalDeleteClient, setModalDeleteClient] = useState(false);
   const [modal, setModal] = useState(false);
   const [clientCode, setClientCode] = useState(null);
@@ -44,7 +48,7 @@ export const ClientsTable = ({ clients, setClients, showAddAndSearch = true }) =
     setModalAdd(true);
   };
 
-  const handleSearchClient=()=>{
+  const handleSearchClient = () => {
     setModal(true);
     setModalSearchClient(true);
   };
@@ -98,10 +102,7 @@ export const ClientsTable = ({ clients, setClients, showAddAndSearch = true }) =
 
       {clients.length === 1 ? <h2>Client:</h2> : <h2>Clients:</h2>}
       <div className={"table-responsive"}>
-        <table
-          id="users-table"
-          className="table table-dark table-striped table-hover border-danger"
-        >
+        <table className="table table-dark table-striped table-hover border-danger">
           <thead>
             <tr>
               <th scope="col">Code</th>

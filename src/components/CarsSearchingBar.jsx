@@ -50,7 +50,7 @@ export const CarsSearchingBar = ({
   };
 
   return (
-    <div className={"w-100 searching-bar-div"}>
+    <div className={"searching-bar-div"}>
       <input
         type={"text"}
         className={"form-control w-50"}
@@ -67,12 +67,14 @@ export const CarsSearchingBar = ({
       )}
 
       {cars && term !== "" && (
-        <div className={"container"}>
-          <CarsTable cars={cars} setCars={setCars} showAddAndSearch={false} />
+        <>
+          <div className={"searching-table-div table-responsive"}>
+            <CarsTable cars={cars} setCars={setCars} showAddAndSearch={false} />
+          </div>
           <button className={"btn btn-danger"} onClick={handleClose}>
             Close
           </button>
-        </div>
+        </>
       )}
     </div>
   );

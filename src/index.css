@@ -10,8 +10,7 @@ body {
 }
 
 div {
-  /* border: solid 2px; */
-  border-color: aqua;
+  border: solid 2px;
   margin: 0 auto;
 }
 
@@ -22,12 +21,18 @@ div {
 }
 
 .searching-bar-div {
-  /* border: solid 1px; */
-  border-color: coral;
+  border: solid 1px;
+  border-color: greenyellow;
   display: grid;
   place-items: center;
   max-height: 100vh;
-  min-width: 100vh;
+}
+
+.searching-table-div {
+  display: grid;
+  place-items: center;
+  border-color: cornflowerblue;
+  width: 100%;
 }
 
 h1 {
@@ -60,8 +65,4 @@ img {
 
 label {
   color: lime;
-}
-
-.input-search-bar {
-  width: 35px;
 }

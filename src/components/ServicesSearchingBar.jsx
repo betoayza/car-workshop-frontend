@@ -50,7 +50,7 @@ export const ServicesSearchingBar = ({
   };
 
   return (
-    <div className={"searching-bar-div w-100"}>
+    <div className={"searching-bar-div"}>
       <input
         type={"text"}
         className={"form-control w-50"}
@@ -67,16 +67,18 @@ export const ServicesSearchingBar = ({
       )}
 
       {services && term !== "" && (
-        <div className={"container"}>
-          <ServicesTable
-            services={services}
-            setServices={setServices}
-            showAddAndSearch={false}
-          />
+        <>
+          <div className={"searching-table-div table-responsive"}>
+            <ServicesTable
+              services={services}
+              setServices={setServices}
+              showAddAndSearch={false}
+            />
+          </div>
           <button className={"btn btn-danger"} onClick={handleClose}>
             Close
           </button>
-        </div>
+        </>
       )}
     </div>
   );
