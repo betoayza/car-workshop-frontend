@@ -35,6 +35,11 @@ div {
   width: 100%;
 }
 
+.single-table-div {  
+  max-width: 100vh;
+  border-color: darkorchid;
+}
+
 h1 {
   color: lime;
   font-family: monospace;
