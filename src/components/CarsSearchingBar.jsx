@@ -2,7 +2,6 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { API } from "../api/api";
 import CarsTable from "./CarsTable";
-import "./carsSearchingBar.css";
 
 export const CarsSearchingBar = ({
   cars,
@@ -51,10 +50,10 @@ export const CarsSearchingBar = ({
   };
 
   return (
-    <div id="search-car-div" className={"container-xxl"}>
+    <div className={"w-100 searching-bar-div"}>
       <input
         type={"text"}
-        className={"form-control w-100"}
+        className={"form-control w-50"}
         value={term}
         placeholder={"Search..."}
         onChange={handleChange}
