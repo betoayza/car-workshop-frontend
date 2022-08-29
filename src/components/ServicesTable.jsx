@@ -109,7 +109,7 @@ export const ServicesTable = ({
       )}
     </Modal>
   ) : (
-    <div>
+    <>
       {showAddAndSearch && (
         <>
           <button className="btn btn-success" onClick={handleAddService}>
@@ -157,6 +157,6 @@ export const ServicesTable = ({
           </tbody>
         </table>
       </div>
-    </div>
+    </>
   );
 };
