@@ -88,7 +88,7 @@ export const ClientsTable = ({
       )}
     </Modal>
   ) : (
-    <div>
+    <>
       {showAddAndSearch && (
         <>
           <button className={"btn btn-success"} onClick={handleAdd}>
@@ -102,7 +102,7 @@ export const ClientsTable = ({
 
       {clients.length === 1 ? <h2>Client:</h2> : <h2>Clients:</h2>}
       <div className={"table-responsive"}>
-        <table className="table table-dark table-striped table-hover border-danger">
+        <table className={"table table-dark table-striped table-hover border-danger"}>
           <thead>
             <tr>
               <th scope="col">Code</th>
@@ -131,6 +131,6 @@ export const ClientsTable = ({
           </tbody>
         </table>
       </div>
-    </div>
+    </>
   );
 };

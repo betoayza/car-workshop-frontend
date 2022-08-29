@@ -37,26 +37,21 @@ const SearchClient = ({ code, setModal, setModalSearchClient }) => {
     setClient(false);
   };
 
-  return client ? (
-    <>
-      <div className={"single-table-div table-responsive"}>
-        <ClientsTable
-          clients={client}
-          setClients={setClient}
-          showAddAndSearch={false}
-        />
-      </div>
-      <button className="btn btn-danger" onClick={handleClose}>
-        Close
-      </button>
-    </>
-  ) : (
-    <>
-      <h3>Not found :(</h3>
-      <button className="btn btn-danger" onClick={handleClose}>
-        Close
-      </button>
-    </>
+  return (
+    client && (
+      <>
+        <div className={"table-responsive single-table-div"}>
+          <ClientsTable
+            clients={client}
+            setClients={setClient}
+            showAddAndSearch={false}
+          />
+        </div>
+        <button className="btn btn-danger" onClick={handleClose}>
+          Close
+        </button>
+      </>     
+    )
   );
 };
 

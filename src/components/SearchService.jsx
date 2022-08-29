@@ -38,26 +38,21 @@ const SearchService = ({ code, setModal, setModalSearchService }) => {
     setService(null);
   };
 
-  return service ? (
-    <>
-      <div className={"single-table-div table-responsive"}>
-        <ServicesTable
-          services={service}
-          setServices={setService}
-          showAddAndSearch={false}
-        />
-      </div>
-      <button className="btn btn-danger" type="reset" onClick={handleClose}>
-        Close
-      </button>
-    </>
-  ) : (
-    <>
-      <h3>Service not found :(</h3>
-      <button className="btn btn-danger" type="reset" onClick={handleClose}>
-        Close
-      </button>
-    </>
+  return (
+    service && (
+      <>
+        <div className={"single-table-div table-responsive"}>
+          <ServicesTable
+            services={service}
+            setServices={setService}
+            showAddAndSearch={false}
+          />
+        </div>
+        <button className="btn btn-danger" type="reset" onClick={handleClose}>
+          Close
+        </button>
+      </>
+    )
   );
 };
 
