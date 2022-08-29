@@ -39,7 +39,7 @@ const SearchClient = ({ code, setModal, setModalSearchClient }) => {
 
   return client ? (
     <>
-      <div className={"single-table-div"}>
+      <div className={"single-table-div table-responsive"}>
         <ClientsTable
           clients={client}
           setClients={setClient}
