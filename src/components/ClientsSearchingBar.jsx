@@ -36,7 +36,7 @@ export const ClientsSearchingBar = ({
         .catch((error) => error);
     };
     if (term.length > 0) getClient();
-  }, [term]);
+  }, [term, clients]);
 
   const handleClose = () => {
     setModal(false);

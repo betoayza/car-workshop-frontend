@@ -36,7 +36,7 @@ export const ServicesSearchingBar = ({
         .catch((error) => error);
     };
     if (term.length > 0) getServices();
-  }, [term]);
+  }, [term, services]);
 
   const handleClose = () => {
     setModal(false);

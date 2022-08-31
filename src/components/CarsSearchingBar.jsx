@@ -36,7 +36,7 @@ export const CarsSearchingBar = ({
         .catch((error) => error);
     };
     if (term.length > 0) getCar();
-  }, [term]);
+  }, [term, cars]);
 
   const handleClose = () => {
     setModal(false);
