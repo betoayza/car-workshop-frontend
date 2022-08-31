@@ -48,7 +48,7 @@ export const ReAddCar = ({ code, clientCode, setModal, setModalReAddCar }) => {
     </>
   ) : (
     <>
-      <h3>Failed: client not found :(</h3>
+      <h3>Client not found :(</h3>
       <button className={"btn btn-danger"} onClick={handleClose}>
         Close
       </button>
