@@ -7,6 +7,8 @@ import AddCar from "./AddCar";
 import SearchClient from "./SearchClient";
 import { ReAddCar } from "./ReAddCar";
 import { CarsSearchingBar } from "./CarsSearchingBar";
+import { SelectCarLists } from "./selectCarLists";
+import CarsList1 from "./CarsList1";
 
 const CarsTable = ({ cars, setCars, showAddAndSearch = true }) => {
   const [clientCode, setClientCode] = useState(null);
@@ -19,6 +21,8 @@ const CarsTable = ({ cars, setCars, showAddAndSearch = true }) => {
   const [modalSearchClient, setModalSearchClient] = useState(false);
   const [modalReAddCar, setModalReAddCar] = useState(false);
   const [searchedCars, setSearchedCars] = useState(null);
+  const [modalSelected, setModalSelected] = useState(false);
+  const [carList, setCarList] = useState(null);
 
   if (!Array.isArray(cars)) {
     cars = [cars];
@@ -59,6 +63,12 @@ const CarsTable = ({ cars, setCars, showAddAndSearch = true }) => {
     setClientCode(clientCode);
   };
 
+  const handleSelect = (carList) => {
+    setModal(true);
+    setModalSelected(true);
+    setCarList(carList);
+  };
+
   return modal ? (
     <Modal>
       {modalCarEdit && (
@@ -87,7 +97,6 @@ const CarsTable = ({ cars, setCars, showAddAndSearch = true }) => {
             setModal={setModal}
             setModalSearchCar={setModalSearchCar}
           />
-          
         </>
       )}
       {modalSearchClient && (
@@ -105,6 +114,11 @@ const CarsTable = ({ cars, setCars, showAddAndSearch = true }) => {
           setModalReAddCar={setModalReAddCar}
         />
       )}
+      {modalSelected && (
+        <>
+          <CarsList1 setModal={setModal} setModalSelected={setModalSelected} />
+        </>
+      )}
     </Modal>
   ) : (
     <>
@@ -116,12 +130,15 @@ const CarsTable = ({ cars, setCars, showAddAndSearch = true }) => {
           <button className={"btn btn-primary"} onClick={handleSearchCar}>
             Search
           </button>
+          <SelectCarLists handleSelect={handleSelect} />
         </div>
       )}
 
       {cars.length === 1 ? <h2>Car:</h2> : <h2>Cars:</h2>}
       <div className={"table-responsive"}>
-        <table className={"table table-dark table-striped table-hover border-info"}>
+        <table
+          className={"table table-dark table-striped table-hover border-info"}
+        >
           <thead>
             <tr>
               <th scope="col">Code</th>

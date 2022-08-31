@@ -43,6 +43,15 @@ body {
   border-color: darkorchid;   */
 }
 
+.car-list-table-div {
+  display: grid;
+  place-content: center;
+  /* max-width: 100vh; */
+  width: 100%;
+  /* border: solid 1px;
+  border-color: darkorchid;   */
+}
+
 /* .father-single-table-div {
   display: grid;
   place-items: center;
