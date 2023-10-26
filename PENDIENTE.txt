@@ -1,0 +1,2 @@
+- En lista coches no hay reactividad:
+    - AllCars (emular en Clientes y Servicios) => usar setInterval

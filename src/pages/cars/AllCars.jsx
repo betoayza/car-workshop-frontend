@@ -4,29 +4,54 @@ import CarsTable from "../../components/container/CarsTable";
 import { Loading } from "../../components/pure/Loading";
 
 export const AllCars = () => {
-  const [cars, setCars] = useState(null);
+  const [cars, setCars] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const getAllCars = async () => {
-      const options = {       
+      const options = {
         timeout: 3000,
       };
 
-      await axios
-        .get(`${import.meta.env.VITE_API}/cars/all`, options)
-        .then((res) => {
-          if (res.data) {
-            setCars(res.data);
-          } else return;
-        })
-        .catch((error) => error);
+      try {
+        const response = await axios.get(
+          `${import.meta.env.VITE_API}/cars/all`,
+          options
+        );
+
+        if (response.data) setCars(response.data);
+        else {
+          setError("Invalid response data");
+        }
+      } catch (error) {
+        setError("Couldn't get data");
+      } finally {
+        setIsLoading(false);
+      }
     };
+    // execute one time inititally
     getAllCars();
-  }, [cars]);
+    // execute every 5 seconds
+    const interval = setInterval(() => {
+      getAllCars();
+    }, 5000);
+
+    return () => {
+      clearInterval(interval);
+    };
+  }, []);
+
+  if (isLoading) return <Loading />;
+  if (error) <div>Error: {error}</div>;
 
   return (
     <div>
-      {cars ? <CarsTable cars={cars} setCars={setCars} /> : <Loading />}
+      {cars.length ? (
+        <CarsTable cars={cars} setCars={setCars} />
+      ) : (
+        <div>No cars available :(</div>
+      )}
     </div>
   );
 };

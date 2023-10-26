@@ -4,7 +4,9 @@ import { ServicesTable } from "../../components/container/ServicesTable";
 import { Loading } from "../../components/pure/Loading";
 
 export const AllServices = () => {
-  const [services, setServices] = useState(null);
+  const [services, setServices] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const getAllServices = async () => {
@@ -18,24 +20,40 @@ export const AllServices = () => {
         timeout: 3000,
       };
 
-      await axios
-        .get(`${import.meta.env.VITE_API}/services/all`, options)
-        .then((res) => {
-          if (res.data) {
-            setServices(res.data);
-          } else alert("No services yet :(");
-        })
-        .catch((error) => error);
+      try {
+        await axios
+          .get(`${import.meta.env.VITE_API}/services/all`, options)
+          .then((res) => {
+            if (res.data) {
+              setServices(res.data);
+            } else alert("No services yet :(");
+          })
+          .catch((error) => error);
+      } catch (error) {
+        setError("Couldn't get services list :(");
+      } finally {
+        setIsLoading(false);
+      }
     };
+    //execute initally
     getAllServices();
-  }, [services]);
+    //execute every 5 seconds
+    const interval = setInterval(() => {
+      getAllServices();
+    }, 5000);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  if (isLoading) return <Loading />;
+  if (error) return <div>Error: {error}</div>;
 
   return (
     <div>
-      {services ? (
+      {services.length ? (
         <ServicesTable services={services} setServices={setServices} />
       ) : (
-        <Loading />
+        <div>No services available :(</div>
       )}
     </div>
   );

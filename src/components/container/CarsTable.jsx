@@ -22,7 +22,7 @@ const CarsTable = ({ cars, setCars, showAddAndSearch = true }) => {
   const [modalReAddCar, setModalReAddCar] = useState(false);
   const [searchedCars, setSearchedCars] = useState(null);
   const [modalSelected, setModalSelected] = useState(false);
-  const [carList, setCarList] = useState(null);
+  // const [carList, setCarList] = useState(null);
 
   if (!Array.isArray(cars)) {
     cars = [cars];

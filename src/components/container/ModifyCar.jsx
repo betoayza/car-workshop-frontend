@@ -13,8 +13,10 @@ const initialForm = {
 const ModifyCar = ({ code, setModal, setModalCarEdit }) => {
   const [form, setForm] = useState(initialForm);
   const [patentError, setPatentError] = useState(false);
-  const [updated, setUpdated] = useState(false);
+  const [isUpdated, setUpdated] = useState(false);
+  const [error, setError] = useState(null);
 
+  // GET car data to fill form
   useEffect(() => {
     const searchCar = async () => {
       const options = {
@@ -29,12 +31,12 @@ const ModifyCar = ({ code, setModal, setModalCarEdit }) => {
         params: { code },
       };
 
-      await axios
-        .request(options)
-        .then((res) => {
-          if (res.data) setForm(res.data);
-        })
-        .catch((error) => error);
+      try {
+        const response = await axios.request(options);
+        if (response.data) setForm(response.data);
+      } catch (error) {
+        setError("Couldn't get car data :(");
+      }
     };
     searchCar();
   }, []);
@@ -78,7 +80,7 @@ const ModifyCar = ({ code, setModal, setModalCarEdit }) => {
   const handleBlur = () => {
     let regExp = new RegExp("^[A-Z]{3} [0-9]{3}$");
     let match = regExp.test(form.patent);
-    
+
     if (match) {
       setPatentError(false);
     } else {
@@ -87,13 +89,15 @@ const ModifyCar = ({ code, setModal, setModalCarEdit }) => {
     }
   };
 
-  return updated ? (
+  return isUpdated ? (
     <>
       <h2>Update succesful!</h2>
       <button className="btn btn-danger" type="reset" onClick={handleClose}>
         Close
       </button>
     </>
+  ) : error ? (
+    <div>Error: {error}</div>
   ) : (
     <div className={"add-update-div"}>
       <h2>Update Car:</h2>

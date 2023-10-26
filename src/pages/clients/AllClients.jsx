@@ -4,8 +4,11 @@ import { ClientsTable } from "../../components/container/ClientsTable";
 import { Loading } from "../../components/pure/Loading";
 
 export const AllClients = () => {
-  const [clients, setClients] = useState(null);
+  const [clients, setClients] = useState([]);
+  const [error, setError] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
 
+  // GET all clients
   useEffect(() => {
     const getAllClients = async () => {
       const options = {
@@ -18,25 +21,36 @@ export const AllClients = () => {
         timeout: 3000,
       };
 
-      await axios
-        .get(`${import.meta.env.VITE_API}/clients/all`, options)
-        .then((res) => {
-          if (res.data) {
-            setClients(res.data);
-          } else alert("No clients yet :(");
-        })
-        .catch((error) => error);
-    };
-    getAllClients();
-  }, [clients]);
+      try {
+        const response = await axios.get(
+          `${import.meta.env.VITE_API}/clients/all`,
+          options
+        );
 
-  return (
-    <div>
-      {clients ? (
-        <ClientsTable clients={clients} setClients={setClients} />
-      ) : (
-        <Loading />
-      )}
-    </div>
+        if (response.data) setClients(response.data);
+      } catch (error) {
+        setError("Couldn't get clients list :(");
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    // execute 1 time initially
+    getAllClients();
+    // execute every 6 seconds
+    const interval = setInterval(() => {
+      getAllClients();
+    }, 5000);
+
+    return () => {
+      clearInterval(interval);
+    };
+  }, []);
+
+  if (isLoading) return <Loading />;
+  if (error) return <div>Error: {error}</div>;
+  return clients.length ? (
+    <div>{<ClientsTable clients={clients} setClients={setClients} />}</div>
+  ) : (
+    <div>No clients available :(</div>
   );
 };
