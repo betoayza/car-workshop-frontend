@@ -29,7 +29,7 @@ export const AllClients = () => {
 
         if (response.data) setClients(response.data);
       } catch (error) {
-        setError("Couldn't get clients list :(");
+        setError(error);
       } finally {
         setIsLoading(false);
       }
@@ -51,6 +51,6 @@ export const AllClients = () => {
   return clients.length ? (
     <div>{<ClientsTable clients={clients} setClients={setClients} />}</div>
   ) : (
-    <div>No clients available :(</div>
+    <div>No clients yet :(</div>
   );
 };

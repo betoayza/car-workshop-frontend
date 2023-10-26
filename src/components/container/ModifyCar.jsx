@@ -13,7 +13,7 @@ const initialForm = {
 const ModifyCar = ({ code, setModal, setModalCarEdit }) => {
   const [form, setForm] = useState(initialForm);
   const [patentError, setPatentError] = useState(false);
-  const [isUpdated, setUpdated] = useState(false);
+  const [isUpdated, setIsUpdated] = useState(false);
   const [error, setError] = useState(null);
 
   // GET car data to fill form
@@ -64,7 +64,7 @@ const ModifyCar = ({ code, setModal, setModalCarEdit }) => {
     await axios
       .request(options)
       .then((res) => {
-        if (res.data) setUpdated(true);
+        if (res.data) setIsUpdated(true);
       })
       .catch((error) => {
         console.error(error);
@@ -74,7 +74,7 @@ const ModifyCar = ({ code, setModal, setModalCarEdit }) => {
   const handleClose = () => {
     setModal(false);
     setModalCarEdit(false);
-    setUpdated(false);
+    setIsUpdated(false);
   };
 
   const handleBlur = () => {

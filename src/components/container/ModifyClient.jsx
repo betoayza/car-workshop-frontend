@@ -14,8 +14,9 @@ const initialForm = {
 const ModifyClient = ({ code, setModal, setModalEdit }) => {
   const [form, setForm] = useState(initialForm);
   const [client, setClient] = useState(null);
-  const [updated, setUpdated] = useState(false);
+  const [isUpdated, setIsUpdated] = useState(false);
 
+  // GET client data to fill form
   useEffect(() => {
     const getClient = async () => {
       const options = {
@@ -31,15 +32,16 @@ const ModifyClient = ({ code, setModal, setModalEdit }) => {
         params: { code },
       };
 
-      await axios
-        .request(options)
-        .then((res) => {
-          if (res.data) {
-            setClient(res.data);
-            setForm(res.data);
-          }
-        })
-        .catch((error) => error);
+      try {
+        const response = await axios.request(options);
+
+        if (response.data) {
+          setClient(response.data);
+          setForm(response.data);
+        }
+      } catch (error) {
+        setError(error);
+      }
     };
     getClient();
   }, []);
@@ -48,7 +50,7 @@ const ModifyClient = ({ code, setModal, setModalEdit }) => {
     setModal(false);
     setModalEdit(false);
     setClient(null);
-    setUpdated(false);
+    setIsUpdated(false);
   };
 
   //---------
@@ -73,137 +75,139 @@ const ModifyClient = ({ code, setModal, setModalEdit }) => {
       data: form,
     };
 
-    await axios
-      .request(options)
-      .then((res) => {
-        console.log(res.data);
-        if (res.data) setUpdated(true);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+    try {
+      const response = await axios.request(options);
+
+      if (response.data) setIsUpdated(true);
+    } catch (error) {
+      setError(error);
+    }
   };
 
-  return updated ? (
+  return isUpdated ? (
     <>
-      <h3>Client updated :)</h3>
+      <h3>Client isUpdated :)</h3>
       <button className="btn btn-danger" type="reset" onClick={handleClose}>
         Close
       </button>
     </>
   ) : (
     <>
-      {client && (
-        <div className={"add-update-div"}>
-          <h2>Modify Client:</h2>
-          <div>
-            <form onSubmit={handleSubmit2}>
-              <label htmlFor="code">Code:</label>
-              <div className="input-group mb-3">
-                <input
-                  type="text"
-                  className="form-control"
-                  name="code"
-                  id="code"
-                  value={form.code}
-                  disabled
-                  readOnly
-                />
-              </div>
+      {error ? (
+        <div>Error: {error}</div>
+      ) : (
+        client && (
+          <div className={"add-update-div"}>
+            <h2>Modify Client:</h2>
+            <div>
+              <form onSubmit={handleSubmit2}>
+                <label htmlFor="code">Code:</label>
+                <div className="input-group mb-3">
+                  <input
+                    type="text"
+                    className="form-control"
+                    name="code"
+                    id="code"
+                    value={form.code}
+                    disabled
+                    readOnly
+                  />
+                </div>
 
-              <label htmlFor="id">ID:</label>
-              <div className="input-group mb-3">
-                <input
-                  type="text"
-                  className="form-control"
-                  name="id"
-                  id="id"
-                  placeholder="ID..."
-                  value={form.id}
-                  onChange={handleChange2}
-                  required
-                />
-              </div>
+                <label htmlFor="id">ID:</label>
+                <div className="input-group mb-3">
+                  <input
+                    type="text"
+                    className="form-control"
+                    name="id"
+                    id="id"
+                    placeholder="ID..."
+                    value={form.id}
+                    onChange={handleChange2}
+                    required
+                  />
+                </div>
 
-              <label htmlFor="name">Name:</label>
-              <div className="input-group mb-3">
-                <input
-                  type="text"
-                  className="form-control"
-                  name="name"
-                  id="name"
-                  placeholder="Name..."
-                  value={form.name}
-                  onChange={handleChange2}
-                  required
-                />
-              </div>
+                <label htmlFor="name">Name:</label>
+                <div className="input-group mb-3">
+                  <input
+                    type="text"
+                    className="form-control"
+                    name="name"
+                    id="name"
+                    placeholder="Name..."
+                    value={form.name}
+                    onChange={handleChange2}
+                    required
+                  />
+                </div>
 
-              <label htmlFor="surname">Surname:</label>
-              <div className="input-group mb-3">
-                <input
-                  type="text"
-                  className="form-control"
-                  name="surname"
-                  id="surname"
-                  placeholder="Surname..."
-                  value={form.surname}
-                  onChange={handleChange2}
-                  required
-                />
-              </div>
+                <label htmlFor="surname">Surname:</label>
+                <div className="input-group mb-3">
+                  <input
+                    type="text"
+                    className="form-control"
+                    name="surname"
+                    id="surname"
+                    placeholder="Surname..."
+                    value={form.surname}
+                    onChange={handleChange2}
+                    required
+                  />
+                </div>
 
-              <label htmlFor="email">Email:</label>
-              <div className="input-group mb-3">
-                <input
-                  type="email"
-                  className="form-control"
-                  name="email"
-                  id="email"
-                  placeholder="Email..."
-                  value={form.email}
-                  onChange={handleChange2}
-                  required
-                />
-              </div>
+                <label htmlFor="email">Email:</label>
+                <div className="input-group mb-3">
+                  <input
+                    type="email"
+                    className="form-control"
+                    name="email"
+                    id="email"
+                    placeholder="Email..."
+                    value={form.email}
+                    onChange={handleChange2}
+                    required
+                  />
+                </div>
 
-              <label htmlFor="phone">Phone:</label>
-              <div className="input-group mb-3">
-                <input
-                  type="tel"
-                  className="form-control"
-                  name="phone"
-                  id="phone"
-                  placeholder="Phone..."
-                  value={form.phone}
-                  onChange={handleChange2}
-                  required
-                />
-              </div>
+                <label htmlFor="phone">Phone:</label>
+                <div className="input-group mb-3">
+                  <input
+                    type="tel"
+                    className="form-control"
+                    name="phone"
+                    id="phone"
+                    placeholder="Phone..."
+                    value={form.phone}
+                    onChange={handleChange2}
+                    required
+                  />
+                </div>
 
-              <div className="input-group mb-3">
-                <input
-                  type="hidden"
-                  className="form-control"
-                  name="status"
-                  value={form.status}
-                  required
-                />
-              </div>
+                <div className="input-group mb-3">
+                  <input
+                    type="hidden"
+                    className="form-control"
+                    name="status"
+                    value={form.status}
+                    required
+                  />
+                </div>
 
-              <button className="btn btn-success" type="submit">
-                Update
-              </button>
-              <button
-                className="btn btn-danger"
-                type="button"
-                onClick={handleClose}
-              >
-                Close
-              </button>
-            </form>
+                <button className="btn btn-success" type="submit">
+                  Update
+                </button>
+                <button
+                  className="btn btn-danger"
+                  type="button"
+                  onClick={handleClose}
+                >
+                  Close
+                </button>
+              </form>
+            </div>
           </div>
-        </div>
+        )
       )}
     </>
   );

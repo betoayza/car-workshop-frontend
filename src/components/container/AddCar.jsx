@@ -14,8 +14,8 @@ const initialForm = {
 const AddCar = ({ setModal, setModalAddCar }) => {
   const [form, setForm] = useState(initialForm);
   const [patentError, setPatentError] = useState(false);
-  const [updated, setUpdated] = useState(false);
-  const [error, setError] = useState(false);
+  const [isUpdated, setIsUpdated] = useState(false);
+  const [error, setError] = useState(null);
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -37,14 +37,12 @@ const AddCar = ({ setModal, setModalAddCar }) => {
       data: form,
     };
 
-    await axios
-      .request(options)
-      .then((res) => {
-        console.log(res.data);
-        if (res.data) setUpdated(true);
-        else setError(true);
-      })
-      .catch((error) => error);
+    try {
+      const response = await axios.request(options);
+      if (response.data) setIsUpdated(true);
+    } catch (error) {
+      setError(error);
+    }
   };
 
   const handleClose = (e) => {
@@ -73,7 +71,7 @@ const AddCar = ({ setModal, setModalAddCar }) => {
         Close
       </button>
     </>
-  ) : updated ? (
+  ) : isUpdated ? (
     <>
       <h3>Car added ;)</h3>
       <button className="btn btn-danger" type="reset" onClick={handleClose}>

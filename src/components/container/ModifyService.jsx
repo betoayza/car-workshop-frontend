@@ -13,8 +13,10 @@ const initialForm = {
 export const ModifyService = ({ code, setModal, setModalEditService }) => {
   const [service, setService] = useState(null);
   const [form, setForm] = useState(initialForm);
-  const [updated, setUpdated] = useState(false);
+  const [isUpdated, setIsUpdated] = useState(false);
+  const [error, setError] = useState(null);
 
+  // GET service data to fill form
   useEffect(() => {
     const getService = async () => {
       const options = {
@@ -30,15 +32,16 @@ export const ModifyService = ({ code, setModal, setModalEditService }) => {
         params: { code },
       };
 
-      await axios
-        .request(options)
-        .then((res) => {
-          if (res.data) {
-            setService(res.data);
-            setForm(res.data);
-          }
-        })
-        .catch((error) => error);
+      try {
+        const response = await axios.request(options);
+
+        if (response.data) {
+          setService(response.data);
+          setForm(response.data);
+        }
+      } catch (error) {
+        setError(error);
+      }
     };
     getService();
   }, []);
@@ -47,12 +50,12 @@ export const ModifyService = ({ code, setModal, setModalEditService }) => {
     setModal(false);
     setModalEditService(false);
     setService(null);
-    setUpdated(false);
+    setIsUpdated(false);
   };
 
   //---------
   //Handle Form
-  const handleChange2 = (e) => {
+  const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
@@ -72,119 +75,122 @@ export const ModifyService = ({ code, setModal, setModalEditService }) => {
       data: form,
     };
 
-    await axios
-      .request(options)
-      .then((res) => {
-        if (res.data) setUpdated(true);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+    try {
+      const response = await axios.request(options);
+
+      if (response.data) setIsUpdated(true);
+    } catch (error) {
+      setError(error);
+    }
   };
 
-  return updated ? (
+  return isUpdated ? (
     <>
-      <h3>Service updated ;)</h3>
+      <h3>Service isUpdated ;)</h3>
       <button className="btn btn-danger" type="button" onClick={handleClose}>
         Close
       </button>
     </>
   ) : (
     <>
-      {service && (
-        <div className={"add-update-div"}>
-          <h1>Edit Service:</h1>
-          <div>
-            <form onSubmit={handleSubmit2}>
-              <label htmlFor="amount">Code:</label>
-              <div className="input-group mb-2">
-                <input
-                  type="text"
-                  className="form-control"
-                  name="code"
-                  id="code"
-                  value={form.code}
-                  disabled
-                  readOnly
-                />
-              </div>
-              <label htmlFor="amount">Date:</label>
-              <div className="input-group mb-3">
-                <input
-                  type="text"
-                  className="form-control"
-                  name="date"
-                  id="date"
-                  value={form.date}
-                  disabled
-                  readOnly
-                />
-              </div>
-              <label htmlFor="amount">Amount:</label>
-              <div className="input-group mb-3">
-                <input
-                  type="number"
-                  className="form-control"
-                  name="amount"
-                  id="amount"
-                  placeholder="Amount..."
-                  value={form.amount}
-                  onChange={handleChange2}
-                  required
-                />
-              </div>
-              <label htmlFor="carCode">Car code:</label>
-              <div className="input-group mb-3">
-                <input
-                  type="number"
-                  className="form-control"
-                  name="carCode"
-                  id="carCode"
-                  value={form.carCode}
-                  disabled
-                  readOnly
-                />
-              </div>
-              <label htmlFor="work">Work:</label>
-              <div className="input-group mb-3">
-                <input
-                  type="text"
-                  className="form-control"
-                  name="work"
-                  id="work"
-                  placeholder="Work..."
-                  value={form.work}
-                  onChange={handleChange2}
-                  required
-                />
-              </div>
-              <label htmlFor="carKms">Car Kms:</label>
-              <div className="input-group mb-3">
-                <input
-                  type="number"
-                  className="form-control"
-                  name="carKms"
-                  id="carKms"
-                  placeholder="Car Kms..."
-                  value={form.carKms}
-                  onChange={handleChange2}
-                  required
-                />
-              </div>
+      {error ? (
+        <div>Error: {error}</div>
+      ) : (
+        service && (
+          <div className={"add-update-div"}>
+            <h1>Edit Service:</h1>
+            <div>
+              <form onSubmit={handleSubmit2}>
+                <label htmlFor="amount">Code:</label>
+                <div className="input-group mb-2">
+                  <input
+                    type="text"
+                    className="form-control"
+                    name="code"
+                    id="code"
+                    value={form.code}
+                    disabled
+                    readOnly
+                  />
+                </div>
+                <label htmlFor="amount">Date:</label>
+                <div className="input-group mb-3">
+                  <input
+                    type="text"
+                    className="form-control"
+                    name="date"
+                    id="date"
+                    value={form.date}
+                    disabled
+                    readOnly
+                  />
+                </div>
+                <label htmlFor="amount">Amount:</label>
+                <div className="input-group mb-3">
+                  <input
+                    type="number"
+                    className="form-control"
+                    name="amount"
+                    id="amount"
+                    placeholder="Amount..."
+                    value={form.amount}
+                    onChange={handleChange}
+                    required
+                  />
+                </div>
+                <label htmlFor="carCode">Car code:</label>
+                <div className="input-group mb-3">
+                  <input
+                    type="number"
+                    className="form-control"
+                    name="carCode"
+                    id="carCode"
+                    value={form.carCode}
+                    disabled
+                    readOnly
+                  />
+                </div>
+                <label htmlFor="work">Work:</label>
+                <div className="input-group mb-3">
+                  <input
+                    type="text"
+                    className="form-control"
+                    name="work"
+                    id="work"
+                    placeholder="Work..."
+                    value={form.work}
+                    onChange={handleChange}
+                    required
+                  />
+                </div>
+                <label htmlFor="carKms">Car Kms:</label>
+                <div className="input-group mb-3">
+                  <input
+                    type="number"
+                    className="form-control"
+                    name="carKms"
+                    id="carKms"
+                    placeholder="Car Kms..."
+                    value={form.carKms}
+                    onChange={handleChange}
+                    required
+                  />
+                </div>
 
-              <button className="btn btn-primary" type="submit">
-                Update
-              </button>
-              <button
-                className="btn btn-danger"
-                type="button"
-                onClick={handleClose}
-              >
-                Close
-              </button>
-            </form>
+                <button className="btn btn-primary" type="submit">
+                  Update
+                </button>
+                <button
+                  className="btn btn-danger"
+                  type="button"
+                  onClick={handleClose}
+                >
+                  Close
+                </button>
+              </form>
+            </div>
           </div>
-        </div>
+        )
       )}
     </>
   );

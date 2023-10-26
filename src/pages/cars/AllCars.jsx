@@ -25,7 +25,7 @@ export const AllCars = () => {
           setError("Invalid response data");
         }
       } catch (error) {
-        setError("Couldn't get data");
+        setError(error);
       } finally {
         setIsLoading(false);
       }
@@ -50,7 +50,7 @@ export const AllCars = () => {
       {cars.length ? (
         <CarsTable cars={cars} setCars={setCars} />
       ) : (
-        <div>No cars available :(</div>
+        <div>No cars yet :(</div>
       )}
     </div>
   );

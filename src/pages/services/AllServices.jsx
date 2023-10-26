@@ -21,16 +21,14 @@ export const AllServices = () => {
       };
 
       try {
-        await axios
-          .get(`${import.meta.env.VITE_API}/services/all`, options)
-          .then((res) => {
-            if (res.data) {
-              setServices(res.data);
-            } else alert("No services yet :(");
-          })
-          .catch((error) => error);
+        const response = await axios.get(
+          `${import.meta.env.VITE_API}/services/all`,
+          options
+        );
+
+        if (response.data) setServices(response.data);
       } catch (error) {
-        setError("Couldn't get services list :(");
+        setError(error);
       } finally {
         setIsLoading(false);
       }
@@ -53,7 +51,7 @@ export const AllServices = () => {
       {services.length ? (
         <ServicesTable services={services} setServices={setServices} />
       ) : (
-        <div>No services available :(</div>
+        <div>No services yet :(</div>
       )}
     </div>
   );

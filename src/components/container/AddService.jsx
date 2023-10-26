@@ -14,7 +14,7 @@ const initialForm = {
 
 const AddService = ({ setModal, setModalAddService }) => {
   const [form, setForm] = useState(initialForm);
-  const [added, setAdded] = useState(false);
+  const [isAdded, setIsAdded] = useState(false);
   const [error, setError] = useState(false);
 
   const handleSubmit = async (e) => {
@@ -33,13 +33,12 @@ const AddService = ({ setModal, setModalAddService }) => {
       data: form,
     };
 
-    await axios
-      .request(options)
-      .then((res) => {
-        if (res.data) setAdded(true);
-        else setError(true);
-      })
-      .catch((error) => error);
+    try {
+      const response = await axios.request(options);
+      if (response.data) setIsAdded(true);
+    } catch (error) {
+      setError(true);
+    }
     handleClean();
   };
 
@@ -54,7 +53,7 @@ const AddService = ({ setModal, setModalAddService }) => {
   const handleClose = () => {
     setModal(false);
     setModalAddService(false);
-    setAdded(false);
+    setIsAdded(false);
   };
 
   return error ? (
@@ -64,7 +63,7 @@ const AddService = ({ setModal, setModalAddService }) => {
         Close
       </button>
     </>
-  ) : added ? (
+  ) : isAdded ? (
     <>
       <h3>Service added ;)</h3>
       <button className="btn btn-danger" type="button" onClick={handleClose}>

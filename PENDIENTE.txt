@@ -1,2 +1,2 @@
-- En lista coches no hay reactividad:
-    - AllCars (emular en Clientes y Servicios) => usar setInterval
+- mejorar el style de los errores en (cars, clients, services)
+- mejorar los awaits usando try catch (los "Adds" están terminados)

@@ -14,8 +14,8 @@ const initialForm = {
 const AddClient = ({ setModal, setModalAdd }) => {
   const [form, setForm] = useState(initialForm);
   const [idError, setIdError] = useState(false);
-  const [added, setAdded] = useState(false);
-  const [error, setError] = useState(false);
+  const [isAdded, setIsAdded] = useState(false);
+  const [error, setError] = useState(null);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -33,14 +33,13 @@ const AddClient = ({ setModal, setModalAdd }) => {
       data: form,
     };
 
-    await axios
-      .request(options)
-      .then((res) => {
-        console.log(res);
-        if (res.data) setAdded(true);
-        else setError(true);
-      })
-      .catch((error) => error);
+    try {
+      const response = await axios.request(options);
+
+      if (response.data) setIsAdded(true);
+    } catch (error) {
+      setError(true);
+    }
   };
 
   const handleChange = (e) => {
@@ -54,7 +53,7 @@ const AddClient = ({ setModal, setModalAdd }) => {
   const handleBlur = () => {
     let regExp = new RegExp("^[0-9]{8}$");
     let match = regExp.test(form.id);
-    
+
     if (match) {
       setIdError(false);
     } else {
@@ -66,7 +65,7 @@ const AddClient = ({ setModal, setModalAdd }) => {
   const handleClose = () => {
     setModal(false);
     setModalAdd(false);
-    setAdded(false);
+    setIsAdded(false);
   };
 
   return error ? (
@@ -76,7 +75,7 @@ const AddClient = ({ setModal, setModalAdd }) => {
         Close
       </button>
     </>
-  ) : added ? (
+  ) : isAdded ? (
     <>
       <h3>Client added ;)</h3>
       <button className="btn btn-danger" type="reset" onClick={handleClose}>
