@@ -91,7 +91,7 @@ const ModifyCar = ({ code, setModal, setModalCarEdit }) => {
 
   return isUpdated ? (
     <>
-      <h2>Update succesful!</h2>
+      <h2>Car updated ;)</h2>
       <button className="btn btn-danger" type="reset" onClick={handleClose}>
         Close
       </button>

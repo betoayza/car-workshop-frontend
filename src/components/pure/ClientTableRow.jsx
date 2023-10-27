@@ -7,7 +7,9 @@ export const ClientTableRow = ({
   handleEdit,
 }) => {
   return (
-    <tr>
+    <tr
+      style={client.status === "Active" ? { color: "white" } : { color: "red" }}
+    >
       <td>{client.code}</td>
       <td>{client.id}</td>
       <td>{client.name}</td>
@@ -17,14 +19,14 @@ export const ClientTableRow = ({
       <td>{client.status}</td>
       <td>
         <button
-          className={"btn btn-primary"}
+          className={"btn btn-outline-primary"}
           onClick={() => handleEdit(client.code)}
         >
           Edit
         </button>
         {client.status === "Inactive" && (
           <button
-            className={"btn btn-warning"}
+            className={"btn btn-outline-warning"}
             onClick={() => handleReAdd(client.code)}
           >
             Re Add
@@ -33,7 +35,7 @@ export const ClientTableRow = ({
 
         {client.status === "Active" && (
           <button
-            className={"btn btn-danger"}
+            className={"btn btn-outline-danger"}
             onClick={() => handleDelete(client.code)}
           >
             Delete

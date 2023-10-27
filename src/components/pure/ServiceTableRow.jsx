@@ -8,7 +8,11 @@ const ServiceTableRow = ({
   handleDelete,
 }) => {
   return (
-    <tr>
+    <tr
+      style={
+        service.status === "Active" ? { color: "white" } : { color: "red" }
+      }
+    >
       <td>{service.code}</td>
       <td>{service.date}</td>
       <td>{service.amount}</td>
@@ -16,7 +20,7 @@ const ServiceTableRow = ({
         {service.carCode}
         {"  "}
         <button
-          className="btn btn-light"
+          className="btn btn-outline-light"
           onClick={() => handleSearchCar(service.carCode)}
         >
           See
@@ -27,14 +31,14 @@ const ServiceTableRow = ({
       <td>{service.status}</td>
       <td>
         <button
-          className="btn btn-primary"
+          className="btn btn-outline-primary"
           onClick={() => handleEdit(service.code)}
         >
           Edit
         </button>
         {service.status === "Inactive" && (
           <button
-            className="btn btn-warning"
+            className="btn btn-outline-warning"
             onClick={() => handleReAdd(service.code)}
           >
             Re Add
@@ -42,7 +46,7 @@ const ServiceTableRow = ({
         )}
         {service.status === "Active" && (
           <button
-            className="btn btn-danger"
+            className="btn btn-outline-danger"
             onClick={() => handleDelete(service.code)}
           >
             Delete

@@ -112,10 +112,16 @@ export const ServicesTable = ({
     <>
       {showAddAndSearch && (
         <>
-          <button className="btn btn-success" onClick={handleAddService}>
+          <button
+            className="btn btn-outline-success"
+            onClick={handleAddService}
+          >
             Add
           </button>
-          <button className="btn btn-primary" onClick={handleSearchService}>
+          <button
+            className="btn btn-outline-primary"
+            onClick={handleSearchService}
+          >
             Search
           </button>
         </>
@@ -123,11 +129,7 @@ export const ServicesTable = ({
 
       {services.length === 1 ? <h2>Service:</h2> : <h2>Services:</h2>}
       <div className={"table-responsive"}>
-        <table
-          className={
-            "table table-dark table-striped table-hover border-success"
-          }
-        >
+        <table className={"table table-dark table-hover border-success"}>
           <thead>
             <tr>
               <th scope="col">Code</th>
@@ -141,19 +143,18 @@ export const ServicesTable = ({
             </tr>
           </thead>
           <tbody>
-            {services &&
-              services.map((service) => {
-                return (
-                  <ServiceTableRow
-                    key={service._id}
-                    service={service}
-                    handleSearchCar={handleSearchCar}
-                    handleEdit={handleEdit}
-                    handleReAdd={handleReAdd}
-                    handleDelete={handleDelete}
-                  />
-                );
-              })}
+            {services.map((service) => {
+              return (
+                <ServiceTableRow
+                  key={service._id}
+                  service={service}
+                  handleSearchCar={handleSearchCar}
+                  handleEdit={handleEdit}
+                  handleReAdd={handleReAdd}
+                  handleDelete={handleDelete}
+                />
+              );
+            })}
           </tbody>
         </table>
       </div>

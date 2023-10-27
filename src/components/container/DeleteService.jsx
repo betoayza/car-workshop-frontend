@@ -1,12 +1,9 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 
-export const DeleteService = ({
-  code,
-  setModal,
-  setModalDeleteService,
-}) => {
-  const [deleted, setDeleted] = useState(false);
+export const DeleteService = ({ code, setModal, setModalDeleteService }) => {
+  const [isDeleted, setIsDeleted] = useState(false);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const deleteService = async () => {
@@ -21,13 +18,16 @@ export const DeleteService = ({
         data: { code },
       };
 
-      await axios
-        .delete(`${import.meta.env.VITE_API}/services/delete`, options)
-        .then((res) => {
-          console.log(res.data);
-          if (res.data) setDeleted(true);
-        })
-        .catch((error) => error);
+      try {
+        const response = await axios.delete(
+          `${import.meta.env.VITE_API}/services/delete`,
+          options
+        );
+        if (response.data) setIsDeleted(true);
+        else return;
+      } catch (error) {
+        setError("Something went wrong :(");
+      }
     };
     deleteService();
   }, []);
@@ -35,11 +35,13 @@ export const DeleteService = ({
   const handleClose = () => {
     setModal(false);
     setModalDeleteService(false);
-    setDeleted(false);
+    setIsDeleted(false);
   };
 
-  return (
-    deleted && (
+  return error ? (
+    <div>Error: {error}</div>
+  ) : (
+    isDeleted && (
       <>
         <h3>Service deleted ;)</h3>
         <button className="btn btn-danger" type="button" onClick={handleClose}>

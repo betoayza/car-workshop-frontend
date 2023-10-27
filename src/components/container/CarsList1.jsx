@@ -4,7 +4,7 @@ import CarsTable from "./CarsTable";
 
 const CarsList1 = ({ setModal, setModalSelected }) => {
   const [cars, setCars] = useState(null);
-  const [error, setError] = useState(false);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const getList = async () => {
@@ -18,17 +18,19 @@ const CarsList1 = ({ setModal, setModalSelected }) => {
         timeout: 3000,
       };
 
-      await axios
-        .get(`${import.meta.env.VITE_API}/cars/search/lists/1`, options)
-        .then((res) => {
-          if (res.data) {
-            setCars(res.data);
-          } else setError(true);
-        })
-        .catch((error) => error);
+      try {
+        const response = await axios.get(
+          `${import.meta.env.VITE_API}/cars/search/lists/1`,
+          options
+        );
+
+        if (response.data) setCars(response.data);
+      } catch (error) {
+        setError("Cars not found :(");
+      }
     };
     getList();
-  }, [cars]);
+  }, []);
 
   const handleClose = () => {
     setModal(false);
@@ -37,7 +39,7 @@ const CarsList1 = ({ setModal, setModalSelected }) => {
 
   return error ? (
     <>
-      <h3>Cars not found :(</h3>
+      <h3>{error}</h3>
       <button className="btn btn-danger" type="reset" onClick={handleClose}>
         Close
       </button>

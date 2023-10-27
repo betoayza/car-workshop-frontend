@@ -5,7 +5,7 @@ export const Home = () => {
   return (
     <div className={"text-center"}>
       <h2>For Admins</h2>
-      <img src={ferrari} alt="Ferrari" />
+      <img className="round img-thumbnail w-auto" src={ferrari} alt="Ferrari" />
     </div>
   );
 };

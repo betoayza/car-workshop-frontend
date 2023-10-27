@@ -6,10 +6,10 @@ export const BaseLayout = () => {
   return (
     <div>
       <NavBar />
-      <main className="mb-5 text-center mt-3">
+      <main className="mb-3 text-center mt-3">
         <Outlet />
       </main>
-      <footer className={"text-center fixed-bottom"} style={{ color: "white" }}>
+      <footer className={"text-center"} style={{ color: "#fcc200" }}>
         @ 2023 betoayza | Copyright
       </footer>
     </div>

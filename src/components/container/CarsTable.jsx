@@ -124,10 +124,13 @@ const CarsTable = ({ cars, setCars, showAddAndSearch = true }) => {
     <>
       {showAddAndSearch && (
         <div>
-          <button className={"btn btn-success"} onClick={handleAddCar}>
+          <button className={"btn btn-outline-success"} onClick={handleAddCar}>
             Add
           </button>
-          <button className={"btn btn-primary"} onClick={handleSearchCar}>
+          <button
+            className={"btn btn-outline-primary"}
+            onClick={handleSearchCar}
+          >
             Search
           </button>
           <SelectCarLists handleSelect={handleSelect} />
@@ -136,9 +139,7 @@ const CarsTable = ({ cars, setCars, showAddAndSearch = true }) => {
 
       {cars.length === 1 ? <h2>Car:</h2> : <h2>Cars:</h2>}
       <div className={"table-responsive"}>
-        <table
-          className={"table table-dark table-striped table-hover border-info"}
-        >
+        <table className={"table table-dark table-hover border-info"}>
           <thead>
             <tr>
               <th scope="col">Code</th>
@@ -152,19 +153,18 @@ const CarsTable = ({ cars, setCars, showAddAndSearch = true }) => {
             </tr>
           </thead>
           <tbody>
-            {cars &&
-              cars.map((car) => {
-                return (
-                  <CarTableRow
-                    key={car._id}
-                    car={car}
-                    seeClient={seeClient}
-                    editCar={editCar}
-                    deleteCar={deleteCar}
-                    handleActivateCar={handleActivateCar}
-                  />
-                );
-              })}
+            {cars.map((car) => {
+              return (
+                <CarTableRow
+                  key={car._id}
+                  car={car}
+                  seeClient={seeClient}
+                  editCar={editCar}
+                  deleteCar={deleteCar}
+                  handleActivateCar={handleActivateCar}
+                />
+              );
+            })}
           </tbody>
         </table>
       </div>

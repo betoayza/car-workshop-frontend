@@ -86,7 +86,7 @@ export const ModifyService = ({ code, setModal, setModalEditService }) => {
 
   return isUpdated ? (
     <>
-      <h3>Service isUpdated ;)</h3>
+      <h3>Service updated ;)</h3>
       <button className="btn btn-danger" type="button" onClick={handleClose}>
         Close
       </button>

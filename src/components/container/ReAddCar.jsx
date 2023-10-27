@@ -2,12 +2,13 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 export const ReAddCar = ({ code, clientCode, setModal, setModalReAddCar }) => {
-  const [reAdded, setReAdded] = useState(false);
+  const [isReAdded, setIsReAdded] = useState(false);
+  const [error, setError] = useState(null);
 
   const handleClose = () => {
     setModal(false);
     setModalReAddCar(false);
-    setReAdded(false);
+    setIsReAdded(false);
   };
 
   useEffect(() => {
@@ -25,19 +26,20 @@ export const ReAddCar = ({ code, clientCode, setModal, setModalReAddCar }) => {
         data: { code, clientCode },
       };
 
-      await axios
-        .request(options)
-        .then((res) => {
-          if (res.data) setReAdded(true);
-        })
-        .catch((error) => {
-          console.error(error);
-        });
+      try {
+        const response = await axios.request(options);
+        if (response.data) setIsReAdded(true);
+        else return;
+      } catch (error) {
+        setError("Something went wrong :(");
+      }
     };
     reAddCar();
   }, []);
 
-  return reAdded ? (
+  return error ? (
+    <div>Error: {error}</div>
+  ) : isReAdded ? (
     <>
       <h3>Car re added ;)</h3>
       <button className={"btn btn-danger"} onClick={handleClose}>

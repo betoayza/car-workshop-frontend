@@ -91,10 +91,13 @@ export const ClientsTable = ({
     <div className={""}>
       {showAddAndSearch && (
         <>
-          <button className={"btn btn-success"} onClick={handleAdd}>
+          <button className={"btn btn-outline-success"} onClick={handleAdd}>
             Add
           </button>
-          <button className={"btn btn-primary"} onClick={handleSearchClient}>
+          <button
+            className={"btn btn-outline-primary"}
+            onClick={handleSearchClient}
+          >
             Search
           </button>
         </>
@@ -102,9 +105,7 @@ export const ClientsTable = ({
 
       {clients.length === 1 ? <h2>Client:</h2> : <h2>Clients:</h2>}
       <div className={"table-responsive"}>
-        <table
-          className={"table table-dark table-striped table-hover border-danger"}
-        >
+        <table className={"table table-dark table-hover border-danger"}>
           <thead>
             <tr>
               <th scope="col">Code</th>
@@ -118,18 +119,17 @@ export const ClientsTable = ({
             </tr>
           </thead>
           <tbody>
-            {clients &&
-              clients.map((client) => {
-                return (
-                  <ClientTableRow
-                    key={client._id}
-                    client={client}
-                    handleDelete={handleDelete}
-                    handleReAdd={handleReAdd}
-                    handleEdit={handleEdit}
-                  />
-                );
-              })}
+            {clients.map((client) => {
+              return (
+                <ClientTableRow
+                  key={client._id}
+                  client={client}
+                  handleDelete={handleDelete}
+                  handleReAdd={handleReAdd}
+                  handleEdit={handleEdit}
+                />
+              );
+            })}
           </tbody>
         </table>
       </div>

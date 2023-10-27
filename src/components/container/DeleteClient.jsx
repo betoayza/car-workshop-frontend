@@ -1,12 +1,9 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 
-export const DeleteClient = ({
-  code,
-  setModal,
-  setModalDeleteClient,
-}) => {
-  const [deleted, setDeleted] = useState(false);
+export const DeleteClient = ({ code, setModal, setModalDeleteClient }) => {
+  const [isDeleted, setIsDeleted] = useState(false);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const deleteClient = async () => {
@@ -21,13 +18,16 @@ export const DeleteClient = ({
         data: { code },
       };
 
-      await axios
-        .delete(`${import.meta.env.VITE_API}/clients/delete`, options)
-        .then((res) => {
-          console.log(res);
-          if (res.data) setDeleted(true);
-        })
-        .catch((error) => error);
+      try {
+        const response = await axios.delete(
+          `${import.meta.env.VITE_API}/clients/delete`,
+          options
+        );
+        if (response.data) setIsDeleted(true);
+        else return;
+      } catch (error) {
+        setError("Something went wrong :(");
+      }
     };
 
     deleteClient();
@@ -36,11 +36,13 @@ export const DeleteClient = ({
   const handleClose = () => {
     setModal(false);
     setModalDeleteClient(false);
-    setDeleted(false);
+    setIsDeleted(false);
   };
 
-  return (
-    deleted && (
+  return error ? (
+    <div>Error: {error}</div>
+  ) : (
+    isDeleted && (
       <>
         <h3>Client deleted ;)</h3>
         <button className="btn btn-danger" type="button" onClick={handleClose}>

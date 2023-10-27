@@ -3,8 +3,15 @@ import { NavLink } from "react-router-dom";
 
 const styleLink = {
   textDecoration: "none",
-  color: "yellowgreen"
-}
+};
+
+const styleActive = {
+  color: "#9400d3",
+};
+
+const styleInactive = {
+  color: "#7fff00",
+};
 
 export const NavBar = () => {
   return (
@@ -14,6 +21,7 @@ export const NavBar = () => {
           <NavLink to="/" style={styleLink}>
             {({ isActive }) => (
               <p
+                style={{ color: "#ffcc00", fontWeight: "bold" }}
                 className={
                   isActive
                     ? "dropdown-item navbar-brand"
@@ -40,11 +48,7 @@ export const NavBar = () => {
               <li className="nav-item">
                 <NavLink to="/" style={styleLink}>
                   {({ isActive }) => (
-                    <p
-                      className={
-                        isActive ? "nav-link active" : "nav-link"
-                      }
-                    >
+                    <p className={isActive ? "nav-link active" : "nav-link"}>
                       Home
                     </p>
                   )}
@@ -55,9 +59,8 @@ export const NavBar = () => {
                 <NavLink to="/cars/all" style={styleLink}>
                   {({ isActive }) => (
                     <p
-                      className={
-                        isActive ? "nav-link active" : "nav-link"
-                      }
+                      style={isActive ? styleActive : styleInactive}
+                      className={isActive ? "nav-link active" : "nav-link"}
                     >
                       Cars
                     </p>
@@ -69,9 +72,8 @@ export const NavBar = () => {
                 <NavLink to="/clients/all" style={styleLink}>
                   {({ isActive }) => (
                     <p
-                      className={
-                        isActive ? "nav-link active" : "nav-link"
-                      }
+                      style={isActive ? styleActive : styleInactive}
+                      className={isActive ? "nav-link active" : "nav-link"}
                     >
                       Clients
                     </p>
@@ -83,9 +85,8 @@ export const NavBar = () => {
                 <NavLink to="/services/all" style={styleLink}>
                   {({ isActive }) => (
                     <p
-                      className={
-                        isActive ? "nav-link active" : "nav-link"
-                      }
+                      style={isActive ? styleActive : styleInactive}
+                      className={isActive ? "nav-link active" : "nav-link"}
                     >
                       Services
                     </p>

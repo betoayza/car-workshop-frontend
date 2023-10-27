@@ -86,7 +86,7 @@ const ModifyClient = ({ code, setModal, setModalEdit }) => {
 
   return isUpdated ? (
     <>
-      <h3>Client isUpdated :)</h3>
+      <h3>Client updated ;)</h3>
       <button className="btn btn-danger" type="reset" onClick={handleClose}>
         Close
       </button>

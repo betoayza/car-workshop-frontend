@@ -2,12 +2,13 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 
 export const DeleteCar = ({ code, setModal, setModalCarDelete }) => {
-  const [deleted, setDeleted] = useState(false);
+  const [isDeleted, setIsDeleted] = useState(false);
+  const [error, setError] = useState(null);
 
   const handleClose = () => {
     setModal(false);
     setModalCarDelete(false);
-    setDeleted(false);
+    setIsDeleted(false);
   };
 
   useEffect(() => {
@@ -23,19 +24,25 @@ export const DeleteCar = ({ code, setModal, setModalCarDelete }) => {
         data: { code },
       };
 
-      await axios
-        .delete(`${import.meta.env.VITE_API}/cars/delete`, options)
-        .then((res) => {
-          console.log(res.data);
-          if (res.data) setDeleted(true);
-        })
-        .catch((error) => error);
+      try {
+        const response = await axios.delete(
+          `${import.meta.env.VITE_API}/cars/delete`,
+          options
+        );
+
+        if (response.data) setIsDeleted(true);
+        else return;
+      } catch (error) {
+        setError("Something went wrong :(");
+      }
     };
     deleteCar();
   }, []);
 
-  return (
-    deleted && (
+  return error ? (
+    <div>Error: {error}</div>
+  ) : (
+    isDeleted && (
       <>
         <h2>Car deleted ;)</h2>
         <button
