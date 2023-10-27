@@ -128,7 +128,7 @@ export const ServicesTable = ({
       )}
 
       {services.length === 1 ? <h2>Service:</h2> : <h2>Services:</h2>}
-      <div className={"table-responsive container"}>
+      <div className={"table-responsive container border border-2 rounded p-0"}>
         <table className={"table table-dark table-hover border-success"}>
           <thead>
             <tr>

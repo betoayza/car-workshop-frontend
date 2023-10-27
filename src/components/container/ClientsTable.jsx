@@ -104,7 +104,7 @@ export const ClientsTable = ({
       )}
 
       {clients.length === 1 ? <h2>Client:</h2> : <h2>Clients:</h2>}
-      <div className={"table-responsive container"}>
+      <div className={"table-responsive container border border-2 rounded p-0"}>
         <table className={"table table-dark table-hover border-danger"}>
           <thead>
             <tr>
