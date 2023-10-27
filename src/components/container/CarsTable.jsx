@@ -22,7 +22,7 @@ const CarsTable = ({ cars, setCars, showAddAndSearch = true }) => {
   const [modalReAddCar, setModalReAddCar] = useState(false);
   const [searchedCars, setSearchedCars] = useState(null);
   const [modalSelected, setModalSelected] = useState(false);
-  // const [carList, setCarList] = useState(null);
+  const [carList, setCarList] = useState(null);
 
   if (!Array.isArray(cars)) {
     cars = [cars];
@@ -138,7 +138,7 @@ const CarsTable = ({ cars, setCars, showAddAndSearch = true }) => {
       )}
 
       {cars.length === 1 ? <h2>Car:</h2> : <h2>Cars:</h2>}
-      <div className={"table-responsive"}>
+      <div className={"table-responsive container"}>
         <table className={"table table-dark table-hover border-info"}>
           <thead>
             <tr>
