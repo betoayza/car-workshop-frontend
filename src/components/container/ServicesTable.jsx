@@ -111,7 +111,7 @@ export const ServicesTable = ({
   ) : (
     <>
       {showAddAndSearch && (
-        <>
+        <div className="mb-2">
           <button
             className="btn btn-outline-success"
             onClick={handleAddService}
@@ -124,7 +124,7 @@ export const ServicesTable = ({
           >
             Search
           </button>
-        </>
+        </div>
       )}
 
       {services.length === 1 ? <h2>Service:</h2> : <h2>Services:</h2>}

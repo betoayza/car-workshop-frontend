@@ -23,26 +23,23 @@ const Login = () => {
     e.preventDefault();
 
     const options = {
-      url: "/api/login",      
+      url: "/api/login",
       params: form,
       timeout: 3000,
     };
-    console.log(form);
-    await axios
-      .request(options)
-      .then((res) => {
-        console.log(res.data);
-        if (res.data) {
-          alert("Login Successful!");
-          console.log("Wellcome: ", res.data.username, "!");
-          navigate(uri, { state: { userData } });
-        } else {
-          alert("Wrong credentials :(");
-        }
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+
+    try {
+      const response = await axios.request(options);
+
+      if (response.data) {
+        navigate(uri, { state: { userData } });
+      } else {
+        alert("Wrong credentials :(");
+      }
+    } catch (error) {
+      setError("Something went wrong :(");
+    }
+
     handleClean();
   };
 

@@ -88,9 +88,9 @@ export const ClientsTable = ({
       )}
     </Modal>
   ) : (
-    <div className={""}>
+    <>
       {showAddAndSearch && (
-        <>
+        <div className="mb-2">
           <button className={"btn btn-outline-success"} onClick={handleAdd}>
             Add
           </button>
@@ -100,7 +100,7 @@ export const ClientsTable = ({
           >
             Search
           </button>
-        </>
+        </div>
       )}
 
       {clients.length === 1 ? <h2>Client:</h2> : <h2>Clients:</h2>}
@@ -133,6 +133,6 @@ export const ClientsTable = ({
           </tbody>
         </table>
       </div>
-    </div>
+    </>
   );
 };

@@ -23,7 +23,7 @@ const ServiceTableRow = ({
           className="btn btn-outline-light"
           onClick={() => handleSearchCar(service.carCode)}
         >
-          See
+          <i className="bi-eye-fill"></i>
         </button>
       </td>
       <td>{service.work}</td>

@@ -17,10 +17,12 @@ export const SelectCarLists = ({ handleSelect }) => {
         onChange={handleChange}
         style={{ color: "white" }}
       >
-        <option value={""} disabled>
-          {"Filter"}
+        <option style={{ color: "gold" }} value={""} disabled>
+          Categories
         </option>
-        <option value={"list1"}>{">3 years old & just 1 service"}</option>
+        <option value={"list1"}>
+          {" More than 3 years old & just 1 service"}
+        </option>
       </select>
     </div>
   );

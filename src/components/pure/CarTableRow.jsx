@@ -20,7 +20,7 @@ const CarTableRow = ({
           className="btn btn-outline-light"
           onClick={() => seeClient(car.clientCode)}
         >
-          See
+          <i className="bi-eye-fill"></i>
         </button>
       </td>
       <td>{car.status}</td>

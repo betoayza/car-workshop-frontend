@@ -15,6 +15,7 @@ const ModifyClient = ({ code, setModal, setModalEdit }) => {
   const [form, setForm] = useState(initialForm);
   const [client, setClient] = useState(null);
   const [isUpdated, setIsUpdated] = useState(false);
+  const [error, setError] = useState(null);
 
   // GET client data to fill form
   useEffect(() => {
@@ -194,7 +195,7 @@ const ModifyClient = ({ code, setModal, setModalEdit }) => {
                   />
                 </div>
 
-                <button className="btn btn-success" type="submit">
+                <button className="btn btn-primary" type="submit">
                   Update
                 </button>
                 <button

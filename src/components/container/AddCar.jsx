@@ -64,6 +64,10 @@ const AddCar = ({ setModal, setModalAddCar }) => {
     }
   };
 
+  const handleClean = (e) => {
+    setForm({ ...initialForm, code: Date.now() });
+  };
+
   return error ? (
     <>
       <h3>Add failed :(</h3>
@@ -175,6 +179,14 @@ const AddCar = ({ setModal, setModalAddCar }) => {
 
           <button className="btn btn-danger" type="reset" onClick={handleClose}>
             Close
+          </button>
+
+          <button
+            className="btn btn-warning"
+            type="reset"
+            onClick={handleClean}
+          >
+            <i className="bi-stars"></i>
           </button>
         </form>
       </div>

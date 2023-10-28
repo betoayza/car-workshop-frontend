@@ -21,7 +21,12 @@ export const NavBar = () => {
           <NavLink to="/" style={styleLink}>
             {({ isActive }) => (
               <p
-                style={{ color: "#ffcc00", fontWeight: "bold" }}
+                style={{
+                  color: "#ffcc00",
+                  fontWeight: "bold",
+                  WebkitTextStroke: "1px black",
+                  fontSize: "25px",
+                }}
                 className={
                   isActive
                     ? "dropdown-item navbar-brand"
@@ -49,7 +54,7 @@ export const NavBar = () => {
                 <NavLink to="/" style={styleLink}>
                   {({ isActive }) => (
                     <p className={isActive ? "nav-link active" : "nav-link"}>
-                      Home
+                      <i style={{ color: "red" }} className="bi-house"></i>
                     </p>
                   )}
                 </NavLink>

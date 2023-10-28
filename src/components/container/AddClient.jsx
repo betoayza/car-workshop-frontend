@@ -177,18 +177,19 @@ const AddClient = ({ setModal, setModalAdd }) => {
             </button>
 
             <button
-              className="btn btn-warning"
-              type="reset"
-              onClick={handleClean}
-            >
-              Clean
-            </button>
-            <button
               className="btn btn-danger"
               type="button"
               onClick={handleClose}
             >
               Close
+            </button>
+
+            <button
+              className="btn btn-warning"
+              type="reset"
+              onClick={handleClean}
+            >
+              <i className="bi-stars"></i>
             </button>
           </form>
         </div>

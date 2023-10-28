@@ -123,7 +123,7 @@ const CarsTable = ({ cars, setCars, showAddAndSearch = true }) => {
   ) : (
     <>
       {showAddAndSearch && (
-        <div>
+        <div className="mb-2">
           <button className={"btn btn-outline-success"} onClick={handleAddCar}>
             Add
           </button>

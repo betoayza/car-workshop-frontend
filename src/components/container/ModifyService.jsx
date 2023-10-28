@@ -97,12 +97,12 @@ export const ModifyService = ({ code, setModal, setModalEditService }) => {
         <div>Error: {error}</div>
       ) : (
         service && (
-          <div className={"add-update-div"}>
-            <h1>Edit Service:</h1>
-            <div>
+          <div className="add-update-div container">
+            <h2>Modify Service:</h2>
+            <div className="row">
               <form onSubmit={handleSubmit2}>
                 <label htmlFor="amount">Code:</label>
-                <div className="input-group mb-2">
+                <div className="input-group mb-2 col">
                   <input
                     type="text"
                     className="form-control"
@@ -114,7 +114,7 @@ export const ModifyService = ({ code, setModal, setModalEditService }) => {
                   />
                 </div>
                 <label htmlFor="amount">Date:</label>
-                <div className="input-group mb-3">
+                <div className="input-group mb-3 col">
                   <input
                     type="text"
                     className="form-control"
@@ -126,7 +126,7 @@ export const ModifyService = ({ code, setModal, setModalEditService }) => {
                   />
                 </div>
                 <label htmlFor="amount">Amount:</label>
-                <div className="input-group mb-3">
+                <div className="input-group mb-3 col">
                   <input
                     type="number"
                     className="form-control"
@@ -139,7 +139,7 @@ export const ModifyService = ({ code, setModal, setModalEditService }) => {
                   />
                 </div>
                 <label htmlFor="carCode">Car code:</label>
-                <div className="input-group mb-3">
+                <div className="input-group mb-3 col">
                   <input
                     type="number"
                     className="form-control"
@@ -151,7 +151,7 @@ export const ModifyService = ({ code, setModal, setModalEditService }) => {
                   />
                 </div>
                 <label htmlFor="work">Work:</label>
-                <div className="input-group mb-3">
+                <div className="input-group mb-3 col">
                   <input
                     type="text"
                     className="form-control"
@@ -164,7 +164,7 @@ export const ModifyService = ({ code, setModal, setModalEditService }) => {
                   />
                 </div>
                 <label htmlFor="carKms">Car Kms:</label>
-                <div className="input-group mb-3">
+                <div className="input-group mb-3 col">
                   <input
                     type="number"
                     className="form-control"

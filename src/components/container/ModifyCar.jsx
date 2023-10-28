@@ -100,7 +100,7 @@ const ModifyCar = ({ code, setModal, setModalCarEdit }) => {
     <div>Error: {error}</div>
   ) : (
     <div className={"add-update-div"}>
-      <h2>Update Car:</h2>
+      <h2>Modify Car:</h2>
       <div>
         <form onSubmit={handleUpdate}>
           <label htmlFor="code">Code:</label>
